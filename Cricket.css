@@ -1,4 +1,3 @@
-/* Reset and basic styling */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +8,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f2f2f2; 
-    background-image: url('InShot_20240706_145050772.jpg'); 
+    background-image: url('InShot_20240706_151058956.jpg'); 
     background-size: cover;
     background-position: center;
 }
