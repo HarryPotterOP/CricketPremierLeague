@@ -317,3 +317,15 @@ footer p {
 .team:hover {
     transform: translateY(-10px);
 }
+
+.players table {
+    width: 100%;
+    border-collapse: collapse; /* Remove spacing between table cells */
+    margin-top: 20px; /* Add some spacing above the table */
+}
+
+.players th, .players td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd; /* Add subtle borders to the table */
+}
