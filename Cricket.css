@@ -9,7 +9,7 @@ body {
     line-height: 1.6;
     background-color: rgba(255, 255, 255, 0.9);
     color: #333;
-    background-image: url('Cricket.jpg');
+    background-image: url('https://statico.sportskeeda.com/editor/2024/07/b31de-17202558933822-1920.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,10 +23,9 @@ body {
 }
 
 header {
-    background-color: rgb(34, 30, 30); 
+    background-color: rgb(6, 7, 5); 
     color: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(228, 207, 207, 0.1);
     width: 100%;
     backdrop-filter: blur(10px);
 }
@@ -38,7 +37,7 @@ header .header-content {
 }
 
 header .logo {
-    width: 40px;
+    width: 50px;
     height: auto;
     margin-right: 10px;
 }
@@ -47,6 +46,8 @@ header h1 {
     font-size: 1.8rem;
     font-weight: bold;
     margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: yellow;
 }
 
 .players {
