@@ -10,8 +10,10 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     color: #333;
     background-image: url('Cricket.jpg');
-    background-size: cover;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
 }
 
 .container {
@@ -32,19 +34,19 @@ header {
 header .header-content {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align header content to the left */
+    justify-content: flex-start;
 }
 
 header .logo {
-    width: 40px; /* Adjust logo size */
+    width: 40px;
     height: auto;
     margin-right: 10px;
 }
 
 header h1 {
-    font-size: 1.8rem; /* Adjust font size */
+    font-size: 1.8rem;
     font-weight: bold;
-    margin-left: 10px; /* Add space between logo and title */
+    margin-left: 10px;
 }
 
 .players {
@@ -55,14 +57,14 @@ header h1 {
 }
 
 .player {
-    background-color: rgba(255, 255, 255, 0.8); /* Adjust player box background color */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s;
-    margin-bottom: 20px; /* Add margin-bottom for spacing */
-    backdrop-filter: blur(20px); /* Blur effect on player boxes */
+    margin-bottom: 20px;
+    backdrop-filter: blur(20px);
 }
 
 .player:hover {
@@ -114,10 +116,9 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* Media Queries for responsiveness */
 @media (max-width: 768px) {
     header .header-content {
-        justify-content: center; /* Center align on smaller screens */
+        justify-content: center;
         text-align: center;
     }
 
@@ -128,7 +129,7 @@ footer p {
 
     header h1 {
         font-size: 1.5rem;
-        margin-left: 0; /* Reset margin for smaller screens */
+        margin-left: 0;
     }
 
     .players {
@@ -147,4 +148,34 @@ footer p {
     .match-stats h2 {
         font-size: 1.5rem;
     }
+}
+
+.teams table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.teams th,
+.teams td {
+    padding: 10px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.teams th {
+    background-color: #333;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.teams td {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.teams tbody tr:nth-child(odd) td {
+    background-color: rgba(255, 255, 255, 0.9);
 }
