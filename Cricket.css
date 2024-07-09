@@ -117,6 +117,13 @@ footer p {
     font-size: 0.9rem;
 }
 
+.teams img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     header .header-content {
         justify-content: center;
