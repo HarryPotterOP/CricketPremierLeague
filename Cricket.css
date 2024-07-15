@@ -22,6 +22,28 @@ body {
     padding: 20px;
 }
 
+header nav {
+    margin-left: auto;
+}
+
+header nav h4 {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header nav h4 a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav h4 a:hover {
+    color: yellow;
+}
+
+
 header {
     background-color: rgb(6, 7, 5); 
     color: #fff;
