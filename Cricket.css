@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    background-image: url('https://statico.sportskeeda.com/editor/2024/07/b31de-17202558933822-1920.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header nav {
+    margin-left: auto;
+}
+
+header nav h4 {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header nav h4 a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav h4 a:hover {
+    color: yellow;
+}
+
+
+header {
+    background-color: rgb(6, 7, 5); 
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(228, 207, 207, 0.1);
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+
+header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header .logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: yellow;
+}
+
+.players {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.player {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+    backdrop-filter: blur(20px);
+}
+
+.player:hover {
+    transform: translateY(-10px);
+}
+
+.player img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.player h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.player p {
+    margin-bottom: 8px;
+}
+
+.match-stats {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.match-stats h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.stats p {
+    margin-bottom: 8px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+.teams img {
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    header .header-content {
+        justify-content: center;
+        text-align: center;
+    }
+
+    header .logo {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        margin-left: 0;
+    }
+
+    .players {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .player img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .player h2 {
+        font-size: 1.5rem;
+    }
+
+    .match-stats h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.teams table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.teams th,
+.teams td {
+    padding: 10px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.teams th {
+    background-color: #333;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.teams td {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.teams tbody tr:nth-child(odd) td {
+    background-color: rgba(255, 255, 255, 0.9);
+}
