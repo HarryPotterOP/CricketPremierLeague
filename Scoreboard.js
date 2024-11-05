@@ -1,16 +1,19 @@
 const matchesData = {
-    "Jul 2024": [
-        { date: "Wednesday 31st July", info: "Club Friendlies - Club Friendlies 1", team1: "Barcelona", score1: 2, team2: "Manchester City", score2: 2, result: "Barcelona win 4-1 on pens" },
-        { date: "Saturday 27th July", info: "Club Friendlies - Club Friendlies 1", team1: "Manchester City", score1: 2, team2: "AC Milan", score2: 3, result: "FT" },
-        { date: "Wednesday 24th July", info: "Club Friendlies - Club Friendlies 1", team1: "Manchester City", score1: 3, team2: "Celtic", score2: 4, result: "FT" }
-    ],
-    "Aug 2024": [
-        { date: "Saturday 10th August", info: "Club Friendlies - Club Friendlies 2", team1: "Real Madrid", score1: 1, team2: "Chelsea", score2: 1, result: "FT" },
-        { date: "Wednesday 14th August", info: "Club Friendlies - Club Friendlies 2", team1: "Liverpool", score1: 0, team2: "Bayern Munich", score2: 2, result: "FT" }
-    ],
-    "Sep 2024": [
-        { date: "Monday 2nd September", info: "League Match", team1: "Arsenal", score1: 2, team2: "Manchester United", score2: 3, result: "FT" }
+  //  "Jul 2024": [
+ //       { date: "Wednesday 31st July", info: "Club Friendlies - Club Friendlies 1", team1: "Barcelona", score1: 2, team2: "Manchester City", score2: 2, result: "Barcelona win 4-1 on pens" },
+ //       { date: "Saturday 27th July", info: "Club Friendlies - Club Friendlies 1", team1: "Manchester City", score1: 2, team2: "AC Milan", score2: 3, result: "FT" },
+    //    { date: "Wednesday 24th July", info: "Club Friendlies - Club Friendlies 1", team1: "Manchester City", score1: 3, team2: "Celtic", score2: 4, result: "FT" }
+  //  ],
+  //  "Aug 2024": [
+     //   { date: "Saturday 10th August", info: "Club Friendlies - Club Friendlies 2", team1: "Real Madrid", score1: 1, team2: "Chelsea", score2: 1, result: "FT" },
+     //   { date: "Wednesday 14th August", info: "Club Friendlies - Club Friendlies 2", team1: "Liverpool", score1: 0, team2: "Bayern Munich", score2: 2, result: "FT" }
+   // ],
+    "Nov 2024": [
+        { date: "Thursday 7th November", info: "Club Friendlies - Club Friendlies 2", team1: "Living Legends", score1: 0, team2: "Black Panthers", score2: 0, result: "FT" }
     ]
+  //  "Sep 2024": [
+   //     { date: "Monday 2nd September", info: "League Match", team1: "Arsenal", score1: 2, team2: "Manchester United", score2: 3, result: "FT" }
+   // ]
 };
 
 const matchesContainer = document.getElementById('matches-container');
