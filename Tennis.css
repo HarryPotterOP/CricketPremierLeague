@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    color: gray;
+}
+
+.field {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: linear-gradient(#4caf50, #388e3c);
+    border: 5px solid #388e3c;
+    border-radius: 8px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.field::before, .field::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
+.field::before {
+    top: 0;
+    left: 0;
+    border-width: 2px 0;
+}
+
+.field::after {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transform: translateY(-50%);
+}
+
+.field .center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10%;
+    height: 10%;
+    border: 2px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.player {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #03a9f4;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.player:hover {
+    transform: scale(1.1);
+    background: #0288d1;
+    opacity: 0.9;
+}
+
+.midfielders {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.player-card {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.player-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+}
+
+.player-card img {
+    width: 100%;
+    height: auto;
+}
+
+.player-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.player-info .flag {
+    font-size: 1.5rem;
+}
+
+.player-info h3 {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.player-info .number {
+    font-size: 1.2rem;
+    color: #888;
+}
