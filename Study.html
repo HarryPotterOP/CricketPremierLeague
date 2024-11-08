@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Study</title>
+    <link rel="stylesheet" href="Study.css">
+</head>
+
+<style>
+        
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #D2D2D2;
+        background-image:
+        repeating-linear-gradient(
+            to right, transparent 0 100px,
+            #25283b22 100px 101px
+        ),
+        repeating-linear-gradient(
+            to bottom, transparent 0 100px,
+            #25283b22 100px 101px
+        );
+    }
+    
+    body::before{
+        position: absolute;
+        width: min(1400px, 90vw);
+        top: 10%;
+        left: 50%;
+        height: 90%;
+        transform: translateX(-50%);
+        content: '';
+        background-image: url(images/bg.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top center;
+        pointer-events: none;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 50px;
+        background-color: #1d2430;
+        position: relative;
+        z-index: 10;
+    }
+
+    .header .logo {
+        width: 150px; 
+        height: 50px;
+        background-image: url('https://wallpaperaccess.com/full/813927.jpg'); 
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .header .navigation ul {
+        display: flex;
+        list-style-type: none;
+    }
+
+    .header .navigation ul li {
+        margin-right: 30px;
+    }
+
+    .header .navigation ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .header .navigation ul li a:hover {
+        color: #ff8c00;
+    }
+
+    .header .navigation ul li a:active {
+        color: #ffcc00;
+    }
+
+</style>
+
+<body>
+    <header class="header">
+        <div class="logo"></div>
+        <nav class="navigation">
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Cricket.html">Cricket</a></li>
+            <li><a href="Tennis.html">Tennis</a></li>
+          </ul>
+        </nav>
+    </header>
+    <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="images/dragon_1.jpg" alt=""></div>
+            <div class="item" style="--position: 2"><img src="images/dragon_2.jpg" alt=""></div>
+            <div class="item" style="--position: 3"><img src="images/dragon_3.jpg" alt=""></div>
+            <div class="item" style="--position: 4"><img src="images/dragon_4.jpg" alt=""></div>
+            <div class="item" style="--position: 5"><img src="images/dragon_5.jpg" alt=""></div>
+            <div class="item" style="--position: 6"><img src="images/dragon_6.jpg" alt=""></div>
+            <div class="item" style="--position: 7"><img src="images/dragon_7.jpg" alt=""></div>
+            <div class="item" style="--position: 8"><img src="images/dragon_8.jpg" alt=""></div>
+            <div class="item" style="--position: 9"><img src="images/dragon_9.jpg" alt=""></div>
+            <div class="item" style="--position: 10"><img src="images/dragon_10.jpg" alt=""></div>
+        </div>
+        <div class="content">
+            <h1 data-content="SHAZAM">SHAZAM</h1>
+            <div class="author">
+                <h2>Black Adam</h2>
+                <p><b>Aesthetic Study!</b></p>
+                <p>Life is Sad.</p>
+            </div>
+            <div class="model"></div>
+        </div>
+    </div>
+
+    <section class="study-section">
+        <div class="study-container">
+            <h2>Study</h2>
+            <div class="study-content fade-in">
+                <h3>Joule's Heating Law</h3>
+                <p>Joule's Heating Law states that the heat produced in a conductor is proportional to the square of the current, the resistance of the conductor, and the time for which the current flows. It is represented as <b>H = I²RT</b>.</p>
+                <p>This law is critical for understanding electrical circuits, electric heaters, and other applications where heat generation from current flow is important.</p>
+                <div class="problem-section">
+                    <h4>Practice Problems</h4>
+                    <ul>
+                        <li>If a current of 2A flows through a 5Ω resistor for 10s, calculate the heat produced.</li>
+                        <li>A 12V battery is connected across a resistor. If the current flowing is 1.5A, and it flows for 5 minutes, find the heat generated.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="study-content fade-in">
+                <h3>Life Processes - Mind Map</h3>
+                <p>The chapter 'Life Processes' covers essential biological processes like nutrition, respiration, transport, and excretion. Below is a summarized mind map for easy recall:</p>
+                <div class="mind-map">
+                    <p><b>Life Processes</b>: Nutrition ➔ Respiration ➔ Transport ➔ Excretion</p>
+                    <p>Each process is fundamental to maintaining the basic life functions in organisms.</p>
+                </div>
+            </div>
+
+            <div class="resources fade-in">
+                <div class="image-container">
+                    <img width= 400 src="https://cdn3.edurev.in/ApplicationImages/Temp/500346_51218f53-3e58-4129-96c4-8bb6a6f270fe_lg.jpg" alt="Life Processes Diagram">
+                    <img width= 400 src="https://engineeringhulk.com/wp-content/uploads/2023/01/Joules-Law-of-Heating.png" alt="Joule's Heating Law Diagram">
+                </div>
+                <div class="pdf-links">
+                    <a href="images/NOTES.pdf" target="_blank">Life Processes PDF</a>
+                    <a href="https://drive.google.com/file/d/1g7Yfs3j2s0HWS9NQLV0vMEYy2yPXq5x1/preview" target="_blank">Electricity PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="Study.js"></script>
+</body>
+</html>
