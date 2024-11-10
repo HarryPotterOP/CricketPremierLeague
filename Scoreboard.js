@@ -9,7 +9,8 @@ const matchesData = {
      //   { date: "Wednesday 14th August", info: "Club Friendlies - Club Friendlies 2", team1: "Liverpool", score1: 0, team2: "Bayern Munich", score2: 2, result: "FT" }
    // ],
     "Nov 2024": [
-        { date: "Thursday 7th November", info: "Club Friendlies - Club Friendlies 1", team1: "Living Legends and Black Panthers", score1: 2, team2: "Concrete Democracy", score2: 1, result: "The Alliance of Living Legends and Black Panthers destroyed Democracy Triumphantly and Achieved VICTORY! " }
+        { date: "Thursday 7th November", info: "Club Friendlies - Club Friendlies 1", team1: "Living Legends and Black Panthers", score1: 2, team2: "Concrete Democracy", score2: 1, result: "The Alliance of Living Legends and Black Panthers destroyed Democracy Triumphantly and Achieved VICTORY! " },
+        { date: "Thursday 14th November", info: "Club Friendlies - Club Friendlies 2", team1: "Living Legends", score1: 0, team2: "Black Panthers", score2: 0, result: "FT " }
     ]
   //  "Sep 2024": [
    //     { date: "Monday 2nd September", info: "League Match", team1: "Arsenal", score1: 2, team2: "Manchester United", score2: 3, result: "FT" }
