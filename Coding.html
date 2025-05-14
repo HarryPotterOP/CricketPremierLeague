@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Tutorial</title>
+    <link rel="stylesheet" href="Coding/Coding.css">
+</head>
+<body>
+     <nav>
+                <img src="images/Symbol.png" alt="LegendaryHomies" height="50" width="50">
+                <div id="nav-part2">
+                <h4><a href="home.html">Home</a></h4>
+                </div>
+            </nav>            
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Lessons</h2>
+            <ul id="lesson-list">
+                <li data-lesson="lesson1">Introduction to HTML</li>
+                <li data-lesson="lesson2">CSS Basics</li>
+                <li data-lesson="lesson3">JavaScript Intro</li>
+                <li data-lesson="lesson4">Python Basics</li>
+                <li data-lesson="lesson5">C++ Fundamentals</li>
+            </ul>
+        </aside>
+        <main class="content">
+            <div id="lesson-content">
+                <h1>Welcome to the Coding Tutorial</h1>
+                <p>Select a lesson from the sidebar to get started.</p>
+            </div>
+            <div class="editor-container">
+                <textarea id="code-editor" placeholder="Write your code here..."></textarea>
+                <iframe id="live-preview"></iframe>
+            </div>
+        </main>
+    </div>
+    <script src="Coding/Coding.js"></script>
+</body>
+</html>
