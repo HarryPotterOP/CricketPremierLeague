@@ -281,15 +281,16 @@ nav h4 a:hover {
   background: #0077b6;
   border-radius: 50%;
   padding: 0.75rem;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .ai-assistant:hover {
   transform: scale(1.1);
-  background-color: #005f86;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+  background: #005f86;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
 
 .ai-assistant img {
   width: 40px;
@@ -298,6 +299,5 @@ nav h4 a:hover {
 }
 
 .ai-assistant:hover img {
-  transform: rotate(20deg); 
-}
+  transform: rotate(20deg);
 }
