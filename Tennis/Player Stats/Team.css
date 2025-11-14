@@ -1,0 +1,224 @@
+.stat-box, .info-box {
+  position: absolute;
+  z-index: 5;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+}
+.stat-box:hover, .info-box:hover {
+  transform: scale(1.05) translateX(10px);
+  box-shadow: 0 0 20px 4px rgba(218,165,32,0.2);
+}
+.parallelogram {
+ 
+  position: relative;
+  overflow: hidden;
+  width: 220px;
+  height: 50px;
+  background: rgba(0,49,83,0.4);
+  border: none;
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+    transform: skewX(-22deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.stat-label {
+  color: #DAA520;
+  font-size: 14px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(218,165,32,0.5);
+  letter-spacing: 0.05em;
+  flex: 1;
+    text-align: center;
+    transform: skewX(22deg);
+}
+.stat-bar-bg {
+  width: 56px;
+  height: 6px;
+  background: rgba(0,49,83,0.6);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 8px;
+    transform: skewX(22deg);
+}
+.stat-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #DAA520 0%, #FFD700 100%);
+  box-shadow: 0 0 10px rgba(218,165,32,0.8);
+  border-radius: 3px;
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+.stat-value {
+  color: #FFD700;
+  font-size: 16px;
+  font-weight: 900;
+  text-shadow: 0 0 15px rgba(255,215,0,0.6);
+  min-width: 28px;
+  text-align: right;
+    text-align: center;
+    flex: 1;
+    transform: skewX(22deg);
+}
+
+/* InfoBox styles */
+.info-box {
+  width: 220px;
+  height: 50px;
+}
+.info-name {
+  width: 240px;
+  height: 65px;
+}
+.info-label, .info-name-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 900;
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255,215,0,0.6);
+  letter-spacing: 0.1em;
+  background: rgba(0,49,83,0.4);
+  border: none;
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+  transform: skewX(-10deg);
+}
+.info-name-label {
+  font-size: 26px;
+  background: rgba(0,49,83,0.6);
+  border: none;
+  box-shadow: none;
+  letter-spacing: 0.15em;
+}
+/* Main styles for Player Stats Display - extracted and merged from index.css and globals.css. */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: #001529;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Main background image (replace with actual image path if available) */
+
+.main-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../image/Fifa.png') center center/cover no-repeat;
+  z-index: 1;
+}
+
+/* Animated gradient overlay */
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(218, 165, 32, 0.2) 0%, rgba(0, 49, 83, 0.6) 50%, rgba(0, 21, 41, 0.8) 100%);
+  opacity: 0.4;
+  z-index: 2;
+  animation: gradientPulse 8s infinite;
+}
+
+@keyframes gradientPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* Player image (replace with actual image path if available) */
+
+.player-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  animation: playerFloat 5s ease-in-out infinite alternate;
+  height: auto;
+  z-index: 3;
+  filter: drop-shadow(0 8px 32px rgba(0,49,83,0.4));
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes playerFloat {
+  0% { transform: translate(-50%, -50%) scale(1) rotate(-2deg); }
+  50% { transform: translate(-50%, -54%) scale(1.04) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(-2deg); }
+}
+
+.stat-box, .info-box {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  animation: fadeInSlide 0.7s forwards, floatMove 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatMove {
+  0% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-8px) scale(1.01) rotate(-1deg); }
+  50% { transform: translateY(6px) scale(0.99) rotate(1deg); }
+  75% { transform: translateY(-4px) scale(1.01) rotate(-0.5deg); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* .stat-box.glow, .info-box.glow {
+   box-shadow: 0 0 24px 6px rgba(218,165,32,0.5), 0 0 0 2px rgba(218,165,32,0.3);
+} */
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.parallelogram {
+  position: relative;
+  overflow: hidden;
+}
+.parallelogram::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,215,0,0.15) 50%, transparent 100%);
+  transform: skewX(-10deg);
+  animation: shineMove 2.5s infinite linear;
+  pointer-events: none;
+}
+@keyframes shineMove {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+/* Animated text shadow for player name */
+.info-name-label {
+  animation: nameGlow 3s infinite alternate cubic-bezier(.4,0,.2,1);
+}
+@keyframes nameGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(218,165,32,0.4);
+  }
+  100% {
+    text-shadow: 0 0 30px rgba(255,215,0,1), 0 0 60px rgba(218,165,32,0.6);
+  }
+}
+
+.stats-container, .info-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
