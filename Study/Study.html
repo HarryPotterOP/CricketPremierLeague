@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Study.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="hero" data-aos="fade-down">
+        <div class="container">
+          <h1>Study Smarter, Not Harder</h1>
+          <p>Your gateway to curated lectures, notes, and AI guidance</p>
+          <a href="#videos" class="btn" data-aos="fade-up">Explore Content</a>
+        </div>
+      </header>
+      
+      <nav data-aos="fade-right">
+  <img src="../images/logo.png" alt="LegendaryHomies" height="30" width="30">
+  <h4><a href="../Cricket/Cricket.html">Cricket</a></h4>
+  <h4><a href="../Tennis/Tennis.html">Football</a></h4>
+        <h4><a href="home.html">Home</a></h4>
+      </nav>
+      
+      <section class="content" id="videos" data-aos="fade-up">
+        <h2 data-aos="fade-down">Video Lectures</h2>
+        <div class="grid">
+          <div class="card" data-aos="zoom-in">
+            <iframe width="1366" height="768" src="https://www.youtube.com/embed/HFcSGCXmsaw" title="INTEGRATION in 60 Minutes😱 | Complete Topic One Shot ⚡️| JEE Main &amp; Advanced" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>Learn Integration</p>
+          </div>
+          <div class="card" data-aos="zoom-in" data-aos-delay="150">
+            <iframe width="697" height="392" src="https://www.youtube.com/embed/yHyFx4RvaMk" title="MODULUS Function in 100 Minutes😱 | Complete One Shot With PYQ&#39;s⚡️| JEE Main &amp; Advanced" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>Modulus Function</p>
+          </div>
+        </div>
+      </section>
+      
+     <section class="content" id="pdfs" data-aos="fade-up">
+  <h2 data-aos="fade-down">Notes</h2>
+  <div class="grid">
+    <div class="pdf-card" data-aos="flip-left">
+  <iframe src="Notes/Motion in a Straight Line.pdf" width="100%" height="500px"></iframe>
+  <a href="Notes/Motion in a Straight Line.pdf" download class="btn small">Download</a>
+    </div>
+    <div class="pdf-card" data-aos="flip-left" data-aos-delay="150">
+  <iframe src="Notes/Units And Dimensions.pdf#toolbar=1&navpanes=0&scrollbar=1" width="100%" height="500px"></iframe>
+  <a href="Notes/Units And Dimensions.pdf" download class="btn small">Download</a>
+    </div>
+  </div>
+</section>
+<section class="content" id="strategy" data-aos="fade-up">
+  <h2 data-aos="fade-down">Strategy for Effective Learning</h2>
+  <div class="grid">
+    <div class="strategy-card" data-aos="fade-right">
+      <h3>Set Clear Goals</h3>
+      <p>Define what you want to achieve in each study session to stay focused and motivated.</p>
+    </div>
+    <div class="strategy-card" data-aos="fade-right" data-aos-delay="150">
+      <h3>Take Regular Breaks</h3>
+      <p>Use techniques like the Pomodoro method to maintain productivity and avoid burnout.</p>
+    </div>
+    <div class="strategy-card" data-aos="fade-right" data-aos-delay="300">
+      <h3>Practice Active Recall</h3>
+      <p>Test yourself frequently and Stay Consistent to reinforce your understanding and improve memory retention.</p>
+    </div>
+    <div class="strategy-card" data-aos="fade-right" data-aos-delay="450">
+      <h3>Stay Organized</h3>
+      <p>Keep your notes, resources, and schedule well-organized to save time and reduce stress.</p>
+    </div>
+     <div class="strategy-card" data-aos="fade-right" data-aos-delay="450">
+      <h3>Meditate</h3>
+      <p>Believe in God and believe in yourself.Always stay calm, and do calisthenics in free time.</p>
+    </div>
+    <div class="quote-container" data-aos="fade-up">
+      <blockquote>
+        <span class="quote-marks">“</span>The mind is like water. When it’s turbulent, it’s difficult to see. When it’s calm, everything becomes clear.<span class="quote-marks">”</span>
+      </blockquote>
+    </div>
+
+    <style>
+      .quote-container {
+        text-align: center;
+        margin-top: 50px;
+        font-family: 'Playfair Display', serif;
+      }
+
+      .quote-container blockquote {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .quote-container .quote-marks {
+        font-size: 3rem;
+        color: rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </div>
+</section>
+      
+      <button class="floating-button" id="toggleButton" data-aos="fade-up" title="Ask AI">🤖</button>
+  <script src="Study/Study.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 1000,  
+    once: true,     
+    offset: 120,    
+  });
+</script>
+</body>
+</html>
