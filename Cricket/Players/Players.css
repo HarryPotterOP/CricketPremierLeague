@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    color: #1E1E1E;
+    background-color: #CDCDCD;
+    background-image:
+        repeating-linear-gradient(
+            to right, transparent 0 150px, #0001 150px 151px
+        ),
+        repeating-linear-gradient(
+            to bottom, transparent 0 150px, #0001 150px 151px
+        ),
+        linear-gradient(to right, #CDCDCDcc, #CDCDCDcc),
+        url(images/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+}
+
+header {
+    width: min(1200px, 90vw);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 50px;
+    height: 0px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-family: "Karantina", system-ui;
+    font-size: 16vw;
+    line-height: 0.8em;
+    font-weight: 700;
+}
+
+header .author {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+header h3 {
+    font-family: "Karantina", system-ui;
+    font-size: 5vw;
+}
+
+header .author div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .author div p:nth-child(2) {
+    font-weight: 500;
+}
+
+header .author-img {
+    width: 300px;
+    max-width: 100%;
+}
+
+.banner {
+    margin-top: -50px;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.product {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 170px;
+    z-index: 2;
+    width: 500px;
+    max-width: 90vw;
+    transition: 0.7s;
+}
+
+.product .soda {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.soda {
+    background: url(images/Nagi.png) -20px 0 no-repeat;
+    background-size: contain;
+    width: 800px;
+    aspect-ratio: 16/9;
+    transition: opacity 0.5s ease;
+}
+
+.soda:nth-child(2) {
+    opacity: 0;
+}
+
+.product:hover {
+    bottom: 300px;
+}
+
+.product:hover .soda:nth-child(2) {
+    opacity: 1;
+}
+
+.product:hover .soda:nth-child(1) {
+    opacity: 0;
+}
+
+.rock {
+    position: absolute;
+    inset: 0 0 0 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.rock img:nth-child(1) {
+    position: absolute;
+    height: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    transition: 0.7s;
+    z-index: 1;
+}
+
+.rock img:nth-child(2) {
+    position: absolute;
+    height: 50%;
+    left: 0;
+    bottom: 0;
+    transition: 0.7s;
+}
+
+.rock img:nth-child(3) {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    bottom: -100px;
+    rotate: -25deg;
+    transition: 0.7s;
+}
+
+.banner:has(.product:hover) .rock img:nth-child(1) {
+    transform: translateX(-50%) translateY(50px);
+}
+
+.banner:has(.product:hover) .rock img:nth-child(2) {
+    transform: translateX(-100px) translateY(100px);
+}
+
+.banner:has(.product:hover) .rock img:nth-child(3) {
+    transform: translateX(100px) translateY(100px);
+}
+
+/* Tablet Styles */
+@media screen and (max-width: 1023px) {
+    header h1 {
+        font-size: 18vw;
+    }
+    
+    .soda {
+        width: 500px;
+    }
+    
+    .product {
+        bottom: 150px;
+        width: 400px;
+    }
+    
+    .product:hover {
+        bottom: 250px;
+    }
+    
+    header .author-img {
+        width: 200px;
+    }
+    
+    .rock img:nth-child(1) {
+        height: 140px;
+    }
+    
+    .rock img:nth-child(2) {
+        height: 40%;
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+    body {
+        background-size: auto 100%;
+    }
+    
+    header {
+        padding-top: 30px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: auto;
+    }
+    
+    header h1 {
+        font-size: 22vw;
+        margin-bottom: 10px;
+    }
+    
+    header .author {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    
+    header .author-img {
+        display: none;
+    }
+    
+    .banner {
+        margin-top: 0;
+        height: calc(100vh - 120px);
+    }
+    
+    .soda {
+        width: 400px;
+        max-width: 90vw;
+    }
+    
+    .product {
+        bottom: 120px;
+        width: 300px;
+    }
+    
+    .product:hover {
+        bottom: 180px;
+    }
+    
+    .rock img:nth-child(1) {
+        height: 100px;
+        bottom: 20px;
+    }
+    
+    .rock img:nth-child(2) {
+        height: 35%;
+        left: -20px;
+    }
+    
+    .rock img:nth-child(3) {
+        height: 80%;
+        right: -20px;
+        bottom: -50px;
+    }
+    
+    .banner:has(.product:hover) .rock img:nth-child(1) {
+        transform: translateX(-50%) translateY(30px);
+    }
+    
+    .banner:has(.product:hover) .rock img:nth-child(2) {
+        transform: translateX(-50px) translateY(50px);
+    }
+    
+    .banner:has(.product:hover) .rock img:nth-child(3) {
+        transform: translateX(50px) translateY(50px);
+    }
+}
+
+/* Extra Small Mobile Styles */
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 24vw;
+    }
+    
+    .soda {
+        width: 300px;
+    }
+    
+    .product {
+        bottom: 100px;
+        width: 250px;
+    }
+    
+    .product:hover {
+        bottom: 140px;
+    }
+    
+    .rock img:nth-child(1) {
+        height: 80px;
+    }
+    
+    .rock img:nth-child(2) {
+        height: 30%;
+    }
+    
+    .rock img:nth-child(3) {
+        height: 70%;
+        bottom: -30px;
+    }
+}
+
+/* Landscape Mobile Orientation */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    header {
+        padding-top: 20px;
+    }
+    
+    header h1 {
+        font-size: 15vh;
+    }
+    
+    .banner {
+        margin-top: 0;
+    }
+    
+    .product {
+        bottom: 80px;
+    }
+    
+    .product:hover {
+        bottom: 120px;
+    }
+    
+    .rock img:nth-child(1) {
+        height: 60px;
+    }
+    
+    .rock img:nth-child(2) {
+        height: 40%;
+    }
+    
+    .rock img:nth-child(3) {
+        height: 60%;
+    }
+}
