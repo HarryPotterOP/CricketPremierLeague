@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HermitSMP4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dark-theme">
+
+    <div class="bg-animation"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">HermitSMP4</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="..\Ninja\home.html" class="nav-link">Home</a></li>
+                <li><a href="Minecraft.html" class="nav-link active">HermitSMP4</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li><a href="rules.html" class="nav-link">Rules</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="season-badge">Season 4 • Now Live</div>
+                <h1 class="hero-title">
+                    <span class="title-light">Survival</span>
+                    <span class="title-accent">Redefined</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Experience the ultimate Minecraft survival server with custom mechanics, unique items, and a thriving community of builders and adventurers.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="copyIPBtn">
+                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy Server IP
+                    </button>
+                    <a href="features.html" class="btn btn-secondary">Explore Features</a>
+                </div>
+                <div class="hero-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">5 players online</span>
+                    <span class="status-divider">•</span>
+                    <span class="status-ip">hermitsmp4op.progamer.me</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="..\Minecraft\assets\images\MinecraftCastle.jpg" alt="HermitSMP4 Castle" class="hero-img">
+            </div>
+        </div>
+    </main>
+
+    <section class="page-section" id="tutorials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tutorials</h2>
+                <p class="section-subtitle">Learn how to get started, master custom features, and become a pro on HermitSMP4!</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-name">Getting Started</h3>
+                    <p class="feature-description">A step-by-step guide for new players joining the server for the first time.</p>
+                    <button class="btn btn-secondary" id="openGettingStarted">Open Guide</button>
+                </div>
+
+                <div class="modal-overlay" id="gettingStartedModal" style="display:none;">
+                    <div class="modal-content dark-theme">
+                        <button class="modal-close" id="closeGettingStarted" aria-label="Close">&times;</button>
+                        <h2 class="modal-title">Getting Started Guide</h2>
+                        <ol class="modal-list">
+                            <li><strong>Join the Server:</strong> Launch Minecraft, select Multiplayer, and add <span class="status-ip">hermitsmp4op.progamer.me</span> as the server address.</li>
+                            <li><strong>Read the Rules:</strong> Visit the <a href="rules.html" class="modal-link">Rules</a> page to avoid penalties.</li>
+                            <li><strong>Meet the Community:</strong> Say hello in chat and join our <a href="https://discord.gg/wEbRYca2" class="modal-link" target="_blank">Discord</a> for updates.</li>
+                            <li><strong>Start Building:</strong> Gather resources, claim your land, and begin your adventure!</li>
+                            <li><strong>Need Help?</strong> Check out more <a href="features.html" class="modal-link">features</a> or ask staff online.</li>
+                        </ol>
+                    </div>
+                </div>
+                <style>
+                    .modal-overlay {
+                        position: fixed;
+                        top: 0; left: 0; width: 100vw; height: 100vh;
+                        background: rgba(0,0,0,0.7);
+                        display: flex; align-items: center; justify-content: center;
+                        z-index: 1000;
+                    }
+                    .modal-content {
+                        background: #181a20;
+                        color: #fff;
+                        border-radius: 12px;
+                        padding: 2rem;
+                        max-width: 400px;
+                        width: 90%;
+                        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                        position: relative;
+                        font-family: 'Poppins', 'Inter', sans-serif;
+                    }
+                    .modal-title {
+                        margin-top: 0;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        color: #7ee787;
+                    }
+                    .modal-list {
+                        margin: 1rem 0 0 1.2rem;
+                        padding: 0;
+                        font-size: 1rem;
+                        line-height: 1.7;
+                    }
+                    .modal-link {
+                        color: #7ee787;
+                        text-decoration: underline;
+                    }
+                    .modal-close {
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        background: none;
+                        border: none;
+                        color: #fff;
+                        font-size: 2rem;
+                        cursor: pointer;
+                        line-height: 1;
+                    }
+                    @media (max-width: 600px) {
+                        .modal-content { padding: 1rem; font-size: 0.95rem; }
+                    }
+                </style>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const openBtn = document.getElementById('openGettingStarted');
+                        const modal = document.getElementById('gettingStartedModal');
+                        const closeBtn = document.getElementById('closeGettingStarted');
+                        openBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
+                        closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+                        modal.addEventListener('click', (e) => {
+                            if (e.target === modal) modal.style.display = 'none';
+                        });
+                    });
+                </script>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-name">Survival Tips</h3>
+                    <p class="feature-description">Essential tips and tricks to survive and thrive in the world of HermitSMP4.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚒️</div>
+                    <h3 class="feature-name">Using Custom Items</h3>
+                    <p class="feature-description">Learn how to find, craft, and use the unique custom items available on the server.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-name">Advanced Mechanics</h3>
+                    <p class="feature-description">Discover advanced server mechanics and how to use them to your advantage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="toast" id="copyToast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Server IP copied to clipboard!</span>
+    </div>
+
+    <a href="https://discord.gg/wEbRYca2" class="floating-discord" id="floatingDiscord" aria-label="Join Discord">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
