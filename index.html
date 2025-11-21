@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormDragons Login</title> 
+    <link rel="stylesheet" href="Ninja/index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="wrapper">
+    <form action="Ninja/home.html">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required>
+                <i class='bx bx-lock-alt'></i>
+            </div>
+            <button type="submit" class="button">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="Ninja/register.html" class="themed-link">Register</a></p>
+        </form>
+    </div>
+</body>
+        <style>
+            .register-link p {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 1.05em;
+                color: #555;
+            }
+            .themed-link {
+                color: #fff;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 0 2px;
+                border: none;
+                transition: color 0.2s;
+            }
+            .themed-link:hover {
+                color: #e0e0e0;
+                text-decoration: none;
+            }
+        </style>
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = form.querySelector('input[placeholder="Username"]').value;
+            const password = form.querySelector('input[placeholder="Password"]').value;
+            try {
+                const res = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    // Optionally store token: localStorage.setItem('token', data.token);
+                    alert('Login successful!');
+                    window.location.href = 'Ninja/home.html';
+                } else {
+                    alert(data.message || 'Login failed.');
+                }
+            } catch (err) {
+                alert('Server error. Please try again later.');
+            }
+        });
+    });
+    </script>
+</html>
