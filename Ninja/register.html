@@ -1,1 +1,80 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>StormDragons Register</title>
+	<link rel="stylesheet" href="register.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+	<div class="wrapper">
+		<form action="../home.html">
+			<h1>Register</h1>
+			<div class="input-box">
+				<input type="text" placeholder="Username" required>
+				<i class='bx bx-user'></i>
+			</div>
+			<div class="input-box">
+				<input type="email" placeholder="Email" required>
+				<i class='bx bx-envelope'></i>
+			</div>
+			<div class="input-box">
+				<input type="password" placeholder="Password" required>
+				<i class='bx bx-lock-alt'></i>
+			</div>
+			<button type="submit" class="button">Register</button>
+			<div class="register-link">
+				<p>Already have an account? <a href="../index.html" class="themed-link">Login</a></p>
+			</div>
+		</form>
+	</div>
+</body>
+		<style>
+			.register-link p {
+				text-align: center;
+				margin-top: 20px;
+				font-size: 1.05em;
+				color: #555;
+			}
+			.themed-link {
+				color: #fff;
+				text-decoration: none;
+				font-weight: 500;
+				padding: 0 2px;
+				border: none;
+				transition: color 0.2s;
+			}
+			.themed-link:hover {
+				color: #e0e0e0;
+				text-decoration: none;
+			}
+		</style>
+		<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const form = document.querySelector('form');
+		form.addEventListener('submit', async function(e) {
+			e.preventDefault();
+			const username = form.querySelector('input[placeholder="Username"]').value;
+			const email = form.querySelector('input[placeholder="Email"]').value;
+			const password = form.querySelector('input[placeholder="Password"]').value;
+			try {
+				const res = await fetch('http://localhost:5000/api/register', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ username, email, password })
+				});
+				const data = await res.json();
+				if (res.ok) {
+					alert('Registration successful! You can now log in.');
+					window.location.href = '../index.html';
+				} else {
+					alert(data.message || 'Registration failed.');
+				}
+			} catch (err) {
+				alert('Server error. Please try again later.');
+			}
+		});
+	});
+	</script>
+</html>
