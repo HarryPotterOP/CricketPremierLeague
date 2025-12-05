@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <style>
+            :root {
+                --accent-primary: #4e8c1b;
+                --accent-glow: #3e6e15;
+                --accent-dark: #2e4d0f;
+            }
+        </style>
+    <style>
+        .rules-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .rule-card {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .dark-theme .rule-card {
+            background: var(--dark-card);
+        }
+
+        .light-theme .rule-card {
+            background: var(--light-card);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rule-card:hover {
+            transform: translateX(5px);
+        }
+
+        .dark-theme .rule-card:hover {
+            box-shadow: 0 8px 30px rgba(196, 255, 0, 0.15);
+        }
+
+        .light-theme .rule-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .rule-header {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .rule-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--accent-primary);
+            color: var(--dark-bg);
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(196, 255, 0, 0.4);
+        }
+
+        .rule-info {
+            flex: 1;
+        }
+
+        .rule-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark-theme .rule-title {
+            color: var(--text-primary);
+        }
+
+        .light-theme .rule-title {
+            color: var(--text-dark);
+        }
+
+        .rule-category {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(196, 255, 0, 0.15);
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
+        }
+
+        .rule-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rule-description {
+            padding: 0 2rem 2rem 7.5rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .dark-theme .rule-description {
+            color: var(--text-secondary);
+        }
+
+        .light-theme .rule-description {
+            color: var(--text-dark-secondary);
+        }
+
+        .rule-expand-icon {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .rule-card.expanded .rule-expand-icon {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .rule-description {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <div class="bg-animation"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">HermitSMP4</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="..\Ninja\home.html" class="nav-link">Home</a></li>
+                <li><a href="Minecraft.html" class="nav-link">HermitSMP4</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li><a href="rules.html" class="nav-link active">Rules</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Server Rules</h1>
+                <p class="section-subtitle">
+                    Simple guidelines to ensure everyone has a great experience on HermitSMP4.
+                </p>
+            </div>
+
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">1</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Respect All Players</h3>
+                            <span class="rule-category">General Conduct</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Treat all members of the HermitSMP community with respect. Harassment, hate speech, or discrimination of any kind will not be tolerated.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">2</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">No Griefing or Stealing</h3>
+                            <span class="rule-category">Building & Property</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Do not destroy or modify other players' builds without explicit permission. Stealing items from chests, farms, or any player-owned structures is strictly forbidden.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">3</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Keep Chat Clean & Friendly</h3>
+                            <span class="rule-category">Chat</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Maintain a positive and constructive atmosphere in chat. Avoid excessive swearing, spamming, or engaging in political/religious debates.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">4</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">No Exploiting Glitches/Bugs</h3>
+                            <span class="rule-category">Gameplay</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Using any known or discovered game exploits, bugs, or unintended mechanics to gain an unfair advantage is prohibited. Report bugs to staff immediately.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">5</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Build Responsibly</h3>
+                            <span class="rule-category">Building & Property</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Ensure your builds are reasonable in size and do not cause significant lag. Avoid building too close to spawn or other players' bases without consent.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">6</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">No AFK Machines</h3>
+                            <span class="rule-category">Gameplay</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Automated AFK machines or devices designed to keep you online and active without actual player interaction are not allowed.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">7</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Use Common Sense</h3>
+                            <span class="rule-category">General Conduct</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Many situations are not explicitly covered by rules. Use your best judgment and act in a way that contributes positively to the server experience.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">8</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">No Advertising</h3>
+                            <span class="rule-category">Chat</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Do not advertise other Minecraft servers, websites, or products in chat or through builds without prior staff approval.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">9</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Follow Staff Instructions</h3>
+                            <span class="rule-category">General Conduct</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Server staff (Admins, Moderators) are here to ensure a fair and fun environment. Their decisions are final and must be respected.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-header">
+                        <div class="rule-number">10</div>
+                        <div class="rule-info">
+                            <h3 class="rule-title">Custom Item Usage</h3>
+                            <span class="rule-category">Gameplay</span>
+                        </div>
+                        <svg class="rule-expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="rule-content">
+                        <p class="rule-description">
+                            Custom items and unique mechanics are part of the server experience. Do not attempt to duplicate, exploit, or misuse them in ways not intended by the server design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://discord.gg/tGxe9WSx" class="floating-discord" id="floatingDiscord" aria-label="Join Discord">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

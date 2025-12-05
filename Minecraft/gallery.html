@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .dark-theme .gallery-item:hover {
+            box-shadow: 0 10px 40px rgba(196, 255, 0, 0.3);
+        }
+
+        .light-theme .gallery-item:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close,
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            background: var(--accent-primary);
+            color: var(--dark-bg);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(196, 255, 0, 0.5);
+        }
+
+        .lightbox-close {
+            top: -60px;
+            right: 0;
+        }
+
+        .lightbox-prev {
+            left: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-next {
+            right: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+
+            .lightbox-prev {
+                left: 20px;
+            }
+
+            .lightbox-next {
+                right: 20px;
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="bg-animation"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">HermitSMP4</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="..\Ninja\home.html" class="nav-link">Home</a></li>
+                <li><a href="Minecraft.html" class="nav-link">HermitSMP4</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="community.html" class="nav-link">Community</a></li>
+                <li><a href="rules.html" class="nav-link">Rules</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Gallery</h1>
+                <p class="section-subtitle">
+                    Explore stunning builds and memorable moments from our community
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-1.jpg" alt="Epic Castle Build" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-2.jpg" alt="Nether Portal Design" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-3.webp" alt="Village Trading Hall" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-4.webp" alt="Underwater Base" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-5.jpg" alt="Sky Island Build" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-6.webp" alt="Community Event" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-7.png" alt="Redstone Contraption" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-8.png" alt="Spawn Area" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-9.webp" alt="End City Exploration" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-10.webp" alt="Farm Complex" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-11.png" alt="Mountain Base" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets\images\Gallery-12.png" alt="Night Time Build" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close">×</button>
+            <button class="lightbox-prev" aria-label="Previous">‹</button>
+            <img src="" alt="Gallery Image" class="lightbox-img">
+            <button class="lightbox-next" aria-label="Next">›</button>
+        </div>
+    </div>
+
+    <a href="https://discord.gg/tGxe9WSx" class="floating-discord" id="floatingDiscord" aria-label="Join Discord">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
