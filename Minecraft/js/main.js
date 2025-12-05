@@ -1,4 +1,4 @@
-const DISCORD_LINK = "https://discord.gg/wEbRYca2";
+const DISCORD_LINK = "https://discord.gg/tGxe9WSx";
 const SERVER_IP = "hermitsmp4original.progamer.me";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -453,4 +453,5 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.style.animation = 'none';
     el.style.transition = 'none';
   });
+
 }
