@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Premier League</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="pages/cpl-pages.css">
+  <link rel="stylesheet" href="cricket-live.css">
+  <link rel="stylesheet" href="css/cpl-site-effects.css">
+  <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../../core/firebase-config.js"></script>
+  <script src="../../core/firebase-auth.js"></script>
+  <script src="../../core/session-manager.js"></script>
+</head>
+<body class="cpl-home">
+  <header class="cpl-site-header">
+    <div class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand headline" href="Cricket.html">
+          <img src="../../assets/images/Symbol.png" alt="CPL">
+          <span>CRICKET PREMIER LEAGUE</span>
+        </a>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav class="nav-links">
+          <a href="../home.html">Main</a>
+          <a class="active" href="Cricket.html">Home</a>
+          <a href="../Football/Football.html">Football</a>
+          <a href="pages/scorecard.html">Scorecard</a>
+          <a href="pages/tournament-center.html">Points Table</a>
+          <a href="pages/player-universe.html">Teams</a>
+          <a href="archive/archive.html">Archive</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="hero-slider shell" data-hero-slider>
+    <article class="hero-slide is-active" data-hero-slide>
+      <img src="https://img.republicworld.com/all_images/2026/04/virat-kohli-celebrates-after-rcb-vs-srh-ipl-match-1775308738186-1280x720.webp?w=1280&h=720&q=75&format=webp" alt="RCB Match">
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <span class="hero-badge">Video</span>
+        <h1 class="headline">KKR search for light amidst the gloom</h1>
+        <p>05 Apr, 2026 | 03:49 mins | 387k views</p>
+        <div class="hero-slide__actions">
+          <a href="https://www.cricbuzz.com/cricket-news/138267/kkr-search-for-light-amidst-the-gloom" target="_blank" rel="noopener noreferrer">View series</a>
+          <a class="ghost" href="https://www.hotstar.com/in/sports/cricket/ipl" target="_blank" rel="noopener noreferrer">Watch on Hotstar</a>
+        </div>
+      </div>
+    </article>
+    <article class="hero-slide" data-hero-slide>
+      <img src="https://images.indianexpress.com/2026/04/DC-MI-3.jpg" alt="Match highlights - DC vs MI">
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <span class="hero-badge">Highlights</span>
+        <h2 class="headline">IPL 2026 M10: SRH vs LSG - Match Highlights</h2>
+        <p>01 Apr, 2026 | 6:24 mins | 524k views</p>
+        <div class="hero-slide__actions">
+          <a href="https://www.iplt20.com/video/64695/ipl-2026-m10-srh-vs-lsg---match-highlights" target="_blank" rel="noopener noreferrer">Match scores</a>
+          <a class="ghost" href="https://www.hotstar.com/in/sports/cricket/ipl" target="_blank" rel="noopener noreferrer">View highlights</a>
+        </div>
+      </div>
+    </article>
+    <article class="hero-slide" data-hero-slide>
+      <img src="https://images.news18.com/ibnlive/uploads/2026/04/CSK-vs-RCB-Live-Score-2026-04-47ac554c77042b93990da05cd82bc950-1200x675.jpg" alt="Ruturaj Gaikwad">
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <span class="hero-badge">Latest</span>
+        <h2 class="headline">TATA IPL 2026, Match 8: DC vs MI – Match Report</h2>
+        <p>04 Apr, 2026 | 5:12 mins | 298k views</p>
+        <div class="hero-slide__actions">
+          <a href="https://www.iplt20.com/news/4269/tata-ipl-2026-match-8-dc-vs-mi-match-report" target="_blank" rel="noopener noreferrer">View standings</a>
+          <a class="ghost" href="https://www.iplt20.com/" target="_blank" rel="noopener noreferrer">Official IPL</a>
+        </div>
+      </div>
+    </article>
+    <button class="hero-nav hero-nav--prev" type="button" data-hero-prev aria-label="Previous slide">‹</button>
+    <button class="hero-nav hero-nav--next" type="button" data-hero-next aria-label="Next slide">›</button>
+  </section>
+  <main>
+    <section class="quick-links shell" data-reveal>
+      <h2 class="headline">What are you looking for?</h2>
+      <div class="quick-links__grid" data-stagger-children>
+        <a href="pages/player-universe.html">All Teams</a>
+        <a href="pages/tournament-center.html">Points Table</a>
+        <a href="pages/scorecard.html">Scorecard</a>
+        <a href="archive/archive.html">News</a>
+        <a href="../../index.html">Main Homepage</a>
+        <a href="../Football/Football.html">Football</a>
+      </div>
+    </section>
+    <section class="cpl-darkband" data-reveal>
+      <div class="shell section-head">
+        <h2 class="headline">Magic Moments</h2>
+        <div class="rail-nav">
+          <a href="archive/archive.html">See More</a>
+        </div>
+      </div>
+      <div class="shell media-rail" data-rail="moments" data-stagger-children>
+        <article class="media-card"><a class="media-card__hit" href="https://sports.ndtv.com/icc-cricket-world-cup-2023/first-time-in-48-years-jasprit-bumrah-achieves-historic-first-for-india-in-cricket-world-cup-2023-4539414" target="_blank" rel="noopener noreferrer" aria-label="IPL 2026 opening week highlights"></a><img src="data:image/webp;base64,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" alt="Fast bowler in delivery stride"><h3>Jasprit Bumrah Achieves Historic First For India In Cricket World Cup</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.iplt20.com/" target="_blank" rel="noopener noreferrer" aria-label="IPL 2026 official"></a><img src="data:image/webp;base64,UklGRtoUAABXRUJQVlA4IM4UAAAwaQCdASoMAbQAPp1EnEslo6Msp5EM+ZATiWcYn2QBDGuP5HcNXwS4R5p4/XFTfruH/Z+MZiCdt/t/OrkG/6nj4fZf+J6nH9u9ZfwP/tG/EPZoAy14daLuKQxYutcckNPoeAt/3Zwsglf8buDzp93Ve1dKA9H/SuYRTQdn/DRE7HjqfAfqSph4btZUksMGXo+Y/yi/o1vcQhFcY1Oe4r06eZk1L/3WSNaBwn/0GcC9ys3jnFLDdEXdWLTi8T4Jx31hxlH0i7oEoPJVbFDYN/7YtdmDPhvYUxd32VfO7+quIG9n3m+TGV/50jviDK02J3GnD2n2sNf991v3aWs+tDf5Dkj1R5zIsJvgZP4GokK9+XAhoymUrs7IPT5QbXT/6XT/aLxzAWZxUqPJb8ji4J8e8WveCLyYUJyv+rNN1jsorY81wobYMP4AGj7QZN3h673AlOyxqZxO7ml2YQ7BFoZUusIPNj3v/zPKaTFhVH1U6WITVWomfbblIUJLcrsU5motBgpubLgtfcKYUYxeG85p9DJdEGH36LTRwPxd/Wr6CjNtkhYQH7BXpQtPLlrAaomKdHnfxZn4dmWMxHCqCwSH+bZVCx3HcSOKSDIsPG70UXIsMPqQ9Xupo49KxAZLuCs0CpEn+bbivXZqUiaTagTaA8p4z8eGLMn9SjTGhJpGbmZPGVKXzgQYt9UpozbsW/luXdAAtKbZNAGN//dXPtbd7/lXC8N9jZb740YDcTmEsqw4mqdL4E9393LMgf61XGpHBqsgrOv2QK03sGpQbnk8rKtwmhggWGyjKveaamcshv7N0aKEXKCGUKBd0p02hgETS/of+zgkTZey+r6acU+GeX6lwEAJ6OKfRiM8GMXDND+YZL0zGgREcSkl+DyN51hkkQj1Jus4EBf7fAAF2W94tNGOFmyMnlIcRMhV+R6jTAeSH0xdKxlHHgXLYhClaZjBxQQuRDRktHjXURgi7E2Up5mHFqHBNN5nsPFXEKZ7igroska7Ub9Dg4LWkJY0ToXW1MwAWtN8UisIIulr3LfjDTUdj3HIDga1I9wmxTwKVUFcwd6Kvys2c+fWEUD8+0Di6+9oJjNUP50hEP0SMW9BqGKqQ2O6gvzzl1PW302CEZIAAP7kQrnqyqVFuALKLoPv6XLTBlwqV5yNK0A/GVvnMAfuzKrS2tOkOuQvALLitsn9ksAYdwnN0dtgc5YwVqdBTVAbuKNK0dxeg4chlyYI0bL1xjK0qWiKzmOggszj/uWYOY025UZvyTPUaaTxvxuVLhXOTrjJFIWMmcWvWiH/X27vsOHvCLeNKVwJt5BntR7uSlm4AnCUvLyjrK/LudjNJLOlVBHMk5fWSmIt2XQdhenGCKcO5lZH4Q99G4IG37OAcpSFG3JI5iRnPlSTmbRBFys9ezqsgHMhOlW07SEZg88iiZciK9JVSl3i0/e8L6BtNrdORhIn5FbGYyz5tCH1WfIXvf1XRpNm1IbQfcmNJoXEonHD+m20C7I3Fh8tyRSa8yS8Co4l7thDO8jZbPFYq6S3sLcXZ5uz62dj7chviRd7sahe0k+e/X0iM9CXOCNA1rRk5BoYJLQCT615/evf6EiTqf0BMroajslYMiS7kT3qbH9szviXouGU/kRuq0v3z8c2+NCsn6SOdm5M2Wm6aQAOafkALcsLcB8c6+VHZ5tx1eRj8kicP+AbzC60sYHlqFxXdPN9sBrf1NAPcrhQdBhT0UgND3dq45KDPnNH0Tuny7HU6/c+POCJGZTMM5zh2cf0aZ764CB6K0MU8ITqjgd+QnBrxoPg5LVTaiV/3ruCJjo8COTMV5NidGV3xaKazrH6vC1HH2axp3J4djlXw7KzsoBZBv8LNJ1Jk7DtZqZFhvxeR7vkZidCvsdTBO+CABuOlxrF46vqfbuCG46ATE+HVo+1Nc0AnwEaoVSBNdqmjA+AL6k04MwA+PaoE9PAnge/8CQ54m9TSktyZI8ih9NiqTAlIA2mLTbSwsTMM6C+WMt8V/85mqh4+gqm7GwNQ9IHRzZFBGUeNMzJt5d9EhY9fykRqbLZZiM0APJOCWicWaQPGP6zUbLGeBKcuQNCo0SlR+Yf54eXqkkUWsOB2xv4tZ5GTxXX7gbh0lJ0Q+gryapeFc5Nc3q6qITRsTTg5uNaVSB+/ih4g/5ObXhArXm3rDPJDAZrXTLWSsJhBHzqZGde8ookM+ekXaBcWBbF6dpuFhfhb0tvh5hVMRXQuwENAw9zS32fJLyREcgAqVbDQNVDoOWS8qiil27FLj4sMAZksHWDZ538oeuJOfYy05o++krhFly8oc8y9iAAejZmlltDxRw/xThbSQDd9uftwlyLOj5PtXlYaUPB36MXNJwIkvLua2SH04kw+6Wc03Kac+rfuuBsPBGnzrrkr8f8agX99fO9VNqkdibZkt+uhc6E9fN8VppaT7VP91mM+l3Ma7ZKQqkTBccTts7ROVqDMYHP1RA9G1BHRiBuKK9fFQ1lrpVrOj6dPWksnjyzjEdskbDxaqIUBUNLkcMTMWMNzpwzsaOGH/nUSoM9N0huXiMqx5vQxIcd/wPPz8LoxCpK1QPZt4zEUKqHZWb/39suploqste1af05joXWYZ+cUDQRy3n+6wydcd0TEOFzoAYQQp5VJEZ5OxR0FUsW27Pe9tZU7emu6ifRfOD1iDUBxLUP5A/utqOogqNNIpDiFEuPMFhbbH5FrhfCIkcQ1HjS6YZKWorgHJN+9texwQIUhdlI175SoPDsiPrcBZIzD4Fa09Z6N2ZG0OlsK1UNJPX2P+6pjrq3xWRCsdEKmLBm0JQrU9RqIL/vy6koH2E82Y25aRaxLgWfH6fn9T19934bTeD0Rz+DRABoeWLBJHFwPi5Tg6jXWjTeSUZu9QwJUz4OeefO3ApSVkc8kw13TqA6IrOGqM7VAfL4uncshA2huK9iEfIKPsKwd3L78echf1ZzuzMtTywnqi7U7ALw00zJgCYBx/EAbph450IQ3vAi4uD1tn7KZ5aWZ9tcDTV7+ZBr52f58jXPh0gDIvnA/8oOW//9FvMD4tAF60PElN+shK+Hy5sk38UwYCs+1xT7oBLZwHcRWDiX4CQGGYmTBUTFkTut21fzRSh31WtepgZzEe8ZGQRnaLL+9yYjEtvyv94gCPVNKdTrluOcsLKtSQzzJYOaPq8VBiyLpU3vZDKFM0rv8j3wNnw0SvbozpaxXzbOup5x4mEOteemcWlTApMGFqyrK4So490PgHEw18+d5KvosfnBkCB07+tAleUmeTLWAcOAie7C8+H+NlazavIF4wp4y6IjsyWCJ0Q7PVLLjoMrCndArrKpIvoxDWc1EepC3BijZYrzkDbjjsILp3YHcAE62UqETdbrs05WOesBAHHckaPun2rxDMVX6KBx4tiXDAvNMAxEAbIgXKxShWIMtYTc21GMFazQNSiqZpOjqpbhSdYM83pSIBzNN8mMwl20ep9WW8JyxAOCwcxhhO5F6u6aAPpalzShPwrVjUYOScyYXie53HFk0uFYwUtUFIDqX6Gw7MJ6OprfvX5WwvUJMFWm0F0xJZYLDLa0pfg2Qe9ErWxmnhhHn5w3XbSpl5HDPf5QKNn3QuEhy5g1A9XrZdo9cYHf1L1jL2P2OvtdHOMnGNpu8phX8cmG5xmzV1zG2fUZAxPBZx+/cbJCTABLWxWRaJYFgdDKp7plna5v7+79j0mx+TPUYWRjl89uGFAaQITA8GVBCbveaQG9a19KMB2rJIXnJZRTDoBuI1qkUc7mR9P2P/aaAIkOOFOCLikQWOeXneVk+Hev1T4q1777ExZR80nFeUgr3fGbcQCX5bMqHw3ErPMHFqfwTv578YyYofWgJZriILbqTUDW09hcaHEQj84zV5xqEHdWL2lcNasTq9KMYbi1HJNxSmv89Z6Q8Bvbp1wxoxuO6MmssI7FoCRuJwx5kTuKrmA7W5nEbs+LyPHTmWpfqsQ51TgSC3anwRJqvAXNuqOtTiEnN4EVC3fgLAbo1Ci15TG+EBFFGLHBjBrAPuYw+mNC/7f//j+LJnxpulaVxWW+sy80LUdSTaxi/BPEyxBIj6dU/wcA4B6GOYQClRqqgj9NUBzJxhkz73QZ5LmwydmrcqdFXDMoaflVVXypUbyjVIidXhsRGlJTX7yfAvFUzcshEuiFNurAAi1FWWxMrrFUtFNefoZtNWRbp5ygvoMxZyjzYWABqL2OuG/itI4gKuwgIu2cXklW4k8Jvw3ONuT8t1GSDwkQqEh5pmYRgFw4GbfKm1+f1bF3ipBN4N+P9TsQgygdfvU6PdzPtbEzG6+vNsypZt7hWr6k455xcwOcN4LXMoDBro1ecdrgd/3SITtSgbQ1+OITXzF/00LeM+VIEZtemnXVENlk2NeCeXAfFCuxzii7mgT5ZxU+glJ3oKq3CwZWtDM20J3dhfgjzS1meDunUYqbtEhFmuqC9KT2pHzIBJsCeULEUxkgHF3rADKsaEiNYyzCbUv+RlqFL040zaKDgiU1fRPcnrAZDmZFTWqyL3SlMGFNASvoQPtnR0yghBCS9lkvVCgMbsd24pS4YiAxvbuMJW0FDAAAeP8ZH36ESEnRYjRYHSudkhxsr+3rr7xwOAJPrPpEtSLsNG8B6fGlAZM7HABH0xTbubLOsgD8WZ7y2tM6cX2v3SscMEbmxptHkYFsdGe/oDBf5S5g+XAqCIFuTqOWyYDh3JQqJyuu5AYOM1ByWOAJaH98uxIzTODebURpYrfQzhYvBpNy/OjHwZ5v3NtU2AobnjUohg9Cbf7LK+GvqtOty4a70tskjZE4wyUK1aPLCitlDk0XyoOHXxrIo3yF1d1GcPbp3Q3mMD0OBoZvvs+pxDs7SuuxFSyA78YGaClCul0efxtIAEbKUlHGkXRjKiBvka/9Fy0Upu06705/9AVZocZoB8xrGqvKs8j1USEICt4MFRkZOj1NYQ3L9hgZ1NKMXWhVG/67azznj1AnnYpf53kb4cDxK/WWPCJFJwl9r40V2lH/KlnLCkXYwnRtBUV04wxXQokcreG52FuoXuWQKd54FmJAbgxRWhcDRknQXW0sEDVOIMzKDVJBc/7mkzJd2PMH++GECU7HxHJxRJ8FoQiRdvl/RpQ4COrxWzjjuyjERvH3Po7STXac7fu9SUvnbVmMHRiM50vZjUXtqLYWOrFjyHODfpvkyWMDWqXDPUcGcWXqQzdI8tiu6SyjqCNCR8E7ALpaOiLj2OznN69C8bxBzuL2c1EK/fXgMhBobWNqrcZwwuAgw1HFptfZyO/byKxtfmt28PAVe5fONQZKxBW0K0Use9EyC7oRpcjl4Syjg5Rw/McyEgE3xtKHJ7O68xDaejbdyMI+9Utq1rEMOp1XCr+/4e7wSoPknDrAtzjhVaSmpC9YJfm5KwwpIMLeQMzWEzuhCvG1tXZVIoDk8UZOWKMe7Ny5VY4mxI+8LvOCbFVbMA5ghJmZEjKSf4rBFT+jVxLrALzM/jpQCZKgY7sApmJvGj3pN9iedTIwZXdueOpVKgYmLKIi9QI3ZTeFHsJzjFPJuJJBYiMrWvzGjceILDNZDekC3ZHnYLUQgdvhInldlQuP4iVzIWHOZB2hiKSvmM0Ms10UnYQ8akerrNrnxUxpmIPf3G4fTJqT/TmWksoeoTjRfkOgDyZhuIgajKydNvUmezjBhJTIrSWaL/oroA6b8Zg81bqlczHLcn2fYtO2X/FH7oH9WfOrp7dTvhAfh7P/oWA7NYX083Q5ExG1mBqEwz7wINktKYWqpEpnAxnl/TL1t70UmOD0XcpJdQvNZ2/sf0ggfcOjA/VFXMqMgCJQz4GhmqnJC/JRSgBhbe7WDC2ENz69qTK0R4TVMrngL9RBGlDb3GiKTehUEZZbxpbQNVn5507NiGW3Ffa03idXhawQBTQgJnmpUwnhriLvMmXhP4WFC4QBMefEX14pijRMnDDlJhkvzeS7R1qoy9iFPjnvD+aIjuPpHfenYvYZX4z1QgPgWz2kR4VKLYq5ZQ37UlD3NY5udJ5v8BQsuhW+37GH56hnFKaTB2+l0y0m00eG9KcmQejCw2R5An4HueJmQApF4iGzubS1vuDWmP48QJK7CetTWi8xLvMO8eRf3EOs1gOhJduC5SgXKszKM/kJxFWlo2MFpozUKKM6n8bj6URA9fE2tFRJh9NvPU43v01mKxLgWY6xmyvn6OuVn1rF3/1opzy4KHTlIZlVViGUhGM1mwvywz4H44DSRXKiCPndn0y50i95GPdtTdH+vTf0t5y1OAiXKwBYxoB5pubK8etM6u28ZJiQMDRXbl3XP+T8od5B2zCw6oz5MebnNCAJ4NOokcOy6JLLB9nu//9AYVatmEWcb8WYSmafBwJDGyrwUmhYhrUOVi1GOFnob+v7wnaQR/mJS+EGcx7mB4Kwmwy2XqxcjREy9z4CLhO80xj8U2qcXOl8t38G66pqh/hiHjRoE5iM0LJOcQ0ypDAfs3lVtO/BjMXFuyvEyxoEaf18+DSGSaJMKdvXtKyMgQBpj/WklvOB1cpf7ZbAaYaiTzjcWkqieAWvVvRkoVDEk5CGkLPOQBDdVpQt5LZpAZ+KMokJDpCC2g7U0v0suc132naCVmhZgLCt22+zXg4UGrKAqbGFyR50PoRhpNUMcbjgrG/y8CfkVgqmzpwRK3/qkujcP+q07mSMs/IvlsmX7zZEjwALwoxYCqlfBbQLKtYHc1JiG/1f81opSWeFinoeBRmPenfCQ5deMXKBnUkq7G+fU5dbmlGgnJ2Jx1AUkkMqtJO7Ca9/fQcDF3KdbpI35td/4jSonewI6wPrJ9VGGAGb9OMaYtYyekDPP1/c5EZBjXR8yOfW4vUp52OKB4sYS7D/pWhXsHj/poAZYX9njOdGwyhZDKoWBm21MDf/V2HKn7Ank+SSzoutbbIF/zHrS93qI3INFG/gqRtK7ubP4E6nBQILQKsyIcacGxBhnIYSKz3aRzvA87YG5c5Easif3Qr8KbuZMeBiKNzve6/uxlBPezUOf66ajTAeGwuKSKYB4U/ikCRRitMeLzmG9fbi8IcxtKHB4Y7PSqHCukxUkAAA" alt="Haaland and Shubhman Gill"><h3>Why GT Captain Shubman Gill Is Not Playing IPL 2026 Match Against Rajasthan Royals?</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.timesnownews.com/sports/cricket/why-shubman-gill-is-not-playing-ipl-2026-match-against-rajasthan-royals-article-153997591" target="_blank" rel="noopener noreferrer" aria-label="SRH opening week victories"></a><img src="https://dam.mediacorp.sg/image/upload/s--p130a0VX--/c_fill,g_auto,h_468,w_830/fl_relative,g_south_east,l_mediacorp:cna:watermark:2024-04:reuters_1,w_0.1/f_auto,q_auto/v1/one-cms/core/2026-03-26T113343Z_1_LYNXMPEM2P0NZ_RTROPTP_3_CRICKET-IPL-RCB-PBKS.JPG?itok=b5K7QGSE" alt="Batter in the nets"><h3>IPL 2026: dates, format, fixtures and team details</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.iplt20.com/match/2026/2417" target="_blank" rel="noopener noreferrer" aria-label="IPL 2026 RCB vs SRH"></a><img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5354/1775301275354-i"><h3>Thriller matches highlight week 1</h3></article>
+      </div>
+    </section>
+     <section class="teams" data-reveal style="display: flex; justify-content: center; padding: 3rem 2rem; width: 100%;">
+        <div style="width: 100%; max-width: 900px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; background: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 48px rgba(0,49,126,0.15);" data-stagger-children>
+                <div style="background: #0046ad; padding: 1.8rem; text-align: center;">
+                    <h3 style="color: white; margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Bengal Challengers</h3>
+                </div>
+                <div style="background: #00317e; padding: 1.8rem; text-align: center;">
+                    <h3 style="color: white; margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Moon Knight</h3>
+                </div>
+                <div style="padding: 3.5rem 2rem; text-align: center; background: #ffffff;">
+                    <img src="../../assets/images/Bengali.jpg" alt="Bengal Challengers" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #00317e; box-shadow: 0 12px 32px rgba(0,49,126,0.25); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 16px 40px rgba(0,49,126,0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 12px 32px rgba(0,49,126,0.25)'">
+                </div>
+                <div style="padding: 3.5rem 2rem; text-align: center; background: #ffffff;">
+                    <img src="../../assets/images/MoonKnight.jpg" alt="Moon Knight" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #00317e; box-shadow: 0 12px 32px rgba(0,49,126,0.25); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 16px 40px rgba(0,49,126,0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 12px 32px rgba(0,49,126,0.25)'">
+                </div>
+                <div class="team-row" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; background: #ffffff; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative;" onmouseover="this.style.background='#e8f0ff'; this.style.transform='translateY(-3px) scale(1.01)'; this.style.boxShadow='0 8px 25px rgba(0,49,126,0.18)'; this.style.zIndex='10';" onmouseout="this.style.background='#ffffff'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='none'; this.style.zIndex='1';">
+                    <div style="padding: 1.5rem; text-align: center; color: #00317e; font-weight: 600; font-size: 1.1rem; transition: color 0.35s ease;">King Kohli</div>
+                    <div style="padding: 1.5rem; text-align: center; color: #00317e; font-weight: 600; font-size: 1.1rem; transition: color 0.35s ease;">Black Adam</div>
+                </div>
+                <div class="team-row" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; background: #f8f9fc; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; position: relative;" onmouseover="this.style.background='#e8f0ff'; this.style.transform='translateY(-3px) scale(1.01)'; this.style.boxShadow='0 8px 25px rgba(0,49,126,0.18)'; this.style.zIndex='10';" onmouseout="this.style.background='#f8f9fc'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='none'; this.style.zIndex='1';">
+                    <div style="padding: 1.5rem; text-align: center; color: #00317e; font-weight: 600; font-size: 1.1rem; transition: color 0.35s ease;">Gaming Elite</div>
+                    <div style="padding: 1.5rem; text-align: center; color: #5f6475; font-weight: 500; font-size: 1.1rem; transition: color 0.35s ease;">-</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cpl-darkband" data-reveal>
+      <div class="shell section-head">
+        <h2 class="headline">IPL Exclusive</h2>
+        <div class="rail-nav">
+          <a href="archive/archive.html">See More</a>
+        </div>
+      </div>
+      <div class="shell media-rail" data-rail="exclusive" data-stagger-children>
+        <article class="media-card"><a class="media-card__hit" href="https://www.indiatvnews.com/sports/cricket/kkr-vs-lsg-live-cricket-score-kolkata-hope-to-register-first-win-of-ipl-2026-vs-lucknow-super-giants-rishabh-pant-ajinkya-rahane-1036945" target="_blank" rel="noopener noreferrer" aria-label="KKR vs  LSG"></a><img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2026/04/untitled-design-2026-04-09t182855-1775739544.webp" alt="Player interview setting"><h3>KKR vs LSG live cricket score</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.msn.com/en-in/sports/cricket/explained-why-pat-cummins-left-ipl-2026-midway-and-when-he-will-return/ar-AA208PxL?ocid=BingNewsSerp" target="_blank" rel="noopener noreferrer" aria-label="Young player performances"></a><img src="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA208PKz.img?w=768&h=576&m=6&x=353&y=123&s=87&d=87" alt="Bowler celebrating a wicket"><h3>Pat Cummins return in SRH</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://khelnow.com/cricket/update-ms-dhoni-comeback-csk-vs-dc-ipl-202604" target="_blank" rel="MS Dhoni" aria-label="Opening week trends"></a><img src="https://assets.khelnow.com/news/uploads/2026/04/GettyImages-2213366040-3-scaled.jpg" alt="CSK IPL Match"><h3>Major update on MS Dhoni’s comeback in IPL 2026 ahead of CSK vs DC clash</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.iplt20.com/" target="_blank" rel="noopener noreferrer" aria-label="Official IPL updates"></a><img src="https://cric-mate.com/images/common/rcb-vs-pbks-ipl-2025-final-highlights-royal-challengers-win-by-6-runs-clinch-maiden-title-rcb-won-ipl-2025-mainlargebanner-683fef0a0c5fd.jpg" alt="RCB IPL 2025"><h3>IPL 2026 early form guide</h3></article>
+      </div>
+    </section>
+    <section class="cpl-darkband" data-reveal>
+      <div class="shell section-head">
+        <h2 class="headline">Latest News</h2>
+        <div class="rail-nav">
+          <a href="archive/archive.html">See More</a>
+        </div>
+      </div>
+      <div class="shell media-rail" data-rail="news" data-stagger-children>
+        <article class="media-card"><a class="media-card__hit" href="https://www.royalchallengers.com/" target="_blank" rel="noopener noreferrer" aria-label="KKR vs RR match"></a><img src="https://tse1.mm.bing.net/th/id/OIP.odAjAYHZZzZuUa6RGSEWeAHaEK?w=1600&h=900&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Team celebrating on the field"><h3>TATA IPL 2026 - Match Day Updates</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.msn.com/en-in/sports/general/vaibhav-sooryavanshi-wins-hearts-with-humble-gesture-post-heroics-vs-mi-touches-harsha-bhogle-s-feet-watch/ar-AA20q5eY?ocid=BingNewsSerp" target="_blank" rel="noopener noreferrer" aria-label="Opening matches recap"></a><img src="https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2026/04/befunky-collage-2026-04-06t173330-1775477017.webp" alt="Two batters confer mid-pitch"><h3>Vaibhav Sooryavanshi wins hearts with humble gesture post heroics vs MI</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://indianexpress.com/article/sports/cricket/rcb-vs-dc-live-score-updates-wpl-2026-final-royal-challengers-bengaluru-vs-delhi-capitals-live-scorecard-10515335/" target="_blank" rel="noopener noreferrer" aria-label="Official match results"></a><img src="https://images.indianexpress.com/2026/02/RCB-WPL-2026-winner.jpg?w=1600" alt="Intensity — player close-up"><h3>RCB vs DC, WPL 2026 Final Highlights</h3></article>
+        <article class="media-card"><a class="media-card__hit" href="https://www.hotstar.com/in/sports/cricket/ipl" target="_blank" rel="noopener noreferrer" aria-label="Watch all matches live"></a><img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9883/1775758409883-i" alt="Batters in the middle of an innings"><h3>Watch Live on Hotstar - All Matches</h3></article>
+      </div>
+    </section>
+  </main>
+  <section class="bottom-ticker" data-reveal>
+    <div class="shell bottom-ticker__inner">
+      <strong>Featured</strong>
+      <span>Season 2026</span>
+      <a href="pages/tournament-center.html" style="color:inherit;text-decoration:none">Points table ›</a>
+      <a href="pages/scorecard.html" style="color:inherit;text-decoration:none">Scorecard ›</a>
+    </div>
+  </section>
+  <div class="bottom-nav">
+    <div class="inner">
+      <a class="active" href="Cricket.html">HOME</a>
+      <a href="pages/player-universe.html">PLAYERS</a>
+      <a href="pages/tournament-center.html">TEAMS</a>
+      <a href="archive/archive.html">ARCHIVE</a>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="shell site-footer__grid" style="grid-template-columns: 1fr;">
+      <div>
+        <h3>Watch & Social</h3>
+        <div class="site-social-links">
+          <a class="site-social-link" href="https://www.iplt20.com/" target="_blank" rel="noopener noreferrer">IPL Official</a>
+          <a class="site-social-link" href="https://www.hotstar.com/in/sports/cricket" target="_blank" rel="noopener noreferrer">Hotstar</a>
+          <a class="site-social-link" href="https://www.youtube.com/@IPL" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a class="site-social-link" href="https://www.instagram.com/iplt20/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="site-social-link" href="https://www.facebook.com/IPL/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a class="site-social-link" href="https://twitter.com/IPL" target="_blank" rel="noopener noreferrer">Twitter/X</a>
+        </div>
+      </div>
+    <p class="site-footer__copy">Copyright  CPL 2026 All Rights Reserved.</p>
+  </footer>
+  <script src="js/cpl-motion.js"></script>
+  <script src="js/homepage.js"></script>
+  <script src="../../js/cpl-content.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL Tournament Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cpl-pages.css">
+  <link rel="stylesheet" href="../cricket-live.css">
+  <link rel="stylesheet" href="../css/cpl-site-effects.css">
+  <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../../../core/firebase-config.js"></script>
+  <script src="../../../core/firebase-auth.js"></script>
+  <script src="../../../core/session-manager.js"></script>
+</head>
+<body class="cpl-inner" data-cpl-page="tournament">
+  <header class="cpl-site-header">
+    <div class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand headline" href="../Cricket.html"><img src="../../../assets/images/Symbol.png" alt=""><span>TOURNAMENT</span></a>
+        <nav class="nav-links">
+          <a href="../Cricket.html">Home</a>
+          <a href="scorecard.html">Scorecard</a>
+          <a class="active" href="tournament-center.html">Tournament</a>
+          <a href="player-universe.html">Players</a>
+          <a href="../archive/archive.html">Archive</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="shell section--flush" data-reveal>
+    <div class="hero-cinematic" style="min-height:200px">
+      <img class="hero-cinematic__bg" src="https://staticg.sportskeeda.com/editor/2025/03/54180-17411112039035-1920.jpg" alt="ICC Cricket World Cup trophy" width="1920" height="1080" decoding="async">
+      <div class="hero-cinematic__grade" aria-hidden="true"></div>
+      <div class="hero-cinematic__inner" style="min-height:200px;justify-content:flex-end;padding:1.25rem">
+        <p class="eyebrow" style="color:#fff;margin:0">Points table · CPL</p>
+        <h1 class="headline" style="color:#fff;margin:.3rem 0 0;font-size:clamp(1.5rem,3vw,2.1rem)">Who tops the group?</h1>
+        <p class="photo-credit" style="color:rgba(255,255,255,.65);margin-top:.5rem">Trophy — <a href="https://commons.wikimedia.org/wiki/File:Cricket_World_Cup_Trophy.jpg" style="color:#fff" rel="noopener noreferrer">Wikimedia Commons</a> (CC BY-SA).</p>
+      </div>
+    </div>
+  </section>
+  <main class="shell">
+    <section class="hero section" data-reveal>
+      <h2 class="hero-title headline" data-tournament-hero-title>Tournament center</h2>
+      <p class="hero-lead" data-tournament-hero-lead>Standings and phase info</p>
+      <div class="cpl-page-cta">
+        <a href="scorecard.html">Latest scorecard</a>
+        <a href="player-universe.html">Squads</a>
+        <a href="../archive/archive.html">News</a>
+      </div>
+    </section>
+    <section class="section card card--lift" data-reveal>
+      <h3 class="card-title headline">Standings</h3>
+      <table class="table-cpl">
+        <thead><tr><th>Rank</th><th>Team</th><th>P</th><th>W</th><th>L</th><th>Pts</th></tr></thead>
+        <tbody data-tournament-tbody></tbody>
+      </table>
+    </section>
+  </main>
+  <section class="bottom-ticker" data-reveal>
+    <div class="shell bottom-ticker__inner">
+      <strong>Standings</strong>
+      <span>Qualifier race</span>
+      <span><a href="scorecard.html" style="color:inherit;text-decoration:none">Results</a></span>
+      <span><a href="../archive/archive.html" style="color:inherit;text-decoration:none">News</a></span>
+      <a href="scorecard.html">Match centre ›</a>
+    </div>
+  </section>
+  <div class="bottom-nav">
+    <div class="inner">
+      <a href="../Cricket.html">HOME</a>
+      <a href="scorecard.html">CARD</a>
+      <a href="player-universe.html">PLAYERS</a>
+      <a class="active" href="tournament-center.html">TEAMS</a>
+      <a href="../archive/archive.html">ARCHIVE</a>
+    </div>
+  </div>
+  <script src="../../../js/cpl-content.js"></script>
+  <script src="../js/cpl-pages.js"></script>
+  <script src="../js/cpl-motion.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

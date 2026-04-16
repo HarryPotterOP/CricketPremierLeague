@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL Player Universe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cpl-pages.css">
+  <link rel="stylesheet" href="../cricket-live.css">
+  <link rel="stylesheet" href="../css/cpl-site-effects.css">
+  <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../../../core/firebase-config.js"></script>
+  <script src="../../../core/firebase-auth.js"></script>
+  <script src="../../../core/session-manager.js"></script>
+</head>
+<body class="cpl-inner" data-cpl-page="players">
+  <header class="cpl-site-header">
+    <div class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand headline" href="../Cricket.html"><img src="../../../assets/images/Symbol.png" alt=""><span>PLAYERS</span></a>
+        <nav class="nav-links">
+          <a href="../Cricket.html">Home</a>
+          <a href="scorecard.html">Scorecard</a>
+          <a href="tournament-center.html">Tournament</a>
+          <a class="active" href="player-universe.html">Players</a>
+          <a href="../archive/archive.html">Archive</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="shell section--flush" data-reveal style="margin-top:1rem">
+    <div class="hero-cinematic" style="min-height:220px">
+      <img class="hero-cinematic__bg" src="https://wallpapercave.com/wp/wp10339085.jpg" alt="Cricket squad at training" width="1600" height="900" decoding="async">
+      <div class="hero-cinematic__grade" aria-hidden="true"></div>
+      <div class="hero-cinematic__inner" style="min-height:220px;justify-content:flex-end;padding:1.25rem">
+        <p class="eyebrow" style="color:#fff;margin:0">Rosters</p>
+        <h1 class="headline" style="color:#fff;margin:.25rem 0 0;font-size:clamp(1.35rem,2.8vw,2rem)">Squads, roles, and spotlights</h1>
+        <p class="photo-credit" style="color:rgba(255,255,255,.65);margin-top:.5rem">Trophy — <a href="https://www.chennaisuperkings.com/" style="color:#fff" rel="noopener noreferrer">CSK</a> Website.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cpl-darkband section--flush" style="margin-top:1.25rem;padding-top:1rem" data-reveal>
+    <div class="shell section-head">
+      <h1 class="headline" style="margin:0;font-size:clamp(1.35rem,2.5vw,2rem);color:#fff">Player universe</h1>
+      <div class="rail-nav">
+        <a href="scorecard.html">Stats</a>
+        <a href="../archive/archive.html">News</a>
+      </div>
+    </div>
+  </section>
+  <main class="shell section">
+    <h2 class="headline" data-players-page-title style="font-size:clamp(1.65rem,4vw,2.6rem);font-weight:900;color:var(--primary);margin:0">Elite Performers</h2>
+    <p class="lead" data-players-page-lead data-reveal>CPL roster spotlight — power ratings and roles.</p>
+    <section class="section grid-3" data-players-root data-reveal>
+    </section>
+  </main>
+  <section class="bottom-ticker" data-reveal>
+    <div class="shell bottom-ticker__inner">
+      <strong><a href="../Cricket.html" style="color:inherit;text-decoration:none">CPL Home</a></strong>
+      <span><a href="tournament-center.html" style="color:inherit;text-decoration:none">Table</a></span>
+      <span><a href="../archive/archive.html" style="color:inherit;text-decoration:none">News</a></span>
+      <a href="scorecard.html">Scorecard ›</a>
+    </div>
+  </section>
+  <div class="bottom-nav">
+    <div class="inner">
+      <a href="../Cricket.html">HOME</a>
+      <a class="active" href="player-universe.html">PLAYERS</a>
+      <a href="scorecard.html">CARD</a>
+      <a href="tournament-center.html">TEAMS</a>
+      <a href="../archive/archive.html">ARCHIVE</a>
+    </div>
+  </div>
+  <script src="../../../js/cpl-content.js"></script>
+  <script src="../js/cpl-pages.js"></script>
+  <script src="../js/cpl-motion.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

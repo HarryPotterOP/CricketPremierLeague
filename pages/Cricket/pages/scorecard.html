@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPL Scorecard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cpl-pages.css">
+  <link rel="stylesheet" href="../cricket-live.css">
+  <link rel="stylesheet" href="../css/cpl-site-effects.css">
+  <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../../../core/firebase-config.js"></script>
+  <script src="../../../core/firebase-auth.js"></script>
+  <script src="../../../core/session-manager.js"></script>
+</head>
+<body class="cpl-inner" data-cpl-page="scorecard">
+  <header class="cpl-site-header">
+    <div class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand headline" href="../Cricket.html"><img src="../../../assets/images/Symbol.png" alt=""><span>SCORECARD</span></a>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav class="nav-links">
+          <a href="../Cricket.html">Home</a>
+          <a class="active" href="scorecard.html">Scorecard</a>
+          <a href="tournament-center.html">Tournament</a>
+          <a href="player-universe.html">Players</a>
+          <a href="../archive/archive.html">Archive</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="shell section--flush" data-reveal>
+    <div class="hero-cinematic" style="min-height:220px">
+      <img class="hero-cinematic__bg" src="https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2020/02/Motera-Stadium-feature.jpg?tr=w-1280,f-jpg,pr-true" alt="Batter playing a shot — match centre" width="1600" height="900" decoding="async">
+      <div class="hero-cinematic__grade" aria-hidden="true"></div>
+      <div class="hero-cinematic__veil" aria-hidden="true"></div>
+      <div class="hero-cinematic__inner" style="min-height:220px;justify-content:flex-end;padding:1.25rem">
+        <p class="eyebrow" style="color:#fff;margin:0">CPL · official card</p>
+        <h1 class="headline" style="margin:.35rem 0 0;color:#fff;font-size:clamp(1.5rem,3vw,2.2rem)">Full scorecard</h1>
+        <p style="margin:.35rem 0 0;opacity:.92;max-width:40rem">Batting lines update instantly.</p>
+        <p class="photo-credit" style="color:rgba(255,255,255,.7)">Photo: <a href="https://www.iplt20.com/" style="color:#fff" rel="noopener noreferrer">IPL T20</a> (editorial).</p>
+      </div>
+    </div>
+  </section>
+  <main class="shell">
+    <section class="hero section" data-reveal>
+      <p class="eyebrow" data-scorecard-eyebrow>Match completed</p>
+      <h2 class="hero-title headline" data-scorecard-title>Bengal Challengers vs Moon Knight</h2>
+      <p class="hero-lead" data-scorecard-lead>Scorecard layout</p>
+      <div class="cpl-page-cta">
+        <a href="tournament-center.html">Points table</a>
+        <a href="../archive/archive.html">News ›</a>
+      </div>
+    </section>
+    <section class="section grid-2">
+      <article class="card card--lift" data-reveal>
+        <h3 class="card-title headline" data-scorecard-bengal-label>Bengal batting</h3>
+        <table class="table-cpl">
+          <thead><tr><th>Player</th><th>R</th><th>B</th><th>SR</th></tr></thead>
+          <tbody data-scorecard-bengal-tbody></tbody>
+        </table>
+      </article>
+      <article class="card card--lift" data-reveal>
+        <h3 class="card-title headline" data-scorecard-moon-label>Moon batting</h3>
+        <table class="table-cpl">
+          <thead><tr><th>Player</th><th>R</th><th>B</th><th>SR</th></tr></thead>
+          <tbody data-scorecard-moon-tbody></tbody>
+        </table>
+      </article>
+    </section>
+  </main>
+  <section class="bottom-ticker" data-reveal>
+    <div class="shell bottom-ticker__inner">
+      <strong>Match centre</strong>
+      <span><a href="tournament-center.html" style="color:inherit;text-decoration:none">Standings</a></span>
+      <span><a href="../archive/archive.html" style="color:inherit;text-decoration:none">News</a></span>
+      <a href="scorecard.html" style="color:inherit;text-decoration:none">Current card ›</a>
+    </div>
+  </section>
+  <div class="bottom-nav">
+    <div class="inner">
+      <a href="../Cricket.html">HOME</a>
+      <a class="active" href="scorecard.html">CARD</a>
+      <a href="player-universe.html">PLAYERS</a>
+      <a href="tournament-center.html">TEAMS</a>
+      <a href="../archive/archive.html">ARCHIVE</a>
+    </div>
+  </div>
+  <script src="../../../js/cpl-content.js"></script>
+  <script src="../js/cpl-pages.js"></script>
+  <script src="../js/cpl-motion.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

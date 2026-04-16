@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormDragons Login</title>
+    <meta name="description" content="Login to LegendaryHomies">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="core/firebase-config.js"></script>
+    <script src="core/firebase-auth.js"></script>
+    <script src="core/session-manager.js"></script>
+</head>
+<body>
+    <div class="wrapper" id="login-wrapper">
+        <div class="form-header">
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Sign in to continue your journey</p>
+        </div>
+        <div id="login-message" class="message hidden"></div>
+        <form id="login-form" onsubmit="return false;">
+            <div class="input-box">
+                <input type="text" id="login-email" placeholder="Email or Username" required autocomplete="off">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+                <i class='bx bx-lock-alt'></i>
+                <span class="toggle-password" onclick="togglePasswordVisibility('login-password', this)">
+                    <i class='bx bx-show'></i>
+                </span>
+            </div>
+            <div class="forgot-password">
+                <a href="#" onclick="showResetForm(); return false;">Forgot Password?</a>
+            </div>
+            <button type="submit" class="button" id="login-btn">
+                <span class="btn-text">Login</span>
+                <span class="btn-loader hidden"><i class='bx bx-loader-alt bx-spin'></i></span>
+            </button>
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+        <div id="reset-form" class="hidden">
+            <div class="form-header">
+                <h2>Reset Password</h2>
+                <p class="subtitle">Enter your email to receive a reset link</p>
+            </div>
+            <div id="reset-message" class="message hidden"></div>
+            <div class="input-box">
+                <input type="email" id="reset-email" placeholder="Email address" required autocomplete="email">
+                <i class='bx bx-envelope'></i>
+            </div>
+            <button type="button" class="button" onclick="handlePasswordReset()">
+                <span>Send Reset Link</span>
+            </button>
+            <div class="register-link">
+                <p><a href="#" onclick="showLoginForm(); return false;">Back to Login</a></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setupLoginForm() {
+            const loginForm = document.getElementById('login-form');
+            if (!loginForm) return;
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (!window.firebaseReady || !FIREBASE_AUTH) {
+                    showMessage('login-message', 'Firebase not initialized. Please refresh.', 'error');
+                    return;
+                }
+                const btn = document.getElementById('login-btn');
+                const btnText = btn.querySelector('.btn-text');
+                const btnLoader = btn.querySelector('.btn-loader');
+                btnText.classList.add('hidden');
+                btnLoader.classList.remove('hidden');
+                btn.disabled = true;
+                const emailOrUsername = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                if (!emailOrUsername || !password) {
+                    showMessage('login-message', 'Please fill in all fields', 'error');
+                    btnText.classList.remove('hidden');
+                    btnLoader.classList.add('hidden');
+                    btn.disabled = false;
+                    return;
+                }
+                try {
+                    const result = await FIREBASE_AUTH.login(emailOrUsername, password);
+                    if (result.success) {
+                        showMessage('login-message', result.message, 'success');
+                        document.querySelector('.wrapper').classList.add('success-animation');
+                        setTimeout(() => {
+                            window.location.href = 'pages/home.html';
+                        }, 500);
+                    } else {
+                        showMessage('login-message', result.message, 'error');
+                        document.querySelector('.wrapper').classList.add('shake');
+                        setTimeout(() => document.querySelector('.wrapper').classList.remove('shake'), 500);
+                        btnText.classList.remove('hidden');
+                        btnLoader.classList.add('hidden');
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    showMessage('login-message', 'Error: ' + err.message, 'error');
+                    btnText.classList.remove('hidden');
+                    btnLoader.classList.add('hidden');
+                    btn.disabled = false;
+                }
+            });
+        }
+        window.addEventListener('DOMContentLoaded', setupLoginForm);
+        function togglePasswordVisibility(inputId, toggler) {
+            const input = document.getElementById(inputId);
+            const icon = toggler.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bx bx-hide';
+            } else {
+                input.type = 'password';
+                icon.className = 'bx bx-show';
+            }
+        }
+        function showMessage(elementId, text, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = text;
+            el.className = 'message ' + type;
+            el.classList.remove('hidden');
+        }
+        
+        function showResetForm() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.querySelector('.register-link').classList.add('hidden');
+            document.getElementById('reset-form').classList.remove('hidden');
+            document.getElementById('login-message').classList.add('hidden');
+        }
+        
+        function showLoginForm() {
+            document.getElementById('reset-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+            document.querySelector('.register-link').classList.remove('hidden');
+            document.getElementById('reset-message').classList.add('hidden');
+        }
+        
+        async function handlePasswordReset() {
+            const email = document.getElementById('reset-email').value.trim();
+            if (!email) {
+                showMessage('reset-message', 'Please enter your email address', 'error');
+                return;
+            }
+            if (!window.firebaseReady || !FIREBASE_AUTH) {
+                showMessage('reset-message', 'Firebase not initialized. Please refresh.', 'error');
+                return;
+            }
+            const result = await FIREBASE_AUTH.resetPassword(email);
+            showMessage('reset-message', result.message, result.success ? 'success' : 'error');
+            if (result.success) {
+                setTimeout(() => {
+                    showLoginForm();
+                }, 3000);
+            }
+        }
+    </script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

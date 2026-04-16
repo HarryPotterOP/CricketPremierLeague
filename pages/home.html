@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegendaryHomies</title>
+    <meta name="description" content="LegendaryHomies — A multi-disciplinary creative hub for legends">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../core/firebase-config.js"></script>
+    <script src="../core/firebase-auth.js"></script>
+    <script src="../core/session-manager.js"></script>
+    <script src="../core/loader-manager.js"></script>
+</head>
+<body>
+    <div id="loader">
+        <h1>STUDY</h1>
+        <h1>MINECRAFT</h1>
+        <h1>NINJA</h1>
+    </div>
+    <script>
+        async function handleLogout() {
+            if (typeof LOADER_MANAGER !== 'undefined') {
+                LOADER_MANAGER.reset();
+            }
+            if (typeof SESSION_MANAGER !== 'undefined') {
+                await SESSION_MANAGER.logout('../index.html');
+            }
+        }
+    </script>
+    <div id="fixed-image"></div>
+    <div id="main">
+        <div id="page1">
+            <nav>
+                <img src="../assets/images/Symbol.png" alt="LegendaryHomies" height="50" width="50">
+                <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div id="nav-part2">
+                    <h4><a href="Cricket/Cricket.html">Cricket</a></h4>
+                    <h4><a href="Football/Football.html">Football</a></h4>
+                    <h4><a href="Study/index.html">Study</a></h4>
+                    <div id="user-menu-nav" class="profile-loading" onclick="toggleUserMenu()">
+                        <div id="user-avatar-btn">
+                            <span id="avatar-letter">U</span>
+                            <img id="nav-user-img" src="" style="display: none;">
+                        </div>
+                        <h4 id="nav-username-text" style="font-size: 16px; margin-left: 8px; font-weight: 400; cursor: pointer; text-transform: capitalize;">User</h4>                       
+                        <div id="user-dropdown" class="dropdown-hidden">
+                            <div id="profile-card">
+                                <div id="profile-card-banner">
+                                    <img id="profile-card-banner-img" src="" style="display: none;">
+                                </div>
+                                <div id="profile-card-content">
+                                    <div id="profile-card-avatar">
+                                        <span id="profile-card-letter">U</span>
+                                        <img id="profile-card-avatar-img" src="" style="display: none;">
+                                    </div>
+                                    <div id="profile-card-info">
+                                        <div id="profile-card-name-section">
+                                            <h3 id="profile-card-name">User</h3>
+                                            <p id="profile-card-username">@user</p>
+                                        </div>
+                                        <p id="profile-card-bio" class="profile-bio-text"></p>
+                                        <a id="profile-card-edit-btn" href="profile.html" class="profile-card-btn">
+                                            <i class='bx bx-edit'></i>
+                                            <span>Edit Profile</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="profile-card-menu">
+                                    <a href="profile.html#settings" class="profile-menu-item">
+                                        <i class='bx bx-cog'></i>
+                                        <span>Settings</span>
+                                    </a>
+                                    <button class="profile-menu-item profile-menu-danger" onclick="handleLogout()">
+                                        <i class='bx bx-log-out'></i>
+                                        <span>Logout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div id="center">
+                <div id="left">
+                    <div id="welcome-stats" style="display: flex; gap: 12px; justify-content: flex-start; margin-bottom: 2rem;">
+                        <div class="stat-card">
+                            <i class='bx bx-time-five'></i>
+                            <span id="current-time">--:--</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class='bx bx-calendar'></i>
+                            <span id="current-date">---</span>
+                        </div>
+                    </div>
+                    <h3>LegendaryHomies is a multi-disciplinary studio focused on creating unique, end-to-end experiences and environments.</h3>
+                </div>
+                <div id="right">
+                    <h1>NEVER <br> GIVE <br> UP</h1>
+                </div>
+            </div>
+            <div id="hero-shape">
+                <div id="hero-1"></div>
+                <div id="hero-2"></div>
+                <div id="hero-3"></div>
+            </div>
+            <video autoplay loop muted src="../assets/videos/Ronaldo.mp4"></video>
+        </div>
+        <div id="quote-ticker">
+            <div class="ticker-content">
+<span class="ticker-item">"Life is really simple, but we insist on making it complicated." - Confucius</span>
+<span class="ticker-item">"In the middle of difficulty lies opportunity." - Albert Einstein</span>
+<span class="ticker-item">"Knowing yourself is the beginning of all wisdom." - Aristotle</span>
+<span class="ticker-item">"The unexamined life is not worth living." - Socrates</span>
+<span class="ticker-item">“In every walk with nature one receives far more than he seeks.” — John Muir</span>
+<span class="ticker-item">"He who has a why to live can bear almost any how." - Friedrich Nietzsche</span>
+<span class="ticker-item">"Man is condemned to be free." - Jean-Paul Sartre</span>
+<span class="ticker-item">"Liberty, when it begins to take root, is a plant of rapid growth." - George Washington</span>
+<span class="ticker-item">"The journey of a thousand miles begins with one step." - Lao Tzu</span>
+<span class="ticker-item">"No man's knowledge here can go beyond his experience." - John Locke</span>
+<span class="ticker-item">"We are what we repeatedly do. Excellence, then, is not an act, but a habit." - Will Durant</span>
+            </div>
+        </div>
+        <div id="page2">
+            <div id="moving-text">
+                <div class="con">
+                    <h1>STUDY</h1>
+                    <div id="gola"></div>
+                    <h1>LEGENDARY</h1>
+                    <div id="gola"></div>
+                    <h1>MINECRAFT</h1>
+                    <div id="gola"></div>
+                </div>
+                <div class="con">
+                    <h1>STUDY</h1>
+                    <div id="gola"></div>
+                    <h1>LEGENDARY</h1>
+                    <div id="gola"></div>
+                    <h1>MINECRAFT</h1>
+                    <div id="gola"></div>
+                </div>
+                <div class="con">
+                    <h1>STUDY</h1>
+                    <div id="gola"></div>
+                    <h1>LEGENDARY</h1>
+                    <div id="gola"></div>
+                    <h1>MINECRAFT</h1>
+                    <div id="gola"></div>
+                </div>
+            </div>
+            <div id="page2-bottom">
+                <h1>We are a group of design-driven, goal-focused creators, producers, and designers who believe that the details make all the difference.</h1>
+                <div id="bottom-part2">
+                    <img src="../assets/images/ninja/Naruto.png" alt="Naruto">
+                    <p>We love to create, we love to solve, we love to collaborate, and we love to turn amazing ideas into reality. We're here to share Amazing and Mind blowing Creative ideas.</p>
+                </div>
+            </div>
+            <div id="gooey"></div>
+            <div id="feature-section">
+                <div id="feature-gooey">
+                    <div class="fg-blob fg-blob-1"></div>
+                    <div class="fg-blob fg-blob-2"></div>
+                </div>
+                <h2 class="section-title">What We Offer</h2>
+                <div class="feature-grid">
+                    <div class="feature-card" data-tilt>
+                        <div class="feature-icon"><i class='bx bx-game'></i></div>
+                        <h3>Gaming Hub</h3>
+                        <p>Dive into Minecraft builds, strategies, and creative worlds that push boundaries.</p>
+                        <div class="feature-glow"></div>
+                    </div>
+                    <div class="feature-card" data-tilt>
+                        <div class="feature-icon"><i class='bx bx-book-reader'></i></div>
+                        <h3>Study Zone</h3>
+                        <p>Collaborative learning resources, notes, and study materials shared by the crew.</p>
+                        <div class="feature-glow"></div>
+                    </div>
+                    <div class="feature-card" data-tilt>
+                        <div class="feature-icon"><i class='bx bx-trophy'></i></div>
+                        <h3>Sports Corner</h3>
+                        <p>Cricket stats, football highlights, and all the sports content you love.</p>
+                        <div class="feature-glow"></div>
+                    </div>
+                    <div class="feature-card" data-tilt>
+                        <div class="feature-icon"><i class='bx bx-palette'></i></div>
+                        <h3>Aesthetics Lab</h3>
+                        <p>Curated themes, wallpapers, and visual inspiration for the creative soul.</p>
+                        <div class="feature-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page3">
+            <div id="elem-container">
+                <div id="elem1" class="elem" data-image="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg">
+                    <div class="overlay"></div>
+                    <h2><a href="Minecraft/Minecraft.html">Minecraft</a></h2>
+                </div>
+                <div class="elem" data-image="https://th.bing.com/th/id/OIP.lP3qywx4Xjgv0bzOxQcaXwHaEK?rs=1&pid=ImgDetMain">
+                    <div class="overlay"></div>
+                    <h2><a href="Aesthetics/Theme.html">Aesthetics</a></h2>
+                </div>
+                <div class="elem" data-image="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=800&q=80">
+                    <div class="overlay"></div>
+                    <h2><a href="Cosmos/Cosmos.html">Cosmos</a></h2>
+                </div>
+            </div>
+        </div>
+        <div id="page4">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <h3>Gaming</h3>
+                        <p>Immerse yourself in top-tier gameplay, tutorials, and intense mechanics.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>Cosmos</h3>
+                        <p>Embark on a voyage through the digital void and discover infinite creative possibilities.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>Design</h3>
+                        <p>Master UI/UX and visual arts to create stunning interfaces.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>Sports</h3>
+                        <p>Stay active, track stats, and learn the physics of the game.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>Community</h3>
+                        <p>Join the homies and collaborate on the next big project.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>THUNDER</h3>
+                        <p>Unleash the ultimate power and energy of the legendary squad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page5"></div>
+        <div id="full-scr">
+            <div id="full-div1"></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-div"></div>
+        <h1>Thunder</h1>
+        <div id="footer-bottom"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('nav-part2').classList.toggle('active');
+        }
+        function toggleUserMenu() {
+            document.getElementById('user-dropdown').classList.toggle('dropdown-hidden');
+        }
+        document.addEventListener('click', function(e) {
+            const userMenu = document.getElementById('user-menu-nav');
+            const dropdown = document.getElementById('user-dropdown');
+            if (userMenu && dropdown && !userMenu.contains(e.target)) {
+                dropdown.classList.add('dropdown-hidden');
+            }
+        });
+    </script>
+</body>
+</html>

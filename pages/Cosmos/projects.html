@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Cosmos.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+    <style>
+        .page-content {
+            padding-top: 10rem;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+        .project-card {
+            background: var(--cosmos-glass);
+            border: 1px solid var(--cosmos-border);
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cosmos-primary);
+            box-shadow: 0 20px 60px rgba(88, 166, 255, 0.15);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.2), rgba(188, 140, 255, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--cosmos-primary);
+        }
+        .project-content {
+            padding: 2rem;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .project-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--cosmos-primary);
+        }
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--cosmos-glass);
+            border: 1px solid var(--cosmos-border);
+            border-radius: 1.5rem;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cosmos-primary);
+            font-family: var(--font-header);
+        }
+        @media (max-width: 768px) {
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="cosmos-theme">
+    <div id="stars-container"></div>
+    <div id="nebula"></div>
+    <header class="cosmos-header">
+        <nav class="shell">
+            <a href="Cosmos.html" class="brand">
+                <span>COSMOS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="Cosmos.html#realms">Realms</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="../profile.html" class="profile-link"><i class='bx bx-user-circle'></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="shell page-content">
+        <section>
+            <div class="section-header" data-reveal>
+                <span class="eyebrow">PROJECT</span>
+                <h2 class="headline">Cosmic Creations</h2>
+                <p class="subheadline">Explore our digital artifacts and experimental projects.</p>
+            </div>
+        </section>
+        
+        <section class="stats-section" data-reveal>
+            <div class="stat-item">
+                <div class="stat-number">42</div>
+                <p class="text-white/60">Projects</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">128</div>
+                <p class="text-white/60">Contributors</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15k+</div>
+                <p class="text-white/60">Stars</p>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <p class="text-white/60">Satisfaction</p>
+            </div>
+        </section>
+        
+        <section class="projects-grid">
+            <div class="project-card" data-reveal>
+                <div class="project-image">
+                    <i class='bx bx-planet'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Three.js</span>
+                        <span class="project-tag">WebGL</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Nebula Engine</h3>
+                    <p class="text-white/60 mb-4">A 3D particle system for creating immersive space visualizations and cosmic environments.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-card" data-reveal>
+                <div class="project-image" style="background: linear-gradient(135deg, rgba(188, 140, 255, 0.2), rgba(255, 88, 166, 0.2));">
+                    <i class='bx bx-brain'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">AI</span>
+                        <span class="project-tag">NLP</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Cosmos AI</h3>
+                    <p class="text-white/60 mb-4">Natural language processing model trained on astronomical data and cosmic literature.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-card" data-reveal>
+                <div class="project-image" style="background: linear-gradient(135deg, rgba(255, 88, 166, 0.2), rgba(255, 140, 88, 0.2));">
+                    <i class='bx bx-code-block'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Rust</span>
+                        <span class="project-tag">Systems</span>
+                        <span class="project-tag">CLI</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Starlight CLI</h3>
+                    <p class="text-white/60 mb-4">A high-performance command-line interface for astronomical calculations and data processing.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-card" data-reveal>
+                <div class="project-image" style="background: linear-gradient(135deg, rgba(88, 255, 166, 0.2), rgba(88, 166, 255, 0.2));">
+                    <i class='bx bx-data'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Database</span>
+                        <span class="project-tag">GraphQL</span>
+                        <span class="project-tag">API</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">AstroDB</h3>
+                    <p class="text-white/60 mb-4">GraphQL-based database system designed for storing and querying astronomical observations.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-card" data-reveal>
+                <div class="project-image" style="background: linear-gradient(135deg, rgba(255, 200, 88, 0.2), rgba(255, 140, 88, 0.2));">
+                    <i class='bx bx-mobile-alt'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">Mobile</span>
+                        <span class="project-tag">iOS/Android</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Cosmos Mobile</h3>
+                    <p class="text-white/60 mb-4">Cross-platform mobile application for exploring the cosmos on the go.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="project-card" data-reveal>
+                <div class="project-image" style="background: linear-gradient(135deg, rgba(88, 200, 255, 0.2), rgba(188, 88, 255, 0.2));">
+                    <i class='bx bx-game'></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Unity</span>
+                        <span class="project-tag">C#</span>
+                        <span class="project-tag">Game</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Void Walker</h3>
+                    <p class="text-white/60 mb-4">An atmospheric space exploration game with procedurally generated star systems.</p>
+                    <span class="inline-flex items-center gap-2 text-[#58a6ff]/50 cursor-default">
+                        View Project <i class='bx bx-arrow-right'></i>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="cosmos-footer">
+        <div class="shell">
+            <p>&copy; 2026 COSMOS // LEGENDARYHOMIES</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="https://discord.com" target="_blank"><i class='bx bxl-discord-alt'></i></a>
+                <a href="projects.html"><i class='bx bx-rocket'></i></a>
+                <a href="gallery.html"><i class='bx bx-images'></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="Cosmos.js"></script>
+    <script>
+        function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}
+    </script>
+</body>
+</html>

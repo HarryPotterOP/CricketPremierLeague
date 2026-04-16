@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault | Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/study.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="nav-sidebar">
+        <a href="index.html" class="nav-link" data-tooltip="Dashboard">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </a>
+        <a href="vault.html" class="nav-link active" data-tooltip="Resource Vault">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </a>
+        <a href="focus.html" class="nav-link" data-tooltip="Focus Room">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+        <div class="mt-auto">
+            <a href="../home.html" class="nav-link" data-tooltip="Back Home">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </a>
+        </div>
+    </nav>
+    <main class="pl-32 pr-12 py-16 min-h-screen">
+        <header class="mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <div>
+                <h1 class="font-playfair text-6xl mb-3 text-[#D4AF37] tracking-tight">The Vault</h1>
+                <p class="text-white/50 text-xl font-light">Your curated repository of knowledge.</p>
+            </div>
+            <div class="flex gap-4 p-2 glass-card rounded-2xl flex-wrap">
+                <button onclick="filterVault('all')" class="filter-btn active px-6 py-3 rounded-xl bg-[#D4AF37] text-[#0a0a0c] font-bold text-sm uppercase tracking-widest transition-all" data-filter="all">All</button>
+                <button onclick="filterVault('math')" class="filter-btn px-6 py-3 rounded-xl hover:bg-white/5 transition-all font-semibold text-sm uppercase tracking-widest text-white/40 hover:text-white" data-filter="math">Math</button>
+                <button onclick="filterVault('physics')" class="filter-btn px-6 py-3 rounded-xl hover:bg-white/5 transition-all font-semibold text-sm uppercase tracking-widest text-white/40 hover:text-white" data-filter="physics">Physics</button>
+                <button onclick="filterVault('chemistry')" class="filter-btn px-6 py-3 rounded-xl hover:bg-white/5 transition-all font-semibold text-sm uppercase tracking-widest text-white/40 hover:text-white" data-filter="chemistry">Chemistry</button>
+                <button onclick="filterVault('biology')" class="filter-btn px-6 py-3 rounded-xl hover:bg-white/5 transition-all font-semibold text-sm uppercase tracking-widest text-white/40 hover:text-white" data-filter="biology">Biology</button>
+            </div>
+        </header>
+        <div class="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-10 space-y-10">
+            <div class="vault-card glass-card break-inside-avoid group" data-category="physics">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800" alt="Physics" class="w-full h-full object-cover">
+                    <div class="vault-overlay flex items-center justify-center">
+                        <span class="px-4 py-2 bg-[#D4AF37] text-[#0a0a0c] rounded-lg font-bold text-sm uppercase tracking-wider">Physics</span>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-3 group-hover:text-[#D4AF37] transition-colors">Motion in a Straight Line</h3>
+                    <p class="text-white/40 mb-8 text-sm leading-relaxed">Comprehensive notes covering kinematics, relative velocity, and acceleration graphs.</p>
+                    <button onclick="openResource('Motion in a Straight Line', 'physics', 'Notes/Motion in a Straight Line.pdf')" class="block w-full text-center py-4 bg-white/5 border border-white/10 text-[#D4AF37] font-bold rounded-2xl hover:bg-[#D4AF37] hover:text-[#0a0a0c] transition-all">View Resource</button>
+                </div>
+            </div>
+            <div class="vault-card glass-card break-inside-avoid group" data-category="chemistry">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1532187875605-1ef6c237ddc4?auto=format&fit=crop&q=80&w=800" alt="Chemistry" class="w-full h-full object-cover">
+                    <div class="vault-overlay flex items-center justify-center">
+                        <span class="px-4 py-2 bg-[#A8E6CF] text-[#0a0a0c] rounded-lg font-bold text-sm uppercase tracking-wider">Chemistry</span>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-3 group-hover:text-[#A8E6CF] transition-colors">Organic Synthesis</h3>
+                    <p class="text-white/40 mb-8 text-sm leading-relaxed">Mastering functional groups and reaction mechanisms for alkanes and alcohols.</p>
+                    <button onclick="openResource('Organic Synthesis', 'chemistry', '#')" class="w-full py-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-[#A8E6CF] hover:text-[#0a0a0c] hover:border-[#A8E6CF] transition-all font-bold">View Resource</button>
+                </div>
+            </div>
+            <div class="vault-card glass-card break-inside-avoid group" data-category="math">
+                <div class="relative h-40 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1509228468518-180dd482180c?auto=format&fit=crop&q=80&w=800" alt="Math" class="w-full h-full object-cover">
+                    <div class="vault-overlay flex items-center justify-center">
+                        <span class="px-4 py-2 bg-[#D4AF37] text-[#0a0a0c] rounded-lg font-bold text-sm uppercase tracking-wider">Math</span>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-3 group-hover:text-[#D4AF37] transition-colors">Units And Dimensions</h3>
+                    <p class="text-white/40 mb-8 text-sm leading-relaxed">Fundamental concepts of measurement, error analysis, and dimensional consistency.</p>
+                    <button onclick="openResource('Units And Dimensions', 'math', 'Notes/Units And Dimensions.pdf')" class="block w-full text-center py-4 bg-white/5 border border-white/10 text-[#D4AF37] font-bold rounded-2xl hover:bg-[#D4AF37] hover:text-[#0a0a0c] transition-all">View Resource</button>
+                </div>
+            </div>
+            <div class="vault-card glass-card break-inside-avoid group" data-category="biology">
+                <div class="relative h-72 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&q=80&w=800" alt="Biology" class="w-full h-full object-cover">
+                    <div class="vault-overlay flex items-center justify-center">
+                        <span class="px-4 py-2 bg-white text-[#0a0a0c] rounded-lg font-bold text-sm uppercase tracking-wider">Biology</span>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold mb-3 group-hover:text-white transition-colors">Cellular Respiration</h3>
+                    <p class="text-white/40 mb-8 text-sm leading-relaxed">A deep dive into glycolysis, the Krebs cycle, and electron transport chain.</p>
+                    <button onclick="openResource('Cellular Respiration', 'biology', '#')" class="w-full py-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white hover:text-[#0a0a0c] hover:border-white transition-all font-bold">Watch Lecture</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="resource-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="glass-card max-w-2xl w-full mx-4 p-8 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span id="modal-category" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#D4AF37] text-[#0a0a0c]">Category</span>
+                    <h3 id="modal-title" class="text-3xl font-bold mt-3 text-white">Resource Title</h3>
+                </div>
+                <button onclick="closeModal()" class="text-white/50 hover:text-white transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <p class="text-white/60 mb-8">This resource is available for download or viewing. Click below to access the content.</p>
+            <div class="flex gap-4">
+                <a id="modal-download" href="#" target="_blank" class="flex-1 py-4 bg-[#D4AF37] text-[#0a0a0c] font-bold rounded-2xl text-center hover:brightness-110 transition-all">Download PDF</a>
+                <button onclick="closeModal()" class="px-8 py-4 border border-white/20 rounded-2xl text-white/60 hover:bg-white/5 hover:text-white transition-all">Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/study.js"></script>
+    <script>
+        function filterVault(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-[#D4AF37]', 'text-[#0a0a0c]');
+                btn.classList.add('text-white/40');
+            });
+            event.target.classList.add('active', 'bg-[#D4AF37]', 'text-[#0a0a0c]');
+            event.target.classList.remove('text-white/40');
+            
+            document.querySelectorAll('.vault-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+        
+        function openResource(title, category, link) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-category').textContent = category;
+            document.getElementById('modal-download').href = link;
+            
+            const modal = document.getElementById('resource-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('resource-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+        
+        document.getElementById('resource-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}
+    </script>
+</body>
+</html>

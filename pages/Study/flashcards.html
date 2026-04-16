@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards | Memorize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/study.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+    <style>
+        .flashcard-container { perspective: 1000px; }
+        .flashcard {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .flashcard-front { background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.05)); border: 1px solid rgba(212, 175, 55, 0.3); }
+        .flashcard-back { background: linear-gradient(135deg, rgba(168, 230, 207, 0.2), rgba(255, 255, 255, 0.05)); border: 1px solid rgba(168, 230, 207, 0.3); transform: rotateY(180deg); }
+        .deck-btn { transition: all 0.3s ease; }
+        .deck-btn.active { background: rgba(212, 175, 55, 0.3); border-color: #D4AF37; }
+    </style>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="nav-sidebar">
+        <a href="index.html" class="nav-link" data-tooltip="Dashboard">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </a>
+        <a href="vault.html" class="nav-link" data-tooltip="Resource Vault">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </a>
+        <a href="focus.html" class="nav-link" data-tooltip="Focus Room">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+        <a href="flashcards.html" class="nav-link active" data-tooltip="Flashcards">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        </a>
+        <a href="analytics.html" class="nav-link" data-tooltip="Analytics">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </a>
+        <div class="mt-auto">
+            <a href="../home.html" class="nav-link" data-tooltip="Back Home">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </a>
+        </div>
+    </nav>
+    <main class="pl-32 pr-12 py-16 min-h-screen">
+        <header class="mb-12">
+            <h1 class="font-playfair text-6xl mb-3 text-[#D4AF37] tracking-tight">Flashcards</h1>
+            <p class="text-white/50 text-xl font-light">Master concepts through active recall.</p>
+        </header>
+        
+        <div class="flex gap-4 mb-8 flex-wrap">
+            <button onclick="selectDeck('physics')" class="deck-btn active px-6 py-3 rounded-2xl border border-white/10 text-white/70 hover:text-white transition-all" data-deck="physics">Physics</button>
+            <button onclick="selectDeck('chemistry')" class="deck-btn px-6 py-3 rounded-2xl border border-white/10 text-white/70 hover:text-white transition-all" data-deck="chemistry">Chemistry</button>
+            <button onclick="selectDeck('math')" class="deck-btn px-6 py-3 rounded-2xl border border-white/10 text-white/70 hover:text-white transition-all" data-deck="math">Mathematics</button>
+            <button onclick="selectDeck('biology')" class="deck-btn px-6 py-3 rounded-2xl border border-white/10 text-white/70 hover:text-white transition-all" data-deck="biology">Biology</button>
+        </div>
+        
+        <div class="max-w-2xl mx-auto">
+            <div class="flashcard-container mb-8">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-face flashcard-front">
+                        <div class="text-center">
+                            <span class="text-sm text-[#D4AF37] uppercase tracking-widest mb-4 block" id="card-category">Physics</span>
+                            <h3 class="text-3xl font-bold" id="card-question">What is Newton's First Law?</h3>
+                            <p class="text-white/40 mt-8 text-sm">Click to flip</p>
+                        </div>
+                    </div>
+                    <div class="flashcard-face flashcard-back">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-4 text-[#A8E6CF]">Answer</h3>
+                            <p class="text-xl" id="card-answer">An object remains at rest or in uniform motion unless acted upon by an external force.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between mb-8">
+                <span class="text-white/50">Card <span id="current-card">1</span> of <span id="total-cards">5</span></span>
+                <div class="flex gap-4">
+                    <button onclick="prevCard()" class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button onclick="nextCard()" class="w-14 h-14 rounded-2xl bg-[#D4AF37] text-[#0a0a0c] flex items-center justify-center hover:brightness-110 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex gap-4 justify-center">
+                <button onclick="markCard('known')" class="px-8 py-3 rounded-2xl bg-green-500/20 border border-green-500/50 text-green-400 hover:bg-green-500/30 transition-all font-semibold">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    Known
+                </button>
+                <button onclick="markCard('unknown')" class="px-8 py-3 rounded-2xl bg-red-500/20 border border-red-500/50 text-red-400 hover:bg-red-500/30 transition-all font-semibold">
+                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    Review
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="js/study.js"></script>
+    <script>
+        const decks = {
+            physics: [
+                { q: "What is Newton's First Law?", a: "An object remains at rest or in uniform motion unless acted upon by an external force." },
+                { q: "What is the formula for kinetic energy?", a: "KE = 1/2 mv², where m is mass and v is velocity." },
+                { q: "Define velocity.", a: "Velocity is the rate of change of displacement with respect to time, including direction." },
+                { q: "What is the SI unit of force?", a: "Newton (N), where 1 N = 1 kg·m/s²." },
+                { q: "State the law of conservation of momentum.", a: "Total momentum of an isolated system remains constant if no external forces act on it." }
+            ],
+            chemistry: [
+                { q: "What is a mole?", a: "A mole contains 6.022 × 10²³ particles (Avogadro's number)." },
+                { q: "Define electronegativity.", a: "The tendency of an atom to attract electrons in a chemical bond." },
+                { q: "What is the pH of pure water?", a: "7, which is neutral." },
+                { q: "Name the three states of matter.", a: "Solid, liquid, and gas." },
+                { q: "What is an isotope?", a: "Atoms of the same element with different numbers of neutrons." }
+            ],
+            math: [
+                { q: "What is the derivative of x²?", a: "2x" },
+                { q: "Solve: sin²θ + cos²θ = ?", a: "1" },
+                { q: "What is the value of π to 2 decimal places?", a: "3.14" },
+                { q: "What is the quadratic formula?", a: "x = (-b ± √(b² - 4ac)) / 2a" },
+                { q: "Define the unit circle.", a: "A circle with radius 1 centered at the origin of the coordinate plane." }
+            ],
+            biology: [
+                { q: "What is the powerhouse of the cell?", a: "Mitochondria - it produces ATP through cellular respiration." },
+                { q: "What is photosynthesis?", a: "The process by which plants convert light energy into chemical energy (glucose)." },
+                { q: "Name the 4 nitrogenous bases in DNA.", a: "Adenine (A), Thymine (T), Cytosine (C), Guanine (G)" },
+                { q: "What is the function of ribosomes?", a: "Protein synthesis by translating mRNA." },
+                { q: "Define homeostasis.", a: "The maintenance of a stable internal environment in an organism." }
+            ]
+        };
+        
+        let currentDeck = 'physics';
+        let currentIndex = 0;
+        
+        function selectDeck(deck) {
+            currentDeck = deck;
+            currentIndex = 0;
+            document.querySelectorAll('.deck-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-[#D4AF37]/30', 'border-[#D4AF37]');
+                btn.classList.add('border-white/10', 'text-white/70');
+            });
+            event.target.classList.add('active', 'bg-[#D4AF37]/30', 'border-[#D4AF37]');
+            event.target.classList.remove('border-white/10', 'text-white/70');
+            updateCard();
+        }
+        
+        function updateCard() {
+            const card = decks[currentDeck][currentIndex];
+            document.getElementById('card-category').textContent = currentDeck.charAt(0).toUpperCase() + currentDeck.slice(1);
+            document.getElementById('card-question').textContent = card.q;
+            document.getElementById('card-answer').textContent = card.a;
+            document.getElementById('current-card').textContent = currentIndex + 1;
+            document.getElementById('total-cards').textContent = decks[currentDeck].length;
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+        
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+        
+        function nextCard() {
+            if (currentIndex < decks[currentDeck].length - 1) {
+                currentIndex++;
+                updateCard();
+            }
+        }
+        
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCard();
+            }
+        }
+        
+        function markCard(status) {
+            if (status === 'known') {
+                nextCard();
+            } else {
+                flipCard();
+            }
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === ' ') flipCard();
+        });
+        
+        updateCard();
+        function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}
+    </script>
+</body>
+</html>

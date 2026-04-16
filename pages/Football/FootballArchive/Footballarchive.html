@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Legends FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Footballarchive.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../../core/firebase-config.js"></script>
+    <script src="../../../core/firebase-auth.js"></script>
+    <script src="../../../core/session-manager.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../../assets/images/logo.png" alt="Living Legends FC">
+        </div>
+        <nav class="nav-links">
+            <a href="../../home.html">Home</a>
+            <a href="../Football.html">Football</a>
+            <a href="../Fixtures/Fixtures.html">Fixtures</a>
+            <a href="../Scoreboard/Scoreboard.html">Scoreboard</a>
+        </nav>
+    </header>
+    <main class="archive-main">
+        <section class="archive-hero">
+            <div class="archive-hero-bg"></div>
+            <div class="archive-hero-content">
+                <h1>Player Archive</h1>
+                <p class="archive-subtitle">All players, past and present</p>
+                <div class="archive-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="active-count">3</span>
+                        <span class="stat-label">Active Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="retired-count">5</span>
+                        <span class="stat-label">Retired Legends</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="player-archive-list">
+            <div class="player-card" data-player="gaming-elite">
+                <span class="player-number">5</span>
+                <img src="../../../assets/images/Elite.jpg" alt="Gaming Elite">
+                <div class="player-info">
+                    <h2>Gaming Elite</h2>
+                    <p>India</p>
+                    <p class="player-status active">Active</p>
+                </div>
+            </div>
+            <div class="player-card" data-player="king-kohli">
+                <span class="player-number">7</span>
+                <img src="../../../assets/images/ViratKohli.jpg" alt="King Kohli">
+                <div class="player-info">
+                    <h2>King Kohli</h2>
+                    <p>India</p>
+                    <p class="player-status active">Active</p>
+                </div>
+            </div>
+            <div class="player-card" data-player="black-adam">
+                <span class="player-number">1</span>
+                <img src="../../../assets/images/Boruto.jpg" alt="Black Adam">
+                <div class="player-info">
+                    <h2>Black Adam</h2>
+                    <p>India</p>
+                    <p class="player-status active">Active</p>
+                </div>
+            </div>
+            <div class="player-card retired" data-player="kalki">
+                <span class="player-number">3</span>
+                <img src="../../../assets/images/Kalki.webp" alt="Kalki">
+                <div class="player-info">
+                    <h2>Kalki</h2>
+                    <p>India</p>
+                    <p class="player-status retired">Retired</p>
+                </div>
+            </div>
+            <div class="player-card retired" data-player="thala">
+                <span class="player-number">10</span>
+                <img src="../../../assets/images/OP.jpg" alt="Thala">
+                <div class="player-info">
+                    <h2>Thala</h2>
+                    <p>India</p>
+                    <p class="player-status retired">Retired</p>
+                </div>
+            </div>
+            <div class="player-card retired" data-player="arise">
+                <span class="player-number">11</span>
+                <img src="../../../assets/images/Giyuu.webp" alt="Arise">
+                <div class="player-info">
+                    <h2>Arise</h2>
+                    <p>India</p>
+                    <p class="player-status retired">Retired</p>
+                </div>
+            </div>
+            <div class="player-card retired" data-player="mathematics">
+                <span class="player-number">14</span>
+                <img src="https://static2.srcdn.com/wordpress/wp-content/uploads/2017/05/Tom-Holland-as-Peter-Parker-in-Spider-Man-Homecoming.jpg" alt="Mathematics">
+                <div class="player-info">
+                    <h2>Mathematics</h2>
+                    <p>India</p>
+                    <p class="player-status retired">Retired</p>
+                </div>
+            </div>
+            <div class="player-card retired" data-player="jamal">
+                <span class="player-number">18</span>
+                <img src="../../../assets/images/Pro.jpg" alt="Jamal">
+                <div class="player-info">
+                    <h2>Jamal</h2>
+                    <p>India</p>
+                    <p class="player-status retired">Retired</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="Footballarchive.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

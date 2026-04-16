@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <meta name="description" content="Manage your LegendaryHomies profile">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../core/firebase-config.js"></script>
+    <script src="../core/firebase-auth.js"></script>
+    <script src="../core/session-manager.js"></script>
+    <style>
+        @font-face {
+            font-family: neu;
+            src: url('../assets/fonts/NeueHaasDisplayMedium.ttf');
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #EFEAE3;
+            color: #1a1a1a;
+        }
+        /* Top Bar */
+        .profile-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 4vw;
+            background: #fff;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .back-btn:hover {
+            background: rgba(0,0,0,0.04);
+            border-color: rgba(0,0,0,0.2);
+        }
+        .back-btn i {
+            font-size: 20px;
+        }
+        .topbar-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .topbar-spacer {
+            width: 100px;
+        }
+        .profile-container {
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .profile-header-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 120px 40px 40px;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            margin-bottom: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-header-card.has-banner {
+            padding-top: 140px;
+        }
+        .profile-header-card .profile-display-name {
+            margin-top: 10px;
+        }
+        .profile-header-card .profile-username {
+            margin-top: 8px;
+        }
+        .profile-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, #FE320A, #ff6b35, #ff9f1c);
+            opacity: 0.9;
+        }
+        .profile-header-card.has-banner::before {
+            display: none;
+        }
+        .profile-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            position: relative;
+            z-index: 2;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin-top: 30px;
+        }
+        .profile-avatar-large span {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .profile-display-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a1a;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 4px;
+        }
+        .profile-username {
+            font-size: 14px;
+            color: #888;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 6px;
+        }
+        .profile-bio {
+            font-size: 14px;
+            color: #555;
+            position: relative;
+            z-index: 2;
+            margin: 10px auto 16px;
+            max-width: 80%;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .profile-joined {
+            font-size: 12px;
+            color: #aaa;
+            position: relative;
+            z-index: 2;
+        }
+        /* Section Cards */
+        .settings-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            margin-bottom: 28px;
+        }
+        .settings-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1a1a1a;
+        }
+        .settings-card h3 i {
+            font-size: 22px;
+            color: #FE320A;
+        }
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-size: 15px;
+            background: #fafafa;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-group input:focus {
+            border-color: #FE320A;
+            box-shadow: 0 0 0 3px rgba(254, 50, 10, 0.1);
+            background: #fff;
+        }
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+        .color-picker-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .color-option {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .color-option:hover {
+            transform: scale(1.15);
+        }
+        .color-option.selected {
+            border-color: #1a1a1a;
+            transform: scale(1.15);
+        }
+        .color-option.selected::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        }
+        .save-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #FE320A, #ff6b35);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 16px rgba(254, 50, 10, 0.3);
+        }
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(254, 50, 10, 0.4);
+        }
+        .save-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .danger-zone {
+            border: 1px solid rgba(255, 50, 50, 0.2);
+            background: rgba(255, 50, 50, 0.02);
+        }
+        .danger-zone h3 {
+            color: #d32f2f;
+        }
+        .danger-zone h3 i {
+            color: #d32f2f;
+        }
+        .danger-text {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .delete-btn {
+            padding: 12px 28px;
+            background: transparent;
+            color: #d32f2f;
+            border: 1px solid #d32f2f;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .delete-btn:hover {
+            background: #d32f2f;
+            color: #fff;
+        }
+        .profile-msg {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+        }
+        .profile-msg.error {
+            background: rgba(255, 50, 50, 0.08);
+            border: 1px solid rgba(255, 50, 50, 0.2);
+            color: #d32f2f;
+            display: block;
+        }
+        .profile-msg.success {
+            background: rgba(0, 180, 80, 0.08);
+            border: 1px solid rgba(0, 180, 80, 0.2);
+            color: #00a850;
+            display: block;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #fff;
+            border-radius: 20px;
+            padding: 36px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-box h3 {
+            font-size: 20px;
+            color: #d32f2f;
+            margin-bottom: 12px;
+        }
+        .modal-box p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        .modal-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        .modal-box input:focus {
+            border-color: #d32f2f;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .modal-cancel {
+            flex: 1;
+            padding: 12px;
+            background: #f0f0f0;
+            color: #555;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .modal-cancel:hover {
+            background: #e0e0e0;
+        }
+        .modal-confirm-delete {
+            flex: 1;
+            padding: 12px;
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .modal-confirm-delete:hover {
+            background: #b71c1c;
+        }
+        .modal-confirm-delete:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .profile-container {
+                max-width: 90%;
+            }
+            .profile-header-card {
+                padding: 100px 30px 30px;
+            }
+            .profile-header-card.has-banner {
+                padding-top: 120px;
+            }
+            .settings-card {
+                padding: 24px 20px;
+            }
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .profile-container {
+                margin: 12px auto;
+                padding: 0 16px;
+                max-width: 100%;
+            }
+            .profile-header-card {
+                padding: 80px 20px 20px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+            }
+            .profile-header-card.has-banner {
+                padding-top: 100px;
+            }
+            .profile-avatar-large {
+                width: 70px;
+                height: 70px;
+                border: 3px solid #fff;
+            }
+            .profile-avatar-large span {
+                font-size: 32px;
+            }
+            .profile-display-name {
+                font-size: 20px;
+                margin-bottom: 3px;
+            }
+            .profile-username {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+            .profile-bio {
+                font-size: 13px;
+                margin: 8px auto 12px;
+            }
+            .profile-joined {
+                font-size: 11px;
+            }
+            .settings-card {
+                padding: 20px 16px;
+                border-radius: 16px;
+                margin-bottom: 16px;
+            }
+            .settings-card h3 {
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+            .settings-card h3 i {
+                font-size: 18px;
+            }
+            .form-group {
+                margin-bottom: 16px;
+            }
+            .form-group label {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+            .form-group input, .form-group select, .form-group textarea {
+                padding: 10px 12px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+            #edit-bio {
+                font-size: 13px;
+            }
+            .color-picker-grid {
+                gap: 8px;
+            }
+            .color-option {
+                width: 32px;
+                height: 32px;
+            }
+            .save-btn {
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 12px;
+            }
+            .danger-text {
+                font-size: 13px;
+            }
+            .delete-btn {
+                padding: 10px 24px;
+                font-size: 13px;
+            }
+            .modal-box {
+                max-width: 85%;
+                padding: 28px;
+            }
+            .modal-box h3 {
+                font-size: 18px;
+            }
+            .modal-box p {
+                font-size: 13px;
+            }
+            .modal-box input {
+                font-size: 13px;
+                padding: 10px 12px;
+                margin-bottom: 16px;
+            }
+            .topbar-title {
+                font-size: 16px;
+            }
+            .topbar-spacer {
+                width: 0;
+            }
+            .back-btn {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+        }
+        @media (max-width: 380px) {
+            .profile-topbar {
+                padding: 12px 3vw;
+            }
+            .back-btn {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+            .back-btn i {
+                font-size: 16px;
+            }
+            .topbar-title {
+                font-size: 14px;
+            }
+            .profile-header-card {
+                padding: 60px 16px 16px;
+            }
+            .profile-avatar-large {
+                width: 60px;
+                height: 60px;
+                border: 2px solid #fff;
+                margin-top: 10px;
+            }
+            .profile-avatar-large span {
+                font-size: 28px;
+            }
+            .profile-display-name {
+                font-size: 18px;
+            }
+            .settings-card {
+                padding: 16px 12px;
+            }
+            .form-group input, .form-group textarea {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+            .color-option {
+                width: 28px;
+                height: 28px;
+            }
+            .save-btn {
+                font-size: 13px;
+                padding: 10px;
+            }
+            .modal-box {
+                padding: 20px;
+                max-width: 92%;
+            }
+            .modal-box h3 {
+                font-size: 16px;
+            }
+            .danger-zone {
+                padding: 12px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Initialize profile page
+        async function initProfilePage() {
+            // Wait for Firebase initialization
+            let attempts = 0;
+            while (!window.firebaseReady && attempts < 50) {
+                await new Promise(r => setTimeout(r, 100));
+                attempts++;
+            }
+            if (!window.firebaseReady || !auth || !db) {
+                window.location.href = '../index.html';
+                return;
+            }
+            // Use onAuthStateChanged to properly detect auth state
+            auth.onAuthStateChanged(async (user) => {
+                if (!user) {
+                    window.location.href = '../index.html';
+                    return;
+                }
+                try {
+                    // Load profile data
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        const displayName = userData.displayName || user.email;
+                        const username = userData.username || displayName.toLowerCase();
+                        const bio = userData.bio || '';
+                        const avatarColor = userData.avatarColor || '#FF6B35';
+                        const joinedDate = userData.createdAt ? new Date(userData.createdAt.toDate()).toLocaleDateString() : 'Unknown';
+                        // Update display
+                        document.getElementById('profile-name').textContent = displayName;
+                        document.getElementById('profile-uname').textContent = '@' + username;
+                        document.getElementById('profile-bio-text').textContent = bio;
+                        document.getElementById('profile-letter').textContent = displayName.charAt(0).toUpperCase();
+                        document.getElementById('profile-joined').textContent = 'Joined ' + joinedDate;
+                        document.getElementById('profile-avatar').style.backgroundColor = avatarColor;
+                        // Load for editing (calls loadProfileForEditing if available)
+                        if (typeof loadProfileForEditing === 'function') {
+                            await loadProfileForEditing(userData);
+                        }
+                    } else {
+                        // User document doesn't exist, use Firebase auth data
+                        const displayName = user.displayName || user.email || 'User';
+                        const username = displayName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user';
+                        document.getElementById('profile-name').textContent = displayName;
+                        document.getElementById('profile-uname').textContent = '@' + username;
+                        document.getElementById('profile-bio-text').textContent = '';
+                        document.getElementById('profile-letter').textContent = displayName.charAt(0).toUpperCase();
+                        document.getElementById('profile-joined').textContent = 'Joined Unknown';
+                        document.getElementById('profile-avatar').style.backgroundColor = '#FF6B35';
+                    }
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                }
+            });
+        }
+        // Run when page loads
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', initProfilePage);
+        } else {
+            initProfilePage();
+        }
+    </script>
+    <div class="profile-topbar">
+        <a href="home.html" class="back-btn">
+            <i class='bx bx-arrow-back'></i>
+            <span>Back</span>
+        </a>
+        <span class="topbar-title">My Profile</span>
+        <div class="topbar-spacer"></div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-header-card">
+            <img id="profile-banner" src="" style="position: absolute; top: 0; left: 0; right: 0; height: 100px; width: 100%; object-fit: cover; display: none;">
+            <div class="profile-avatar-large" id="profile-avatar">
+                <span id="profile-letter">U</span>
+                <img id="profile-image" src="" style="width:100%; height:100%; border-radius:50%; object-fit:cover; display:none;">
+            </div>
+            <h2 class="profile-display-name" id="profile-name">User</h2>
+            <p class="profile-username" id="profile-uname">@user</p>
+            <p class="profile-bio" id="profile-bio-text"></p>
+            <p class="profile-joined" id="profile-joined">Joined ---</p>
+        </div>
+        <div class="settings-card" id="settings">
+            <h3><i class='bx bx-edit'></i> Edit Profile</h3>
+            <div id="profile-msg-1" class="profile-msg"></div>
+            <div class="form-group">
+                <label for="edit-displayname">Display Name</label>
+                <input type="text" id="edit-displayname" placeholder="Your display name" maxlength="25">
+            </div>
+            <div class="form-group">
+                <label for="edit-bio">Bio / Description</label>
+                <textarea id="edit-bio" placeholder="Tell us about yourself..." maxlength="150" rows="3" style="width:100%; padding: 12px 16px; border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif; resize: vertical;"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="edit-avatar-upload">Profile Picture</label>
+                <input type="file" id="edit-avatar-upload" accept="image/*" style="width:100%; padding: 10px 14px; border: 1px dashed rgba(0,0,0,0.3); border-radius: 12px; font-size: 14px; font-family: 'Poppins', sans-serif;">
+                <p style="font-size: 11px; color:#888; margin-top:4px;">Upload an image (Max 2MB). Overrides Avatar Color.</p>
+            </div>
+            <div class="form-group">
+                <label for="edit-banner-upload">Banner Picture</label>
+                <input type="file" id="edit-banner-upload" accept="image/*" style="width:100%; padding: 10px 14px; border: 1px dashed rgba(0,0,0,0.3); border-radius: 12px; font-size: 14px; font-family: 'Poppins', sans-serif;">
+                <p style="font-size: 11px; color:#888; margin-top:4px;">Upload an image for the top banner (Max 2MB).</p>
+            </div>
+            <div class="form-group">
+                <label>Avatar Color (Fallback)</label>
+                <div class="color-picker-grid" id="color-picker"></div>
+            </div>
+            <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+        </div>
+        <div class="settings-card">
+            <h3><i class='bx bx-lock-alt'></i> Change Password</h3>
+            <div id="profile-msg-2" class="profile-msg"></div>
+            <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" placeholder="Enter current password">
+            </div>
+            <div class="form-group">
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" placeholder="Enter new password (min 6 chars)">
+            </div>
+            <div class="form-group">
+                <label for="confirm-new-password">Confirm New Password</label>
+                <input type="password" id="confirm-new-password" placeholder="Confirm new password">
+            </div>
+            <button class="save-btn" onclick="changePassword()">Update Password</button>
+        </div>
+        <div class="settings-card danger-zone">
+            <h3><i class='bx bx-error-circle'></i> Danger Zone</h3>
+            <p class="danger-text">
+                Deleting your account is permanent and cannot be undone. All your data will be removed.
+            </p>
+            <button class="delete-btn" onclick="showDeleteModal()">
+                <i class='bx bx-trash'></i> Delete My Account
+            </button>
+        </div>
+    </div>
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-box">
+            <h3>Delete Account</h3>
+            <p>This action is <strong>permanent</strong>. Type <strong>DELETE</strong> below to confirm.</p>
+            <input type="text" id="delete-confirm-text" placeholder="Type DELETE here" autocomplete="off">
+            <input type="password" id="delete-password" placeholder="Enter your password" autocomplete="current-password">
+            <div class="modal-actions">
+                <button class="modal-cancel" onclick="hideDeleteModal()">Cancel</button>
+                <button class="modal-confirm-delete" id="confirm-delete-btn" onclick="confirmDelete()" disabled>
+                    Delete Forever
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const AVATAR_COLORS = [
+            '#FE320A', '#FF6B35', '#FF9F1C', '#2EC4B6',
+            '#E71D36', '#011627', '#8338EC', '#3A86FF',
+            '#FB5607', '#FF006E', '#06D6A0', '#118AB2'
+        ];
+        let selectedColor = '';
+        let currentUserData = null;
+        function darken(hex, amount) {
+            hex = hex.replace('#', '');
+            let r = Math.max(0, parseInt(hex.substring(0, 2), 16) - amount);
+            let g = Math.max(0, parseInt(hex.substring(2, 4), 16) - amount);
+            let b = Math.max(0, parseInt(hex.substring(4, 6), 16) - amount);
+            return '#' + [r, g, b].map(c => c.toString(16).padStart(2, '0')).join('');
+        }
+        function renderColorPicker(currentColor) {
+            const grid = document.getElementById('color-picker');
+            grid.innerHTML = '';
+            AVATAR_COLORS.forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'color-option' + (c === currentColor ? ' selected' : '');
+                div.style.background = `linear-gradient(135deg, ${c}, ${darken(c, 30)})`;
+                div.onclick = () => {
+                    document.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
+                    div.classList.add('selected');
+                    selectedColor = c;
+                };
+                grid.appendChild(div);
+            });
+        }
+        async function loadProfileForEditing(userData) {
+            currentUserData = userData;
+            const displayName = userData.displayName || userData.email || 'User';
+            const avatarColor = userData.avatarColor || '#FF6B35';
+            const bio = userData.bio || '';
+            selectedColor = avatarColor;
+            // Edit fields
+            document.getElementById('edit-displayname').value = displayName;
+            const bioInput = document.getElementById('edit-bio');
+            if (bioInput) bioInput.value = bio;
+            // Display profile image if available
+            if (userData.profileImage) {
+                const profileImg = document.getElementById('profile-image');
+                if (profileImg) {
+                    profileImg.src = userData.profileImage;
+                    profileImg.style.display = 'block';
+                    const profileLetter = document.getElementById('profile-letter');
+                    if (profileLetter) profileLetter.style.display = 'none';
+                }
+            }
+            // Display banner image if available
+            if (userData.bannerImage) {
+                const bannerImg = document.getElementById('profile-banner');
+                if (bannerImg) {
+                    bannerImg.src = userData.bannerImage;
+                    bannerImg.style.display = 'block';
+                    const headerCard = document.querySelector('.profile-header-card');
+                    if (headerCard) headerCard.classList.add('has-banner');
+                }
+            }
+            // Render color picker
+            renderColorPicker(avatarColor);
+        }
+        // --- Save Profile ---
+        async function saveProfile() {
+            if (!auth.currentUser) {
+                alert('Not logged in');
+                return;
+            }
+            const displayName = document.getElementById('edit-displayname').value;
+            const bio = document.getElementById('edit-bio').value;
+            const fileInput = document.getElementById('edit-avatar-upload');
+            const bannerInput = document.getElementById('edit-banner-upload');
+            const msgEl = document.getElementById('profile-msg-1');
+            if (!displayName.trim()) {
+                msgEl.textContent = 'Display name is required';
+                msgEl.className = 'profile-msg error';
+                return;
+            }
+            if (displayName.trim().length < 3 || displayName.trim().length > 20) {
+                msgEl.textContent = 'Display name must be between 3 and 20 characters';
+                msgEl.className = 'profile-msg error';
+                return;
+            }
+            if (!/^[a-zA-Z0-9_ ]+$/.test(displayName.trim())) {
+                msgEl.textContent = 'Display name can only contain letters, numbers, underscores and spaces';
+                msgEl.className = 'profile-msg error';
+                return;
+            }
+            document.querySelector('.save-btn').textContent = 'Saving...';
+            document.querySelector('.save-btn').disabled = true;
+            try {
+                const updateData = {
+                    displayName: displayName.trim(),
+                    avatarColor: selectedColor,
+                    bio: bio.trim()
+                };
+                // Process avatar image if provided
+                if (fileInput.files && fileInput.files[0]) {
+                    const file = fileInput.files[0];
+                    if (file.size > 512 * 1024) { // 512KB limit
+                        throw new Error('Avatar image too large (max 512KB)');
+                    }
+                    const reader = new FileReader();
+                    const avatarDataURL = await new Promise((resolve, reject) => {
+                        reader.onload = (e) => resolve(e.target.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    });
+                    updateData.profileImage = avatarDataURL;
+                }
+                // Process banner image if provided
+                if (bannerInput.files && bannerInput.files[0]) {
+                    const file = bannerInput.files[0];
+                    if (file.size > 1 * 1024 * 1024) { // 1MB limit
+                        throw new Error('Banner image too large (max 1MB)');
+                    }
+                    const reader = new FileReader();
+                    const bannerDataURL = await new Promise((resolve, reject) => {
+                        reader.onload = (e) => resolve(e.target.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    });
+                    updateData.bannerImage = bannerDataURL;
+                }
+                // Update Firestore
+                await db.collection('users').doc(auth.currentUser.uid).update(updateData);
+                msgEl.textContent = 'Profile saved successfully!';
+                msgEl.className = 'profile-msg success';
+                // Clear file inputs
+                fileInput.value = '';
+                bannerInput.value = '';
+                setTimeout(() => {
+                    msgEl.style.display = 'none';
+                    // Reload to show changes
+                    location.reload();
+                }, 1500);
+            } catch (error) {
+                msgEl.textContent = 'Error saving profile: ' + error.message;
+                msgEl.className = 'profile-msg error';
+            } finally {
+                document.querySelector('.save-btn').textContent = 'Save Changes';
+                document.querySelector('.save-btn').disabled = false;
+            }
+        }
+        // --- Change Password ---
+        async function changePassword() {
+            if (!auth.currentUser) {
+                alert('Not logged in');
+                return;
+            }
+            const current = document.getElementById('current-password').value;
+            const newPw = document.getElementById('new-password').value;
+            const confirmPw = document.getElementById('confirm-new-password').value;
+            const msgEl = document.getElementById('profile-msg-2');
+            if (!current || !newPw || !confirmPw) {
+                msgEl.textContent = 'All fields are required';
+                msgEl.className = 'profile-msg error';
+                return;
+            }
+            if (newPw !== confirmPw) {
+                msgEl.textContent = 'New passwords do not match';
+                msgEl.className = 'profile-msg error';
+                return;
+            }
+            try {
+                // Re-authenticate with current password
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    auth.currentUser.email,
+                    current
+                );
+                await auth.currentUser.reauthenticateWithCredential(credential);
+                // Update password
+                await auth.currentUser.updatePassword(newPw);
+                msgEl.textContent = 'Password changed successfully!';
+                msgEl.className = 'profile-msg success';
+                // Clear inputs
+                document.getElementById('current-password').value = '';
+                document.getElementById('new-password').value = '';
+                document.getElementById('confirm-new-password').value = '';
+                // Auto logout after 2 seconds
+                setTimeout(async () => {
+                    msgEl.style.display = 'none';
+                    await auth.signOut();
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    window.location.href = '../index.html';
+                }, 2000);
+            } catch (error) {
+                msgEl.textContent = 'Error changing password: ' + error.message;
+                msgEl.className = 'profile-msg error';
+            }
+        }
+        // --- Delete Account ---
+        function showDeleteModal() {
+            document.getElementById('delete-modal').classList.add('active');
+            document.getElementById('delete-confirm-text').value = '';
+            document.getElementById('delete-password').value = '';
+            document.getElementById('confirm-delete-btn').disabled = true;
+        }
+        function hideDeleteModal() {
+            document.getElementById('delete-modal').classList.remove('active');
+        }
+        document.getElementById('delete-confirm-text').addEventListener('input', function() {
+            const deleteText = this.value;
+            const password = document.getElementById('delete-password').value;
+            document.getElementById('confirm-delete-btn').disabled = deleteText !== 'DELETE' || !password;
+        });
+        document.getElementById('delete-password').addEventListener('input', function() {
+            const deleteText = document.getElementById('delete-confirm-text').value;
+            const password = this.value;
+            document.getElementById('confirm-delete-btn').disabled = deleteText !== 'DELETE' || !password;
+        });
+        async function confirmDelete() {
+            if (!auth.currentUser) return;
+            if (document.getElementById('delete-confirm-text').value !== 'DELETE') return;
+            try {
+                const user = auth.currentUser;
+                const uid = user.uid;
+                // Refresh the user session to ensure fresh authentication
+                await user.reload();
+                // Get password from modal
+                const password = document.getElementById('delete-password').value;
+                if (!password) {
+                    alert('Password is required to delete account.');
+                    return;
+                }
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    user.email,
+                    password
+                );
+                await user.reauthenticateWithCredential(credential);
+                // Get user data before deletion for cleanup
+                const userDoc = await db.collection('users').doc(uid).get();
+                const userData = userDoc.exists ? userDoc.data() : null;
+                // Delete Firestore user document
+                await db.collection('users').doc(uid).delete();
+                // Delete Firebase auth account
+                await user.delete();
+                // Clear all storage and logout
+                localStorage.clear();
+                sessionStorage.clear();
+                // Redirect immediately
+                window.location.href = '../index.html';
+            } catch (error) {
+                console.error('Delete error:', error);
+                let errorMessage = 'Error deleting account: ';
+                if (error.code === 'auth/requires-recent-login') {
+                    errorMessage = 'Session expired. Please log out and log back in, then try deleting again.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Incorrect password. Account deletion cancelled.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    errorMessage = 'Too many attempts. Please try again later.';
+                } else if (error.code === 'permission-denied') {
+                    errorMessage = 'Permission denied. Please try logging out and back in, then delete again.';
+                } else {
+                    errorMessage += error.message || 'Unknown error occurred.';
+                }
+                alert(errorMessage);
+                hideDeleteModal();
+            }
+        }
+        // Close modal on outside click
+        document.getElementById('delete-modal').addEventListener('click', function(e) {
+            if (e.target === this) hideDeleteModal();
+        });
+        // Scroll to settings if hash present
+        if (window.location.hash === '#settings') {
+            setTimeout(() => {
+                document.getElementById('settings').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+    </script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos</title>
+    <meta name="description" content="Explore the boundless realms of digital creation and cosmic inspiration.">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Cosmos.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+</head>
+<body class="cosmos-theme">
+    <div id="stars-container"></div>
+    <div id="nebula"></div>
+    <header class="cosmos-header">
+        <nav class="shell">
+            <a href="Cosmos.html" class="brand">
+                <span>COSMOS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="#realms">Realms</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="../profile.html" class="profile-link"><i class='bx bx-user-circle'></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-cosmos">
+            <div class="hero-content shell">
+                <span class="eyebrow" data-reveal>JOURNEY THROUGH THE VOID</span>
+                <h1 class="headline" data-reveal>Infinite <br> Exploration.</h1>
+                <p class="subheadline" data-reveal>A creative frontier where ideas orbit and innovation shines like distant stars.</p>
+                <div class="cta-group" data-reveal>
+                    <a href="#realms" class="cosmos-btn primary">Explore Realms</a>
+                    <a href="../home.html" class="cosmos-btn ghost">Return to Base</a>
+                </div>
+            </div>
+        </section>
+        <section id="realms" class="realms-section shell">
+            <div class="section-header" data-reveal>
+                <h2 class="headline">Digital Galaxies</h2>
+                <p>Discover the diverse dimensions of our creative multiverse.</p>
+            </div>
+            <div class="realms-grid">
+                <div class="realm-card" data-reveal>
+                    <div class="realm-icon"><i class='bx bx-planet'></i></div>
+                    <h3>Origin</h3>
+                    <p>Where every legend begins their journey in the vast digital expanse.</p>
+                    <div class="realm-glow"></div>
+                </div>
+                <div class="realm-card" data-reveal>
+                    <div class="realm-icon"><i class='bx bx-atom'></i></div>
+                    <h3>Nexus</h3>
+                    <p>The intersection of technology and art, weaving complex patterns of thought.</p>
+                    <div class="realm-glow"></div>
+                </div>
+                <div class="realm-card" data-reveal>
+                    <div class="realm-icon"><i class='bx bx-infinite'></i></div>
+                    <h3>Infinity</h3>
+                    <p>Boundless possibilities for those who dare to venture beyond the known.</p>
+                    <div class="realm-glow"></div>
+                </div>
+            </div>
+        </section>
+        <section id="voyage" class="voyage-banner shell" data-reveal>
+            <div class="voyage-content">
+                <h2>Begin Your Voyage</h2>
+                <p>Join the LegendaryHomies and leave your mark among the stars.</p>
+                <a href="projects.html" class="cosmos-btn outline">Initiate Protocol</a>
+            </div>
+        </section>
+    </main>
+    <footer class="cosmos-footer">
+        <div class="shell">
+            <p>&copy; 2026 COSMOS // LEGENDARYHOMIES</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="https://discord.com" target="_blank"><i class='bx bxl-discord-alt'></i></a>
+                <a href="projects.html"><i class='bx bx-rocket'></i></a>
+                <a href="gallery.html"><i class='bx bx-images'></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="Cosmos.js"></script>
+    <script>
+        function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}
+    </script>
+</body>
+</html>

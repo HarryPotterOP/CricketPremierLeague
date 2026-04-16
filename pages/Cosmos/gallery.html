@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Cosmos.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+    <style>
+        .page-content {
+            padding-top: 10rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 4rem 0;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(88, 166, 255, 0.2);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(1, 4, 9, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .filter-tab {
+            padding: 0.75rem 2rem;
+            border: 1px solid var(--cosmos-border);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--cosmos-text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-tab:hover, .filter-tab.active {
+            background: var(--cosmos-primary);
+            border-color: var(--cosmos-primary);
+            color: #010409;
+        }
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(1, 4, 9, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 1rem;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .lightbox-close:hover {
+            color: var(--cosmos-primary);
+        }
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+<body class="cosmos-theme">
+    <div id="stars-container"></div>
+    <div id="nebula"></div>
+    <header class="cosmos-header">
+        <nav class="shell">
+            <a href="Cosmos.html" class="brand">
+                <span>COSMOS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../home.html">Home</a></li>
+                <li><a href="Cosmos.html#realms">Realms</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="../profile.html" class="profile-link"><i class='bx bx-user-circle'></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="shell page-content">
+        <section>
+            <div class="section-header" data-reveal>
+                <span class="eyebrow">VISUAL JOURNEY</span>
+                <h2 class="headline">Gallery</h2>
+                <p class="subheadline">A curated collection of cosmic moments and digital artistry.</p>
+            </div>
+        </section>
+        
+        <div class="filter-tabs" data-reveal>
+            <button class="filter-tab active" onclick="filterGallery('all')">All</button>
+            <button class="filter-tab" onclick="filterGallery('nebulae')">Nebulae</button>
+            <button class="filter-tab" onclick="filterGallery('planets')">Planets</button>
+            <button class="filter-tab" onclick="filterGallery('galaxies')">Galaxies</button>
+            <button class="filter-tab" onclick="filterGallery('abstract')">Abstract</button>
+        </div>
+        
+        <section class="gallery-grid" id="gallery">
+            <div class="gallery-item large" data-category="nebulae" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80&w=1200" alt="Nebula">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Orion Nebula</h3>
+                    <p class="text-white/60 text-sm">A stellar nursery 1,344 light-years away</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="planets" onclick="openLightbox(this)">
+                <img src="https://cdn.mos.cms.futurecdn.net/8jUFJVPBZr4CMEg4HcKNjJ.jpg" alt="Mars">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Mars Surface</h3>
+                    <p class="text-white/60 text-sm">The red planet</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="galaxies" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1538370965046-79c0d6907d47?auto=format&fit=crop&q=80&w=800" alt="Galaxy">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Milky Way</h3>
+                    <p class="text-white/60 text-sm">Our home galaxy</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item wide" data-category="nebulae" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80&w=1200" alt="Nebula 2">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Carina Nebula</h3>
+                    <p class="text-white/60 text-sm">Cosmic cliffs and star formation</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="abstract" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Earth from space">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Earth Rise</h3>
+                    <p class="text-white/60 text-sm">Our blue marble</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="planets" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?auto=format&fit=crop&q=80&w=800" alt="Jupiter">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Gas Giant</h3>
+                    <p class="text-white/60 text-sm">Jupiter's atmosphere</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="galaxies" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80&w=800" alt="Andromeda">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Andromeda</h3>
+                    <p class="text-white/60 text-sm">Our galactic neighbor</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item wide" data-category="abstract" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80&w=1200" alt="Astronaut">
+                <div class="gallery-overlay">
+                    <h3 class="text-xl font-bold">Space Walk</h3>
+                    <p class="text-white/60 text-sm">Humanity in the void</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <i class='bx bx-x lightbox-close'></i>
+        <img src="" alt="Gallery Image" id="lightbox-img">
+    </div>
+    
+    <footer class="cosmos-footer">
+        <div class="shell">
+            <p>&copy; 2026 COSMOS // LEGENDARYHOMIES</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="https://discord.com" target="_blank"><i class='bx bxl-discord-alt'></i></a>
+                <a href="projects.html"><i class='bx bx-rocket'></i></a>
+                <a href="gallery.html"><i class='bx bx-images'></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="Cosmos.js"></script>
+    <script>
+        function filterGallery(category) {
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 50);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                }
+            });
+        }
+        
+        function openLightbox(item) {
+            const img = item.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+        
+        function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}
+    </script>
+</body>
+</html>

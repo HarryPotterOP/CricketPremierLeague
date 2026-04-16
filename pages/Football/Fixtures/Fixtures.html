@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixtures - Living Legends FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Fixtures.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../../core/firebase-config.js"></script>
+    <script src="../../../core/firebase-auth.js"></script>
+    <script src="../../../core/session-manager.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../../../assets/images/logo.png" alt="Living Legends FC">
+        </div>
+        <nav class="nav-links">
+            <a href="../../home.html">Home</a>
+            <a href="../Football.html">Football</a>
+            <a href="../Scoreboard/Scoreboard.html">Scoreboard</a>
+            <a href="../FootballArchive/Footballarchive.html">Archive</a>
+        </nav>
+    </header>
+    <main class="fixtures-main">
+        <section class="fixtures-hero">
+            <div class="fixtures-hero-bg"></div>
+            <div class="fixtures-hero-content">
+                <div class="season-badge">Season 2026</div>
+                <h1>Fixtures & Results</h1>
+                <p class="fixtures-subtitle">League standings and match results</p>
+            </div>
+        </section>
+        <section class="standings-section">
+            <h2 class="section-title">League Standings</h2>
+            <div class="standings-table-wrapper">
+                <table class="standings-table">
+                    <thead>
+                        <tr>
+                            <th class="col-pos">#</th>
+                            <th class="col-team">Team</th>
+                            <th class="col-pts">PTS</th>
+                            <th class="col-mp">MP</th>
+                            <th class="col-w">W</th>
+                            <th class="col-d">D</th>
+                            <th class="col-l">L</th>
+                            <th class="col-gf">GF</th>
+                            <th class="col-ga">GA</th>
+                            <th class="col-gd">GD</th>
+                            <th class="col-form">Form</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="standings-row first">
+                            <td class="col-pos">1</td>
+                            <td class="col-team">
+                                <div class="team-cell">
+                                    <img src="../../../assets/images/MoonKnight.jpg" alt="Moon Knight">
+                                    <span>Moon Knight</span>
+                                </div>
+                            </td>
+                            <td class="col-pts">0</td>
+                            <td class="col-mp">0</td>
+                            <td class="col-w">0</td>
+                            <td class="col-d">0</td>
+                            <td class="col-l">0</td>
+                            <td class="col-gf">0</td>
+                            <td class="col-ga">0</td>
+                            <td class="col-gd">+0</td>
+                            <td class="col-form">
+                                <div class="form-indicators">
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="standings-row second">
+                            <td class="col-pos">2</td>
+                            <td class="col-team">
+                                <div class="team-cell">
+                                    <img src="../../../assets/images/Bengali.jpg" alt="Bengal Challengers">
+                                    <span>Bengal Challengers</span>
+                                </div>
+                            </td>
+                            <td class="col-pts">0</td>
+                            <td class="col-mp">0</td>
+                            <td class="col-w">0</td>
+                            <td class="col-d">0</td>
+                            <td class="col-l">0</td>
+                            <td class="col-gf">0</td>
+                            <td class="col-ga">0</td>
+                            <td class="col-gd">+0</td>
+                            <td class="col-form">
+                                <div class="form-indicators">
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                    <span class="form-w">W</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="match-display-section">
+            <div class="match-display-card">
+                <div class="match-display-header">
+                    <div class="team-header-name">BENGAL CHALLENGERS</div>
+                    <div class="vs-divider">VS</div>
+                    <div class="team-header-name">MOON KNIGHT</div>
+                </div>
+                <div class="match-display-content">
+                    <div class="team-display left">
+                        <div class="team-logo-large">
+                            <img src="../../../assets/images/Bengali.jpg" alt="Bengal Challengers">
+                        </div>
+                        <div class="team-players">
+                            <div class="player-name">King Kohli</div>
+                            <div class="player-name">Gaming Elite</div>
+                        </div>
+                    </div>
+                    <div class="match-center-info">
+                        <div class="match-score">
+                            <span class="score-home">0</span>
+                            <span class="score-divider">-</span>
+                            <span class="score-away">0</span>
+                        </div>
+                        <div class="match-status">FINAL</div>
+                    </div>
+                    <div class="team-display right">
+                        <div class="team-logo-large">
+                            <img src="../../../assets/images/MoonKnight.jpg" alt="Moon Knight">
+                        </div>
+                        <div class="team-players">
+                            <div class="player-name">Black Adam</div>
+                            <div class="player-name">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="past-seasons-section">
+            <h2 class="section-title">Past Seasons</h2>
+            <div class="season-card">
+                <h3 class="season-year">Season 2025</h3>
+                <div class="season-info">
+                    <p><strong>Winner:</strong> Moon Knight And Bengal Challengers (Number of Matches Won: 0)</p>
+                    <p><strong>Man of the Match:</strong> Gaming Elite</p>
+                </div>
+                <div class="season-table-wrapper">
+                    <table class="season-table">
+                        <thead>
+                            <tr>
+                                <th class="col-player">Player</th>
+                                <th class="col-image">Image</th>
+                                <th class="col-goals">Goals</th>
+                                <th class="col-assists">Assists</th>
+                                <th class="col-matches">Matches</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="season-row">
+                                <td class="col-player">Black Adam</td>
+                                <td class="col-image">
+                                    <img src="../../../assets/images/Boruto.jpg" alt="Black Adam">
+                                </td>
+                                <td class="col-goals">0</td>
+                                <td class="col-assists">0</td>
+                                <td class="col-matches">0</td>
+                            </tr>
+                            <tr class="season-row">
+                                <td class="col-player">King Kohli</td>
+                                <td class="col-image">
+                                    <img src="../../../assets/images/ViratKohli.jpg" alt="King Kohli">
+                                </td>
+                                <td class="col-goals">0</td>
+                                <td class="col-assists">0</td>
+                                <td class="col-matches">0</td>
+                            </tr>
+                            <tr class="season-row">
+                                <td class="col-player">Gaming Elite</td>
+                                <td class="col-image">
+                                    <img src="../../../assets/images/Elite.jpg" alt="Gaming Elite">
+                                </td>
+                                <td class="col-goals">0</td>
+                                <td class="col-assists">0</td>
+                                <td class="col-matches">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="Fixtures.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CPL Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../pages/cpl-pages.css">
+  <link rel="stylesheet" href="../cricket-live.css">
+  <link rel="stylesheet" href="../css/cpl-site-effects.css">
+  <link rel="stylesheet" href="archive.css">
+  <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="../../../core/firebase-config.js"></script>
+  <script src="../../../core/firebase-auth.js"></script>
+  <script src="../../../core/session-manager.js"></script>
+</head>
+<body class="cpl-inner" data-cpl-page="archive">
+  <header class="cpl-site-header">
+    <div class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand headline" href="../Cricket.html"><img src="../../../assets/images/Symbol.png" alt=""><span>ARCHIVE</span></a>
+        <nav class="nav-links">
+          <a href="../Cricket.html">Home</a>
+          <a href="../pages/scorecard.html">Scorecard</a>
+          <a href="../pages/tournament-center.html">Tournament</a>
+          <a href="../pages/player-universe.html">Players</a>
+          <a class="active" href="archive.html">Archive</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section class="shell section--flush" data-reveal style="margin-top:1rem">
+    <div class="hero-cinematic" style="min-height:220px">
+      <img class="hero-cinematic__bg" src="https://wallpaperaccess.com/full/1950262.jpg" alt="Indian Cricket Team" width="1600" height="900" decoding="async">
+      <div class="hero-cinematic__grade" aria-hidden="true"></div>
+      <div class="hero-cinematic__inner" style="min-height:220px;justify-content:flex-end;padding:1.25rem">
+        <p class="eyebrow" style="color:#fff;margin:0">Archives</p>
+        <h1 class="headline" style="color:#fff;margin:.25rem 0 0;font-size:clamp(1.35rem,2.8vw,2rem)">Season summaries and player performance records</h1>
+        <p class="photo-credit" style="color:rgba(255,255,255,.65);margin-top:.5rem">Trophy — <a href="https://www.bcci.tv/ " style="color:#fff" rel="noopener noreferrer">BCCI</a> Website.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cpl-darkband section--flush" style="margin-top:1.25rem;padding-top:1rem" data-reveal>
+    <div class="shell section-head">
+      <h1 class="headline" style="margin:0;font-size:clamp(1.35rem,2.5vw,2rem);color:#fff">Cricket archive</h1>
+      <div class="rail-nav">
+        <a href="../pages/scorecard.html">Current Stats</a>
+        <a href="../pages/player-universe.html">Players</a>
+      </div>
+    </div>
+  </section>
+<br>
+<main class="shell section">
+  <h2 class="headline" data-players-page-title style="font-size:clamp(1.65rem,4vw,2.6rem);font-weight:900;color:var(--primary);margin:0">Past Seasons</h2>
+    <p class="lead" data-players-page-lead data-reveal>CPL season summaries and player performance records.</p>
+    <div class="season section" data-reveal>
+      <h3 class="headline" data-archive-season style="margin:0 0 .5rem;color:var(--primary)">Season 2024</h3>
+      <p><strong>Winner:</strong> Moon Knight (Number of Matches Won: 2)</p>
+      <p><strong>Man of the Match:</strong> Black Adam</p>
+      <div style="overflow-x:auto;margin-top:.75rem">
+        <table class="table-cpl cpl-archive-table">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Image</th>
+              <th>Score</th>
+              <th>Wickets</th>
+              <th>Runs Provided</th>
+            </tr>
+          </thead>
+          <tbody data-archive-tbody>
+            <tr>
+              <td>Black Adam</td>
+              <td><img src="../../../assets/images/Boruto.jpg" alt="Black Adam" /></td>
+              <td>15(12)</td>
+              <td>2</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>King Kohli</td>
+              <td><img src="../../../assets/images/ViratKohli.jpg" alt="King Kohli" /></td>
+              <td>11(12)</td>
+              <td>1</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>Gaming Elite</td>
+              <td><img src="../../../assets/images/Elite.jpg" alt="Gaming Elite" /></td>
+              <td>37(24)</td>
+              <td>1</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>Kalki</td>
+              <td><img src="../../../assets/images/Kalki.webp" alt="Kalki" /></td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Thala</td>
+              <td><img src="../../../assets/images/OP.jpg" alt="Thala" /></td>
+              <td>19(18)</td>
+              <td>0</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Arise</td>
+              <td><img src="../../../assets/images/Giyuu.webp" alt="Arise" /></td>
+              <td>6(8)</td>
+              <td>1</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>Mathematics</td>
+              <td><img src="https://static2.srcdn.com/wordpress/wp-content/uploads/2017/05/Tom-Holland-as-Peter-Parker-in-Spider-Man-Homecoming.jpg" alt="Mathematics" /></td>
+              <td>29(16)</td>
+              <td>0</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>DNigger</td>
+              <td><img src="../../../assets/images/Pro.jpg" alt="DNigger" /></td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="cpl-page-cta" data-reveal>
+      <a href="../pages/scorecard.html">Current scorecard</a>
+      <a href="../pages/tournament-center.html">Standings</a>
+      <a href="../pages/player-universe.html">Roster</a>
+    </p>
+  </main>
+  <section class="bottom-ticker" data-reveal>
+    <div class="shell bottom-ticker__inner">
+      <strong><a href="../Cricket.html" style="color:inherit;text-decoration:none">CPL Home</a></strong>
+      <span><a href="../pages/scorecard.html" style="color:inherit;text-decoration:none">Scorecard</a></span>
+      <a href="../pages/tournament-center.html">Standings ></a>
+    </div>
+  </section>
+  <div class="bottom-nav">
+    <div class="inner">
+      <a href="../Cricket.html">HOME</a>
+      <a href="../pages/player-universe.html">PLAYERS</a>
+      <a href="../pages/scorecard.html">CARD</a>
+      <a href="../pages/tournament-center.html">TEAMS</a>
+      <a class="active" href="archive.html">ARCHIVE</a>
+    </div>
+  </div>
+  <script src="../../../js/cpl-content.js"></script>
+  <script src="../js/cpl-motion.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+:root {
+  --bg: #f0f4f8 !important;
+  --surface: #ffffff !important;
+  --surface-soft: #e8f0fe !important;
+  --text: #1a2332 !important;
+  --muted: #4a5568 !important;
+  --primary: #00317e !important;
+  --primary-2: #0046ad !important;
+  --accent: #fcd400 !important;
+  --line: #dbe3f5 !important;
+}
+* { box-sizing: border-box !important; }
+body {
+  margin: 0 !important;
+  font-family: Inter, system-ui, sans-serif !important;
+  color: var(--text) !important;
+  background: var(--bg) !important;
+}
+.headline {
+  font-family: "Space Grotesk", Inter, sans-serif !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text) !important;
+}
+.shell {
+  width: min(1240px, 94vw) !important;
+  margin: 0 auto !important;
+}
+.topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  backdrop-filter: blur(10px) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  border-bottom: 1px solid var(--line) !important;
+  box-shadow: 0 1px 0 rgba(219, 227, 245, 0.8) !important;
+}
+.topbar-inner {
+  min-height: 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+}
+.brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: .65rem !important;
+  text-decoration: none !important;
+  color: var(--primary) !important;
+}
+.brand img {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 10px !important;
+  object-fit: cover !important;
+}
+.brand span {
+  font-weight: 900 !important;
+}
+.nav-links {
+  display: flex !important;
+  gap: .6rem !important;
+  flex-wrap: wrap !important;
+}
+.nav-links a {
+  text-decoration: none !important;
+  color: #4b5565 !important;
+  font-weight: 600 !important;
+  font-size: .86rem !important;
+  padding: .5rem .9rem !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary) !important;
+  background: #e9efff !important;
+}
+.archive {
+  padding-top: 2rem !important;
+  padding-bottom: 3rem !important;
+}
+.archive h2 {
+  color: var(--primary) !important;
+  font-size: 1.65rem !important;
+  margin: 0 0 2rem 0 !important;
+}
+.headline[data-players-page-title] {
+  color: var(--primary) !important;
+}
+.season h3 {
+  color: var(--primary) !important;
+  font-size: 1.4rem !important;
+  margin: 0 0 1rem 0 !important;
+}
+.season p {
+  color: var(--text) !important;
+  font-size: 1rem !important;
+  margin: 0.5rem 0 !important;
+  line-height: 1.6 !important;
+}
+.season strong {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+}
+.table-cpl td:first-child {
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+.section-head {
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 0.7rem !important;
+  align-items: center !important;
+}
+.section-head h1 {
+  margin: 0 !important;
+  font-size: clamp(1.35rem, 2.5vw, 2rem) !important;
+  color: #fff !important;
+}
+.rail-nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+}
+.rail-nav a {
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px !important;
+  transition: background 0.3s ease !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+}
+.rail-nav a:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+.table-cpl {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin-top: 1rem !important;
+  background: #fff !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--line) !important;
+  transition: all 0.3s ease !important;
+}
+.table-cpl thead tr:first-child th:first-child {
+  border-top-left-radius: 12px !important;
+}
+.table-cpl thead tr:first-child th:last-child {
+  border-top-right-radius: 12px !important;
+}
+.table-cpl:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 49, 126, 0.15) !important;
+}
+.table-cpl thead {
+  background: linear-gradient(135deg, #00317e 0%, #0046ad 100%) !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  font-weight: 700 !important;
+}
+.table-cpl th {
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding: 1.2rem 1rem !important;
+  text-align: center !important;
+  border-bottom: none !important;
+  font-size: 0.85rem !important;
+  font-family: 'Space Grotesk', Inter, sans-serif !important;
+}
+.table-cpl td {
+  padding: 1rem !important;
+  text-align: center !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--text) !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s ease !important;
+}
+.table-cpl tbody tr {
+  transition: all 0.3s ease !important;
+}
+.table-cpl tbody tr:hover td {
+  background: #e8f0fe !important;
+  color: var(--text) !important;
+  transform: scale(1.02) !important;
+}
+.table-cpl tbody tr:hover {
+  background: #e8f0fe !important;
+  transform: scale(1.01) !important;
+  box-shadow: 0 2px 8px rgba(0, 49, 126, 0.1) !important;
+}
+.cpl-archive-table img {
+  width: 56px !important;
+  height: 56px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  vertical-align: middle !important;
+  border: 2px solid var(--line) !important;
+  transition: all 0.3s ease !important;
+}
+.cpl-archive-table tbody tr:hover img {
+  transform: scale(1.1) !important;
+  border-color: var(--primary) !important;
+}
+.card {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  margin-bottom: 2rem !important;
+  box-shadow: 0 4px 20px rgba(0, 49, 126, 0.1) !important;
+}
+.card--lift {
+  transition: transform 0.3s ease !important;
+}
+.card--lift:hover {
+  transform: translateY(-4px) !important;
+}
+.hero-cinematic {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 32px rgba(0, 49, 126, 0.2) !important;
+  border: 1px solid var(--line) !important;
+}
+.hero-cinematic__inner h1 {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+.hero-cinematic__inner p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+}
+.bottom-ticker {
+  background: var(--surface) !important;
+  border-top: 1px solid var(--line) !important;
+  color: var(--text) !important;
+}
+.bottom-nav {
+  background: var(--primary) !important;
+  color: white !important;
+}
+.bottom-nav a {
+  color: white !important;
+  text-decoration: none !important;
+  padding: 1rem !important;
+  display: inline-block !important;
+  transition: background 0.3s ease !important;
+}
+.bottom-nav a:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+.bottom-nav a.active {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+.cpl-page-cta a {
+  text-decoration: none !important;
+  font-weight: 800 !important;
+  font-size: 0.82rem !important;
+  padding: 0.45rem 0.75rem !important;
+  border-radius: 10px !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--primary) !important;
+  transition: all 0.3s ease !important;
+  margin-right: 0.5rem !important;
+}
+.cpl-page-cta a:hover {
+  background: var(--surface-soft) !important;
+  transform: translateY(-2px) !important;
+}
+@media (max-width: 768px) {
+  .shell {
+    width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  .nav-links {
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+  }
+  .table-cpl {
+    font-size: 0.8rem !important;
+  }
+  .cpl-archive-table img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .season {
+    padding: 1.5rem !important;
+  }
+}

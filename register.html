@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormDragons Register</title>
+    <meta name="description" content="Register to LegendaryHomies">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" type="image/png" href="assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="core/firebase-config.js"></script>
+    <script src="core/firebase-auth.js"></script>
+    <script src="core/session-manager.js"></script>
+</head>
+<body>
+    <div class="wrapper" id="register-wrapper">
+        <div class="form-header">
+            <h1>Create Account</h1>
+            <p class="subtitle">Join the LegendaryHomies crew</p>
+        </div>
+        <div id="register-message" class="message hidden"></div>
+        <form id="register-form" onsubmit="return false;">
+            <div class="input-box">
+                <input type="email" id="reg-email" placeholder="Email" required autocomplete="email">
+                <i class='bx bx-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="reg-displayname" placeholder="Display Name" required autocomplete="off" maxlength="25">
+                <i class='bx bx-smile'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="reg-password" placeholder="Password (min 6 chars)" required autocomplete="new-password">
+                <i class='bx bx-lock-alt'></i>
+                <span class="toggle-password" onclick="togglePasswordVisibility('reg-password', this)">
+                    <i class='bx bx-show'></i>
+                </span>
+            </div>
+            <div class="password-strength" id="password-strength">
+                <div class="strength-bar" id="strength-bar"></div>
+            </div>
+            <div class="input-box">
+                <input type="password" id="reg-confirm" placeholder="Confirm Password" required autocomplete="new-password">
+                <i class='bx bx-check-shield'></i>
+                <span class="toggle-password" onclick="togglePasswordVisibility('reg-confirm', this)">
+                    <i class='bx bx-show'></i>
+                </span>
+            </div>
+            <button type="submit" class="button" id="register-btn">
+                <span class="btn-text">Register</span>
+                <span class="btn-loader hidden"><i class='bx bx-loader-alt bx-spin'></i></span>
+            </button>
+        </form>
+        <div class="register-link">
+            <p>Already have an account? <a href="index.html">Login</a></p>
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility(inputId, toggler) {
+            const input = document.getElementById(inputId);
+            const icon = toggler.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bx bx-hide';
+            } else {
+                input.type = 'password';
+                icon.className = 'bx bx-show';
+            }
+        }
+        document.getElementById('reg-password').addEventListener('input', function() {
+            const val = this.value;
+            const bar = document.getElementById('strength-bar');
+            let strength = 0;
+            if (val.length >= 6) strength++;
+            if (val.length >= 10) strength++;
+            if (/[A-Z]/.test(val)) strength++;
+            if (/[0-9]/.test(val)) strength++;
+            if (/[^a-zA-Z0-9]/.test(val)) strength++;
+            const widths = ['0%', '20%', '40%', '60%', '80%', '100%'];
+            const colors = ['#ff4444', '#ff8844', '#ffaa00', '#aacc00', '#44cc44', '#00e676'];
+            bar.style.width = widths[strength];
+            bar.style.backgroundColor = colors[strength];
+        });
+        function showMessage(elementId, text, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = text;
+            el.className = 'message ' + type;
+            el.classList.remove('hidden');
+            setTimeout(() => el.classList.add('hidden'), 5000);
+        }
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!window.firebaseReady || !FIREBASE_AUTH) {
+                showMessage('register-message', 'Firebase not initialized. Please refresh.', 'error');
+                return;
+            }
+            const btn = document.getElementById('register-btn');
+            const btnText = btn.querySelector('.btn-text');
+            const btnLoader = btn.querySelector('.btn-loader');
+            const email = document.getElementById('reg-email').value.trim();
+            const displayName = document.getElementById('reg-displayname').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm').value;
+            if (!email || !displayName || !password || !confirm) {
+                showMessage('register-message', 'Please fill in all fields', 'error');
+                return;
+            }
+            if (displayName.length < 3 || displayName.length > 20) {
+                showMessage('register-message', 'Username must be between 3 and 20 characters', 'error');
+                return;
+            }
+            if (!/^[a-zA-Z0-9_ ]+$/.test(displayName)) {
+                showMessage('register-message', 'Username can only contain letters, numbers, underscores and spaces', 'error');
+                return;
+            }
+            if (password.length < 6) {
+                showMessage('register-message', 'Password must be at least 6 characters', 'error');
+                return;
+            }
+            if (password !== confirm) {
+                showMessage('register-message', 'Passwords do not match', 'error');
+                return;
+            }
+            btnText.classList.add('hidden');
+            btnLoader.classList.remove('hidden');
+            btn.disabled = true;
+            try {
+                const result = await FIREBASE_AUTH.register(email, password, displayName);
+                if (result.success) {
+                    showMessage('register-message', result.message + ' Redirecting...', 'success');
+                    document.querySelector('.wrapper').classList.add('success-animation');
+                    setTimeout(() => {
+                        window.location.href = 'pages/home.html';
+                    }, 1500);
+                } else {
+                    showMessage('register-message', result.message, 'error');
+                    document.querySelector('.wrapper').classList.add('shake');
+                    setTimeout(() => document.querySelector('.wrapper').classList.remove('shake'), 500);
+                    btnText.classList.remove('hidden');
+                    btnLoader.classList.add('hidden');
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                showMessage('register-message', 'Error: ' + err.message, 'error');
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+                btn.disabled = false;
+            }
+        });
+    </script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

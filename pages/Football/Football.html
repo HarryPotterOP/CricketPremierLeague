@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Legends FC - Professional Football Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Football.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo">
+            <img src="../../assets/images/logo.png" alt="Living Legends FC">
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-links">
+            <a href="../home.html">Home</a>
+            <a href="../Cricket/Cricket.html">Cricket</a>
+            <a href="Fixtures/Fixtures.html">Fixtures</a>
+            <a href="Scoreboard/Scoreboard.html">Matches</a>
+            <a href="FootballArchive/Footballarchive.html">Archive</a>
+        </nav>
+    </header>
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Living Legends FC</h1>
+            <p>Living Legends FC | Champions in the Making</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="window.location.href='Scoreboard/Scoreboard.html'">Latest Matches</button>
+                <button class="btn-secondary" onclick="window.location.href='Fixtures/Fixtures.html'">Meet the Team</button>
+            </div>
+        </div>
+    </section>
+    <section class="stadium-showcase" aria-label="Tactical Formation">
+        <div class="stadium-header">
+            <h2>Interactive Tactical Board</h2>
+            <p class="stadium-subtitle">Customize your formation</p>
+        </div>
+        <div class="tactical-controls">
+            <div class="control-group">
+                <label for="formation-selector">Formation:</label>
+                <select id="formation-selector" class="formation-dropdown">
+                    <option value="4-3-3">4-3-3 (Attack)</option>
+                    <option value="4-4-2">4-4-2 (Balanced)</option>
+                    <option value="3-5-2">3-5-2 (Midfield Control)</option>
+                    <option value="5-3-2">5-3-2 (Defensive)</option>
+                    <option value="4-2-3-1">4-2-3-1 (Modern)</option>
+                    <option value="3-4-3">3-4-3 (Attacking)</option>
+                    <option value="4-1-2-1-2">4-1-2-1-2 (Diamond)</option>
+                </select>
+            </div>
+            <div class="control-info">
+                <span id="stadium-formation-note">Formation: 4-3-3</span>
+                <button onclick="resetFormation()" class="reset-btn" title="Reset to default positions">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </div>
+        <div class="stadium-pitch-wrap">
+            <svg class="pitch-svg" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <radialGradient id="pitchLight" cx="50%" cy="50%" r="80%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
+                        <stop offset="70%" stop-color="rgba(255,255,255,0)"/>
+                        <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+                    </radialGradient>
+                </defs>
+                <rect width="1000" height="680" fill="#2d6a3f"/>
+                <rect width="1000" height="680" fill="none" stroke="#6CABDD" stroke-width="4"/>
+                <rect width="1000" height="680" fill="url(#pitchLight)"/>
+                <line x1="500" y1="0" x2="500" y2="680" stroke="#6CABDD" stroke-width="3" opacity="0.9"/>
+                <rect x="0" y="270" width="60" height="140" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <rect x="940" y="270" width="60" height="140" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <rect x="0" y="190" width="160" height="300" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <rect x="840" y="190" width="160" height="300" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <path d="M 160,240 A 91,91 0 0 1 160,440" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <path d="M 840,240 A 91,91 0 0 0 840,440" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.8"/>
+                <circle cx="500" cy="340" r="91" fill="none" stroke="#6CABDD" stroke-width="2" opacity="0.9"/>
+                <circle cx="500" cy="340" r="4" fill="#6CABDD"/>
+                <path d="M -2,0 L -2,22 A 22,22 0 0 1 22,-2 L 0,-2" fill="none" stroke="#6CABDD" stroke-width="2"/>
+                <path d="M 1002,0 L 1002,22 A 22,22 0 0 0 978,-2 L 1000,-2" fill="none" stroke="#6CABDD" stroke-width="2"/>
+                <path d="M -2,680 L -2,658 A 22,22 0 0 0 22,682 L 0,682" fill="none" stroke="#6CABDD" stroke-width="2"/>
+                <path d="M 1002,680 L 1002,658 A 22,22 0 0 1 978,682 L 1000,682" fill="none" stroke="#6CABDD" stroke-width="2"/>
+            </svg>
+            <div class="stadium-players" id="stadium-players">
+            </div>
+        </div>
+        <div class="player-pool-section">
+            <h3>Player Pool</h3>
+            <p>Add dummy players</p>
+            <div class="player-pool" id="player-pool">
+            </div>
+        </div>
+    </section>
+    <section class="player-list-section">
+        <div class="section-header">
+            <h2>Our Squad</h2>
+            <p>Meet the talented players representing<span class="team-signature"> &nbsp;Living Legends FC</span></p>
+        </div>
+        <div class="player-list-grid">
+            <div class="player-card" data-player="gaming-elite">
+                <div class="card-image-wrapper">
+                    <img src="../../assets/images/Elite.jpg" alt="Gaming Elite - Forward">
+                </div>
+                <div class="player-info">
+                    <h2>Gaming Elite</h2>
+                    <p class="jersey-number">#5</p>
+                    <p class="position">Forward</p>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">Matches</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">10</span>
+                            <span class="stat-label">Goals</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Assists</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-player="king-kohli">
+                <div class="card-image-wrapper">
+                    <img src="../../assets/images/ViratKohli.jpg" alt="King Kohli - Midfielder">
+                </div>
+                <div class="player-info">
+                    <h2>King Kohli</h2>
+                    <p class="jersey-number">#7</p>
+                    <p class="position">Midfielder</p>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">Matches</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">Goals</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">1</span>
+                            <span class="stat-label">Assists</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-card" data-player="black-adam">
+                <div class="card-image-wrapper">
+                    <img src="../../assets/images/Boruto.jpg" alt="Black Adam - Forward">
+                </div>
+                <div class="player-info">
+                    <h2>Black Adam</h2>
+                    <p class="jersey-number">#1</p>
+                    <p class="position">Forward</p>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <span class="stat-value">5</span>
+                            <span class="stat-label">Matches</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">2</span>
+                            <span class="stat-label">Goals</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">Assists</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-top-section">
+                <div class="footer-social-block">
+                    <h3 class="footer-title">Social Pages:</h3>
+                    <div class="social-icons">
+                        <a href="https://www.mancity.com" target="_blank" class="social-icon" title="Manchester City Official">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.72 1.21 4.63 3.89 4.63 7.01 0 2.47-1.19 4.66-3.03 6.03z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/mancity" target="_blank" class="social-icon" title="Manchester City Twitter">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/mancity" target="_blank" class="social-icon" title="Manchester City YouTube">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/mancity" target="_blank" class="social-icon" title="Manchester City Instagram">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/mancity" target="_blank" class="social-icon" title="Manchester City Facebook">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="copyright">Copyright Living Legends FC 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="../../js/cpl-content.js"></script>
+    <script src="football-stadium.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

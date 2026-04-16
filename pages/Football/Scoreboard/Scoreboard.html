@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard - Living Legends FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Scoreboard.css">
+    <link rel="icon" type="image/png" href="../../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../../core/firebase-config.js"></script>
+    <script src="../../../core/firebase-auth.js"></script>
+    <script src="../../../core/session-manager.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../../assets/images/logo.png" alt="Living Legends FC">
+        </div>
+        <nav class="nav-links">
+            <a href="../../home.html">Home</a>
+            <a href="../Football.html">Football</a>
+            <a href="../Fixtures/Fixtures.html">Fixtures</a>
+            <a href="../FootballArchive/Footballarchive.html">Archive</a>
+        </nav>
+    </header>
+    <main class="scoreboard-main">
+        <div class="scoreboard-header">
+            <h1>Match Scoreboard</h1>
+            <p class="season-note">Season 2026-2027: April 2026 through April 2027</p>
+        </div>
+        <div class="calendar">
+            <div class="months" id="months-container">
+            </div>
+            <div class="tabs" role="tablist" aria-label="Scoreboard view">
+                <button type="button" class="tab-btn selected" data-tab="month" role="tab" aria-selected="true">By Month</button>
+                <button type="button" class="tab-btn" data-tab="today" role="tab" aria-selected="false">Today</button>
+            </div>
+        </div>
+        <p id="scoreboard-view-hint" class="scoreboard-view-hint" hidden></p>
+        <div class="matches-container" id="matches-container">
+        </div>
+    </main>
+    <script src="Scoreboard.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

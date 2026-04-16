@@ -1,0 +1,192 @@
+
+.hero-slider .hero-slide > img:first-of-type {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: #0a1328;
+}
+.hero-cinematic {
+  position: relative;
+  background: #0b1530;
+  overflow: hidden;
+}
+.hero-cinematic .hero-cinematic__bg {
+  position: relative !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: min(78vh, 720px);
+  object-fit: contain !important;
+  object-position: center;
+  inset: auto !important;
+  animation: none !important;
+  filter: saturate(1.06) contrast(1.03) brightness(0.92);
+  z-index: 0;
+}
+.hero-cinematic .hero-cinematic__grade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 38%;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(6, 15, 48, 0.94) 0%,
+    rgba(6, 15, 48, 0.45) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+.hero-cinematic .hero-cinematic__veil {
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-cinematic .hero-cinematic__inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  min-height: 0 !important;
+  padding-bottom: clamp(1.5rem, 4vw, 2.75rem) !important;
+}
+.media-card {
+  position: relative;
+}
+.media-card__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.media-card > img,
+.media-card h3 {
+  position: relative;
+  z-index: 1;
+}
+.media-card__hit:focus {
+  outline: 2px solid rgba(56, 189, 248, 0.95);
+  outline-offset: 3px;
+}
+.media-card > img {
+  width: 100%;
+  height: auto;
+  max-height: min(300px, 42vw);
+  min-height: 140px;
+  object-fit: contain;
+  object-position: center;
+  background: linear-gradient(180deg, #152447, #0f1a33);
+  display: block;
+}
+.cpl-page-figure {
+  background: #0f172a;
+  border-radius: 14px;
+  padding: 0.5rem;
+  text-align: center;
+}
+.cpl-page-figure img {
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 560px);
+  object-fit: contain;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+.player-card__photo {
+  width: 100%;
+  height: auto !important;
+  min-height: 14rem;
+  max-height: 24rem;
+  object-fit: contain;
+  background: #eef2ff;
+}
+.live-player-avatar {
+  width: 100%;
+  max-width: 128px;
+  height: auto !important;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 14px !important;
+  background: #eef2ff;
+}
+.cpl-archive-table img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 72px;
+  max-height: 72px;
+  object-fit: contain;
+}
+@keyframes cpl-float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+.card--lift,
+.media-card,
+.cpl-feed-card {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .card--lift:hover,
+  .media-card:hover,
+  .cpl-feed-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px -20px rgba(15, 23, 42, 0.4);
+  }
+}
+.quick-links__grid a,
+.link-chip {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .quick-links__grid a:hover,
+  .link-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -14px rgba(0, 49, 126, 0.4);
+  }
+}
+.hero-badge {
+  animation: cpl-float-soft 6s ease-in-out infinite;
+}
+[data-stagger-children] > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-stagger-children].is-staggered > * {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge {
+    animation: none !important;
+  }
+  [data-stagger-children] > *,
+  [data-stagger-children].is-staggered > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .card--lift:hover,
+  .media-card:hover {
+    transform: none !important;
+  }
+}

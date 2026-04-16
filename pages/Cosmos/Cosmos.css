@@ -1,0 +1,347 @@
+:root {
+    --cosmos-bg: #010409;
+    --cosmos-primary: #58a6ff;
+    --cosmos-secondary: #bc8cff;
+    --cosmos-accent: #79c0ff;
+    --cosmos-text: #e6edf3;
+    --cosmos-text-muted: #8b949e;
+    --cosmos-glass: rgba(22, 27, 34, 0.6);
+    --cosmos-border: rgba(48, 54, 61, 0.5);
+    --cosmos-glow: rgba(88, 166, 255, 0.2);
+    --font-header: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-neu: 'neu', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@font-face {
+    font-family: neu;
+    src: url('../../assets/fonts/NeueHaasDisplayMedium.ttf');
+}
+@font-face {
+    font-family: neu-light;
+    src: url('../../assets/fonts/NeueHaasDisplayLight.ttf');
+}
+@font-face {
+    font-family: neu-roman;
+    src: url('../../assets/fonts/NeueHaasDisplayRoman.ttf');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body.cosmos-theme {
+    background: var(--cosmos-bg);
+    color: var(--cosmos-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+.shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+#stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+#nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 30%, rgba(88, 166, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(188, 140, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 5s infinite ease-in-out;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+.cosmos-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 100;
+    background: rgba(1, 4, 9, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cosmos-border);
+}
+.cosmos-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--cosmos-text);
+    font-family: var(--font-header);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+.brand img {
+    height: 40px;
+    width: 40px;
+    filter: drop-shadow(0 0 10px var(--cosmos-glow));
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--cosmos-text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+.nav-links a:hover {
+    color: var(--cosmos-primary);
+    text-shadow: 0 0 10px var(--cosmos-glow);
+}
+.profile-link i {
+    font-size: 1.8rem;
+}
+.hero-cosmos {
+    padding-top: 12rem;
+    padding-bottom: 8rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+main {
+    padding-top: 8rem;
+}
+.hero-content {
+    max-width: 800px;
+}
+.eyebrow {
+    font-family: var(--font-header);
+    color: var(--cosmos-primary);
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+.headline {
+    font-family: var(--font-header);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff 0%, #79c0ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.subheadline {
+    font-size: 1.25rem;
+    color: var(--cosmos-text-muted);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+.cosmos-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    font-family: var(--font-header);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+.cosmos-btn.primary {
+    background: var(--cosmos-primary);
+    color: #010409;
+    box-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
+}
+.cosmos-btn.primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(88, 166, 255, 0.5);
+}
+.cosmos-btn.ghost {
+    background: transparent;
+    color: var(--cosmos-text);
+    border: 1px solid var(--cosmos-border);
+    margin-left: 1.5rem;
+}
+.cosmos-btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--cosmos-text);
+}
+.cosmos-btn.outline {
+    background: transparent;
+    color: var(--cosmos-secondary);
+    border: 2px solid var(--cosmos-secondary);
+}
+.cosmos-btn.outline:hover {
+    background: var(--cosmos-secondary);
+    color: #010409;
+    box-shadow: 0 0 30px rgba(188, 140, 255, 0.4);
+}
+.realms-section {
+    padding: 10rem 0;
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+.section-header h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+.realms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+.realm-card {
+    background: var(--cosmos-glass);
+    border: 1px solid var(--cosmos-border);
+    padding: 4rem 3rem;
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.realm-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--cosmos-primary);
+}
+.realm-icon {
+    font-size: 3.5rem;
+    color: var(--cosmos-primary);
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+.realm-card:hover .realm-icon {
+    transform: scale(1.2);
+    text-shadow: 0 0 20px var(--cosmos-primary);
+}
+.realm-card h3 {
+    font-family: var(--font-header);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.realm-card p {
+    color: var(--cosmos-text-muted);
+}
+.realm-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--cosmos-glow) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+.realm-card:hover .realm-glow {
+    opacity: 1;
+    width: 300px;
+    height: 300px;
+}
+.voyage-banner {
+    background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(188, 140, 255, 0.1) 100%);
+    padding: 6rem 4rem;
+    border-radius: 3rem;
+    border: 1px solid var(--cosmos-border);
+    margin-bottom: 10rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+.voyage-content h2 {
+    font-family: var(--font-header);
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+.voyage-content p {
+    font-size: 1.2rem;
+    color: var(--cosmos-text-muted);
+    margin-bottom: 3rem;
+}
+.cosmos-footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--cosmos-border);
+    background: rgba(1, 4, 9, 0.5);
+}
+.cosmos-footer .shell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cosmos-footer p {
+    color: var(--cosmos-text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+}
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.footer-links a {
+    color: var(--cosmos-text-muted);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+.footer-links a:hover {
+    color: var(--cosmos-text);
+}
+[data-reveal] {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .headline {
+        font-size: 4rem;
+    }
+    .cosmos-btn.ghost {
+        margin-left: 0;
+        margin-top: 1rem;
+        display: flex;
+    }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/study.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="nav-sidebar">
+        <a href="index.html" class="nav-link active" data-tooltip="Dashboard">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </a>
+        <a href="vault.html" class="nav-link" data-tooltip="Resource Vault">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </a>
+        <a href="focus.html" class="nav-link" data-tooltip="Focus Room">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+        <a href="flashcards.html" class="nav-link" data-tooltip="Flashcards">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        </a>
+        <a href="analytics.html" class="nav-link" data-tooltip="Analytics">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </a>
+        <div class="mt-auto">
+            <a href="../home.html" class="nav-link" data-tooltip="Back Home">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </a>
+        </div>
+    </nav>
+    <main class="pl-32 pr-12 py-16 min-h-screen">
+        <header class="mb-16">
+            <h1 class="font-playfair text-6xl mb-3 text-[#D4AF37] tracking-tight">Mission Control</h1>
+            <p class="text-white/50 text-xl font-light">Welcome back, <span id="user-display-name" class="text-white font-medium">Student</span></p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div class="lg:col-span-8 space-y-10">
+                <div class="glass-card p-10">
+                    <div class="flex items-center justify-between mb-10">
+                        <div>
+                            <h2 class="text-3xl font-semibold mb-2">Daily Progress</h2>
+                            <p class="text-white/40 text-lg">Your focus objectives for today.</p>
+                        </div>
+                        <div class="relative w-40 h-40">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="80" cy="80" r="72" stroke="currentColor" stroke-width="10" fill="transparent" class="text-white/5" />
+                                <circle id="daily-goal-ring" cx="80" cy="80" r="72" stroke="currentColor" stroke-width="10" fill="transparent" stroke-dasharray="452.4" stroke-dashoffset="452.4" class="text-[#A8E6CF] transition-all duration-1000 ease-out" />
+                            </svg>
+                            <div id="progress-percent" class="absolute inset-0 flex items-center justify-center font-bold text-3xl text-[#A8E6CF]">
+                                0%
+                            </div>
+                        </div>
+                    </div>
+                    <div id="task-list" class="space-y-4 mb-8">
+                    </div>
+                    <div class="flex gap-4">
+                        <input type="text" id="task-input" placeholder="Add a new mission..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-6 py-4 focus:outline-none focus:border-[#D4AF37] transition-colors">
+                        <button onclick="addTask()" class="bg-[#D4AF37] text-[#0a0a0c] px-8 py-4 rounded-xl font-bold hover:brightness-110 transition-all">Add</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="glass-card p-8 group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold">Total Focus</h3>
+                        </div>
+                        <div class="text-5xl font-playfair text-[#D4AF37] mb-2" id="session-focus-time">0m focused</div>
+                        <p class="text-white/40 mt-2">This session's deep work</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-[#A8E6CF]/10 flex items-center justify-center text-[#A8E6CF]">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold">Study Streak</h3>
+                        </div>
+                        <div class="text-5xl font-playfair text-[#A8E6CF] mb-2">8 Days</div>
+                        <p class="text-white/40 mt-2">Personal best record</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-4 space-y-10">
+                <div class="glass-card p-8 h-[400px] flex flex-col">
+                    <h2 class="text-2xl font-semibold mb-6 flex items-center gap-3">
+                        <svg class="w-6 h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        Quick Notes
+                    </h2>
+                    <textarea id="study-notes" placeholder="Jot down thoughts, formulas, or reminders... (Auto-saves)" class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-6 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none text-white/80 leading-relaxed"></textarea>
+                </div>
+                <div class="glass-card p-8">
+                    <h2 class="text-2xl font-semibold mb-8">Global Homies</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#A8E6CF] flex items-center justify-center font-bold text-[#0a0a0c]">BA</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Black Adam</h4>
+                                <p class="text-white/40 text-sm">Focusing: Advanced Python Programming</p>
+                            </div>
+                            <div class="ml-auto w-3 h-3 rounded-full bg-[#A8E6CF] mint-glow animate-pulse"></div>
+                        </div>
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#A8E6CF] to-[#D4AF37] flex items-center justify-center font-bold text-[#0a0a0c]">KK</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">King Kohli</h4>
+                                <p class="text-white/40 text-sm">Focusing: Watching IPL</p>
+                            </div>
+                            <div class="ml-auto w-3 h-3 rounded-full bg-[#A8E6CF] mint-glow animate-pulse"></div>
+                        </div>
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#FFB13D] flex items-center justify-center font-bold text-[#0a0a0c]">GE</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Gaming Elite</h4>
+                                <p class="text-white/40 text-sm">Focusing: Minecraft PVP</p>
+                            </div>
+                            <div class="ml-auto w-3 h-3 rounded-full bg-[#A8E6CF] mint-glow animate-pulse"></div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-10 py-4 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 transition-all font-semibold">
+                        View All Friends
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/study.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>

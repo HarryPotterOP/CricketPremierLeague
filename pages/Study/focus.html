@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Room | Deep Work</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/study.css">
+    <link rel="icon" type="image/png" href="../../assets/images/Symbol.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="../../core/firebase-config.js"></script>
+    <script src="../../core/firebase-auth.js"></script>
+    <script src="../../core/session-manager.js"></script>
+</head>
+<body class="bg-[#121212] text-white overflow-hidden">
+    <nav class="nav-sidebar ghost-hidden">
+        <a href="index.html" class="nav-link" data-tooltip="Dashboard">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </a>
+        <a href="vault.html" class="nav-link" data-tooltip="Resource Vault">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </a>
+        <a href="focus.html" class="nav-link active" data-tooltip="Focus Room">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </a>
+        <a href="flashcards.html" class="nav-link" data-tooltip="Flashcards">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        </a>
+        <a href="analytics.html" class="nav-link" data-tooltip="Analytics">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </a>
+        <div class="mt-auto">
+            <a href="../home.html" class="nav-link" data-tooltip="Back Home">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </a>
+        </div>
+    </nav>
+    <main class="min-h-screen flex flex-col items-center justify-center relative">
+        <div id="timer-container" class="relative z-10 text-center">
+            <div class="relative w-80 h-80 md:w-[450px] md:h-[450px] mb-12">
+                <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="50%" cy="50%" r="45%" stroke="rgba(255,255,255,0.05)" stroke-width="10" fill="transparent" />
+                    <circle class="timer-ring text-[#D4AF37]" cx="50%" cy="50%" r="45%" stroke="currentColor" stroke-width="10" fill="transparent" stroke-dasharray="1272" stroke-dashoffset="0" stroke-linecap="round" />
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <h1 id="timer-display" class="text-7xl md:text-9xl font-light tracking-tighter mb-4">25:00</h1>
+                    <div class="flex gap-6">
+                        <button onclick="startTimer()" class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all group">
+                            <svg class="w-8 h-8 text-[#D4AF37]" fill="currentColor" viewBox="0 0 20 20"><path d="M4.5 3.5v13L16.5 10 4.5 3.5z"></path></svg>
+                        </button>
+                        <button onclick="pauseTimer()" class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 3.5h3v13h-3v-13zm6 0h3v13h-3v-13z"></path></svg>
+                        </button>
+                        <button onclick="resetTimer()" class="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-all">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 ghost-hidden">
+                <button onclick="setMode('pomodoro')" class="mode-btn active px-8 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#D4AF37]/50 transition-all font-semibold uppercase tracking-widest text-xs" data-mode="pomodoro">Pomodoro</button>
+                <button onclick="setMode('short')" class="mode-btn px-8 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#A8E6CF]/50 transition-all font-semibold uppercase tracking-widest text-xs" data-mode="short">Short Break</button>
+                <button onclick="setMode('long')" class="mode-btn px-8 py-3 rounded-2xl bg-white/5 border border-white/10 hover:border-[#A8E6CF]/50 transition-all font-semibold uppercase tracking-widest text-xs" data-mode="long">Long Break</button>
+                <button onclick="toggleGhostMode()" class="px-8 py-3 rounded-2xl bg-[#D4AF37] text-[#0a0a0c] font-bold uppercase tracking-widest text-xs shadow-lg shadow-[#D4AF37]/20 hover:brightness-110 transition-all">Ghost Mode</button>
+            </div>
+        </div>
+        <div class="fixed bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 glass-card px-12 py-6 ghost-hidden">
+            <button onclick="toggleSound('rain')" class="sound-btn flex flex-col items-center gap-3 text-white/30 hover:text-white transition-all group" data-sound="rain">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                </div>
+                <span class="text-[10px] uppercase font-bold tracking-[0.2em]">Rain</span>
+            </button>
+            <button onclick="toggleSound('lofi')" class="sound-btn flex flex-col items-center gap-3 text-white/30 hover:text-white transition-all group" data-sound="lofi">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+                </div>
+                <span class="text-[10px] uppercase font-bold tracking-[0.2em]">Lo-Fi</span>
+            </button>
+            <button onclick="toggleSound('library')" class="sound-btn flex flex-col items-center gap-3 text-white/30 hover:text-white transition-all group" data-sound="library">
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                </div>
+                <span class="text-[10px] uppercase font-bold tracking-[0.2em]">Library</span>
+            </button>
+        </div>
+    </main>
+    <script src="js/study.js"></script>
+<script>function toggleMobileMenu(){var nav=document.querySelector(".nav-links")||document.getElementById("nav-part2");if(nav)nav.classList.toggle("active");}</script>
+</body>
+</html>
