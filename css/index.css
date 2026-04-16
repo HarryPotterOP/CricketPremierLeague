@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@font-face {
+    font-family: neu;
+    src: url('../assets/fonts/NeueHaasDisplayMedium.ttf');
+}
+@font-face {
+    font-family: neu;
+    font-weight: 100;
+    src: url('../assets/fonts/NeueHaasDisplayLight.ttf');
+}
+@font-face {
+    font-family: neu;
+    font-weight: 200;
+    src: url('../assets/fonts/NeueHaasDisplayRoman.ttf');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "neu", "Poppins", sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0a0a1a;
+    background-image: url('../assets/images/ninja/Scenery.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 0;
+}
+.wrapper {
+    width: 440px;
+    background: rgba(18, 18, 25, 0.65); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 16px;
+    padding: 40px 40px 30px;
+    position: relative;
+    z-index: 10;
+    animation: fadeInUp 0.5s ease-out;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.logo-main {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(254, 50, 10, 0.4));
+    animation: pulseLogo 3s infinite ease-in-out;
+}
+@keyframes pulseLogo {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(254, 50, 10, 0.4)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(254, 50, 10, 0.6)); }
+}
+.wrapper h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+.subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+.message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+.message.error {
+    background: rgba(255, 50, 50, 0.1);
+    border: 1px solid rgba(255, 50, 50, 0.2);
+    color: #ff6b6b;
+}
+.message.success {
+    background: rgba(0, 230, 118, 0.1);
+    border: 1px solid rgba(0, 230, 118, 0.2);
+    color: #69f0ae;
+}
+.message.hidden { display: none; }
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    margin-bottom: 18px; 
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 45px 0 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.input-box input:focus {
+    border-color: #FE320A;
+    background: rgba(0, 0, 0, 0.35);
+}
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+.input-box > i {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.4);
+}
+.input-box input:focus ~ i { color: #FE320A; }
+.toggle-password {
+    position: absolute;
+    right: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+}
+.toggle-password:hover { color: rgba(255, 255, 255, 0.8); }
+.input-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+    margin-top: -6px; 
+    padding-left: 2px;
+}
+.password-strength {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 10px; 
+    margin-top: 6px;     
+    overflow: hidden;
+}
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+.button {
+    width: 100%;
+    height: 52px;
+    background: #FE320A; 
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px; 
+}
+.button:hover { background: #e02a08; }
+.button:disabled { opacity: 0.7; cursor: not-allowed; }
+.btn-text, .btn-loader { display: flex; align-items: center; justify-content: center; }
+.hidden { display: none !important; }
+.forgot-password {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+.forgot-password a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.forgot-password a:hover {
+    color: #fff;
+}
+.register-link {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+.register-link p { color: rgba(255, 255, 255, 0.5); }
+.register-link a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 500;
+    margin-left: 4px;
+}
+.register-link a:hover { color: #FE320A; text-decoration: none; }
+.shake { animation: shake 0.4s ease-in-out; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+@media (max-width: 768px) {
+    .wrapper {
+        width: 85%;
+        max-width: 420px;
+        padding: 35px 28px 25px;
+        border-radius: 14px;
+    }
+    .wrapper h1 { 
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+    .subtitle {
+        font-size: 13px;
+    }
+    .input-box {
+        height: 48px;
+        margin-bottom: 16px;
+    }
+    .input-box input {
+        padding: 0 42px 0 14px;
+        font-size: 13px;
+    }
+    .input-box > i {
+        font-size: 18px;
+        right: 14px;
+    }
+    .toggle-password {
+        right: 40px;
+        width: 24px;
+        height: 24px;
+    }
+    .togglePasswordToggle i {
+        font-size: 16px;
+    }
+    .button {
+        height: 48px;
+        font-size: 14px;
+        margin-top: 14px;
+    }
+    .register-link {
+        margin-top: 20px;
+        font-size: 13px;
+    }
+    .input-hint {
+        font-size: 11px;
+        margin-bottom: 12px;
+        margin-top: -8px;
+    }
+    .password-strength {
+        height: 3px;
+        margin-bottom: 8px;
+        margin-top: 6px;
+    }
+    .message {
+        padding: 10px 14px;
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 500px) {
+    .wrapper {
+        width: 90%;
+        padding: 30px 20px;
+        margin: 20px;
+        border-radius: 12px;
+    }
+    .wrapper h1 { 
+        font-size: 22px;
+    }
+    .subtitle {
+        font-size: 12px;
+    }
+    .input-box {
+        height: 44px;
+        margin-bottom: 14px;
+    }
+    .input-box input {
+        padding: 0 40px 0 12px;
+        font-size: 12px;
+        border-radius: 8px;
+    }
+    .input-box > i {
+        font-size: 16px;
+        right: 12px;
+    }
+    .toggle-password {
+        right: 36px;
+        width: 22px;
+        height: 22px;
+    }
+    .button {
+        height: 44px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+    .register-link {
+        margin-top: 18px;
+        font-size: 12px;
+    }
+    .register-link p { font-size: 12px; }
+    .register-link a { margin-left: 2px; }
+    .input-hint {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+    .message {
+        padding: 8px 12px;
+        margin-bottom: 14px;
+        font-size: 11px;
+        border-radius: 6px;
+    }
+    .form-header {
+        margin-bottom: 24px;
+    }
+    #login-wrapper, #register-wrapper {
+        animation: fadeInUp 0.5s ease-out;
+    }
+}
+@media (max-width: 380px) {
+    .wrapper {
+        width: 92%;
+        padding: 24px 16px;
+    }
+    .wrapper h1 { font-size: 20px; }
+    .subtitle { font-size: 11px; }
+    .input-box {
+        height: 40px;
+        margin-bottom: 12px;
+    }
+    .input-box input {
+        font-size: 11px;
+        padding: 0 36px 0 10px;
+    }
+    .button {
+        height: 40px;
+        font-size: 12px;
+    }
+    .input-hint {
+        font-size: 9px;
+    }
+}
